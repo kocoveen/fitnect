@@ -1,7 +1,6 @@
 INDEX VERSION 1.134+C:\Users\SSAFY\Desktop\fitnect\.metadata\.plugins\org.eclipse.jdt.core
 401131656.index
 2223286180.index
-540630040.index
 2112986548.index
 4066986400.index
 2370135754.index
