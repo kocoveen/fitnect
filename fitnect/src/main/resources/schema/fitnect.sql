@@ -4,10 +4,11 @@ CREATE DATABASE fitnectdb;
 
 USE fitnectdb;
 
+
 DROP TABLE IF EXISTS `USERS`;
 
 CREATE TABLE `USERS` (
-	`userId`	bigint(20)	NOT NULL,
+	`userId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`email`	varchar(100)	NOT NULL,
 	`password`	varchar(255)	NOT NULL,
 	`phone`	varchar(11)	NOT NULL,
@@ -26,7 +27,7 @@ CREATE TABLE `USERS` (
 DROP TABLE IF EXISTS `GYM`;
 
 CREATE TABLE `GYM` (
-	`gymId`	bigint(20)	NOT NULL,
+	`gymId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`name`	varchar(255)	NOT NULL,
 	`address`	varchar(255)	NOT NULL,
 	`longitude`	double	NOT NULL,
@@ -46,7 +47,7 @@ CREATE TABLE `GYM` (
 DROP TABLE IF EXISTS `GYM_MACHINE`;
 
 CREATE TABLE `GYM_MACHINE` (
-	`infoId`	bigint(20)	NOT NULL,
+	`infoId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`gymId`	bigint(20)	NOT NULL,
 	`machineCount`	int(3)	NOT NULL	DEFAULT 1,
 	`machineName`	varchar(255)	NOT NULL
@@ -55,7 +56,7 @@ CREATE TABLE `GYM_MACHINE` (
 DROP TABLE IF EXISTS `REGIST_USERS`;
 
 CREATE TABLE `REGIST_USERS` (
-	`registId`	bigint(20)	NOT NULL,
+	`registId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`gymId`	bigint(20)	NOT NULL,
 	`userId`	bigint(20)	NOT NULL,
 	`priceId`	VARCHAR(255)	NOT NULL,
@@ -66,7 +67,7 @@ CREATE TABLE `REGIST_USERS` (
 DROP TABLE IF EXISTS `REVIEW_GYM`;
 
 CREATE TABLE `REVIEW_GYM` (
-	`reviewGymId`	bigint(20)	NOT NULL,
+	`reviewGymId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`userId`	bigint(20)	NOT NULL,
 	`gymId`	bigint(20)	NOT NULL,
 	`content`	varchar(255)	NOT NULL,
@@ -78,7 +79,7 @@ CREATE TABLE `REVIEW_GYM` (
 DROP TABLE IF EXISTS `REGIST_CLASS`;
 
 CREATE TABLE `REGIST_CLASS` (
-	`regClassId`	bigint(20)	NOT NULL,
+	`regClassId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`userId`	bigint(20)	NOT NULL,
 	`classId`	bigint(20)	NOT NULL
 );
@@ -86,7 +87,7 @@ CREATE TABLE `REGIST_CLASS` (
 DROP TABLE IF EXISTS `REVIEW_TRAINOR`;
 
 CREATE TABLE `REVIEW_TRAINOR` (
-	`reviewTrainorId`	bigint(20)	NOT NULL,
+	`reviewTrainorId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`userId`	bigint(20)	NOT NULL,
 	`trainorId`	bigint(20)	NOT NULL,
 	`content`	varchar(255)	NOT NULL,
@@ -98,7 +99,7 @@ CREATE TABLE `REVIEW_TRAINOR` (
 DROP TABLE IF EXISTS `FAV_GYM`;
 
 CREATE TABLE `FAV_GYM` (
-	`favId`	bigint(20)	NOT NULL,
+	`favId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`userId`	bigint(20)	NOT NULL,
 	`gymId`	bigint(20)	NOT NULL,
 	`createdDate`	timestamp	NOT NULL	DEFAULT now(),
@@ -108,7 +109,7 @@ CREATE TABLE `FAV_GYM` (
 DROP TABLE IF EXISTS `CLASS`;
 
 CREATE TABLE `CLASS` (
-	`classId`	bigint(20)	NOT NULL,
+	`classId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`gymId`	bigint(20)	NOT NULL,
 	`trainorId`	bigint(20)	NOT NULL,
 	`name`	varchar(255)	NOT NULL,
@@ -125,7 +126,7 @@ CREATE TABLE `CLASS` (
 DROP TABLE IF EXISTS `TRAINOR`;
 
 CREATE TABLE `TRAINOR` (
-	`trainorId`	bigint(20)	NOT NULL,
+	`trainorId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`userId`	bigint(20)	NOT NULL,
 	`gymId`	bigint(20)	NOT NULL,
 	`career`	varchar(100)	NULL,
@@ -135,7 +136,7 @@ CREATE TABLE `TRAINOR` (
 DROP TABLE IF EXISTS `PRICE`;
 
 CREATE TABLE `PRICE` (
-	`priceId`	VARCHAR(255)	NOT NULL,
+	`priceId` bigint(20) AUTO_INCREMENT	NOT NULL,
 	`gymId`	bigint(20)	NOT NULL,
 	`name`	VARCHAR(255)	NOT NULL,
 	`bigint(20)`	VARCHAR(255)	NOT NULL	DEFAULT 0,
@@ -145,7 +146,7 @@ CREATE TABLE `PRICE` (
 DROP TABLE IF EXISTS `AMENITY`;
 
 CREATE TABLE `AMENITY` (
-	`amenityId`	bigint(20)	NOT NULL,
+	`amenityId`	bigint(20) AUTO_INCREMENT	NOT NULL,
 	`gymId`	bigint(20)	NOT NULL,
 	`freeParking`	boolean	NOT NULL,
 	`paidParking`	boolean	NOT NULL,

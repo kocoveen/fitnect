@@ -19,4 +19,5 @@ public class ReviewGym {
 	private int rating = 0;
 	private LocalDateTime createdDate;
 	private LocalDateTime modifiedDate;
+	
 }

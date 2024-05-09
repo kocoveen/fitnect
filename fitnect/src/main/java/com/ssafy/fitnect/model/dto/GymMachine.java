@@ -14,4 +14,5 @@ public class GymMachine {
 	private long gymId;
 	private int machineCount;
 	private String machineName;
+	
 }

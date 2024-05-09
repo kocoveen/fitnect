@@ -28,4 +28,5 @@ public class Users {
 	private int weight;
 	private String auth;
 	
+	
 }

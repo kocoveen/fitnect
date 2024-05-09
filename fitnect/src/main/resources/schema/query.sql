@@ -2,6 +2,9 @@
 
 -- create database fitnectdb;
 
+
+
+
 DROP TABLE IF EXISTS `USERS`;
 
 CREATE TABLE `USERS` (

@@ -23,4 +23,5 @@ public class Class {
 	private int current;
 	private int maximum;
 	private int price;
+	
 }

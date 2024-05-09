@@ -8,4 +8,5 @@
 		SELECT * FROM GYM;
 	</select>
 
+
 </mapper>

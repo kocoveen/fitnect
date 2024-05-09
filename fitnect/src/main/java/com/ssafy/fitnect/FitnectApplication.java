@@ -14,4 +14,5 @@ public class FitnectApplication {
 		SpringApplication.run(FitnectApplication.class, args);
 	}
 	
+	
 }

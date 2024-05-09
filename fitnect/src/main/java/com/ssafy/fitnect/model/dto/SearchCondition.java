@@ -46,4 +46,5 @@ public class SearchCondition {
 		return "SearchCondition [key=" + key + ", word=" + word + ", orderBy=" + orderBy + ", orderByDir=" + orderByDir
 				+ "]";
 	}
+	
 }

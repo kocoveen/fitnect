@@ -20,4 +20,5 @@ public class Amenity {
 	private boolean sharedLocker;
 	private boolean personalLocker;
 	private boolean unmanded;
+	
 }

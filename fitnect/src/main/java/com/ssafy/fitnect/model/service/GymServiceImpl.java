@@ -28,5 +28,6 @@ public class GymServiceImpl implements GymService {
 	public List<Gym> getAllGym() {
 		return gymDao.selectAllGym();
 	}
+	
 
 }

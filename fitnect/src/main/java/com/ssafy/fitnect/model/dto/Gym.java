@@ -28,4 +28,5 @@ public class Gym {
 	private double rating = 0d;
 	private LocalDateTime createdDate;
 	private LocalDateTime modifiedDate;
+	
 }

@@ -26,6 +26,7 @@ public class UserController {
 	public ResponseEntity<?> detail(@PathVariable("id") int id) throws Exception {
 		Users user = service.getUserById(id);
 		return ResponseEntity.ok(user);
+		
 	}
 	
     @PostMapping("/login")
