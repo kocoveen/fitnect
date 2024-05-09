@@ -19,6 +19,7 @@ import lombok.Data;
 public class GymController {
 	
 	private final GymService gymService;
+	
 
 	@Autowired
 	public GymController(GymService gymService) {
