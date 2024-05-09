@@ -1,1 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.fitnect.model.dao.UserDao">
+
+
+    <select id="getUserById" resultType="com.ssafy.fitnect.model.dto.Users">
+        SELECT * 
+        FROM USERS 
+        WHERE userId = #{id}
+    </select>
+
+    <select id="getUserByEmail" resultType="com.ssafy.fitnect.model.dto.Users">
+        SELECT * 
+        FROM USERS 
+        WHERE email = #{email}
+    </select>
+
+    <insert id="insertUser" parameterType="com.ssafy.fitnect.model.dto.Users">
+        INSERT INTO USERS (userId, email, password, phone, name, address, longitude, latitude, createdDate, modifiedDate, profileImgUrl, height, weight, auth)
+        VALUES (#{userId}, #{email}, #{password}, #{phone}, #{name}, #{address}, #{longitude}, #{latitude}, #{createdDate}, #{modifiedDate}, #{profileImgUrl}, #{height}, #{weight}, #{auth})
+    </insert>
+
+    <update id="updateUser" parameterType="com.ssafy.fitnect.model.dto.Users">
+        UPDATE USERS
+        SET email = #{email}, password = #{password}, phone = #{phone}, name = #{name}, address = #{address}, longitude = #{longitude}, latitude = #{latitude},
+            createdDate = #{createdDate}, modifiedDate = #{modifiedDate}, profileImgUrl = #{profileImgUrl}, height = #{height}, weight = #{weight}, auth = #{auth}
+        WHERE userId = #{userId}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM USERS WHERE userId = #{id}
+    </delete>
+    
+
+</mapper>

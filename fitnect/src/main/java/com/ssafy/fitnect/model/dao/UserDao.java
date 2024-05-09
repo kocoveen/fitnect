@@ -1,5 +1,13 @@
 package com.ssafy.fitnect.model.dao;
 
-public class UserDao {
+import com.ssafy.fitnect.model.dto.Users;
+
+public interface UserDao {
+	
+    Users selectOne(int id);
+    int insert(Users user);
+    int update(Users user);
+    int delete(int id);
+	Users getUserByEamil(String email);
 
 }
