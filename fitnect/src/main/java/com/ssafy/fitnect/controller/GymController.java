@@ -27,9 +27,9 @@ public class GymController {
 	
 	
 	@GetMapping("/gym")
-	public ResponseEntity<Result<List<Gym>>> gymAllList() {
+	public ResponseEntity<?> gymAllList() {
 		List<Gym> result = gymService.getAllGym();
-		return ResponseEntity.ok().body(new Result<>(result));
+		return ResponseEntity.ok().body(result);
 	}
 	
 	@Data

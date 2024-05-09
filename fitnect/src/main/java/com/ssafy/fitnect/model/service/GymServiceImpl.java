@@ -22,7 +22,7 @@ public class GymServiceImpl implements GymService {
 	@Override
 	public List<Gym> searchGym(SearchCondition cond) {
 		return null;
-	}
+	} 
 
 	@Override
 	public List<Gym> getAllGym() {
