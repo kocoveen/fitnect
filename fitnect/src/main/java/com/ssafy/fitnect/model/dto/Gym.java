@@ -33,4 +33,5 @@ public class Gym {
 	private Amenity amenity; // 1:1
 	private List<Class> clazz; // 1:N
 	private List<GymMachine> gymMachine; // 1:N
+	private List<Prices> prices; // 1:N
 }
