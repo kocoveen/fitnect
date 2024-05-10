@@ -11,7 +11,7 @@ CREATE TABLE `USERS` (
 	`userId`	bigint(20) AUTO_INCREMENT PRIMARY KEY,
 	`email`	varchar(100)	NOT NULL,
 	`password`	varchar(255)	NOT NULL,
-	`phone`	varchar(11)	NOT NULL,
+	`phone`	varchar(13)	NOT NULL,
 	`name`	varchar(100)	NOT NULL,
 	`address`	varchar(255)	NOT NULL,
 	`longitude`	double	NOT NULL,
