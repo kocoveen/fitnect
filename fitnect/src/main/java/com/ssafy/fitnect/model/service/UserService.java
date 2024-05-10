@@ -4,7 +4,7 @@ import com.ssafy.fitnect.model.dto.Users;
 
 public interface UserService {
 
-	public Users getUserById(int id);
+	public Users getUserById(long id);
 	public int insert(Users user);
 	public int update(Users user);
 	

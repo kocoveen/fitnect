@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao dao;
 	
 	@Override
-	public Users getUserById(int id) {
+	public Users getUserById(long id) {
 		return dao.selectOne(id);
 	}
 
