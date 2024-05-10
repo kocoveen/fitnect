@@ -23,7 +23,7 @@ public class UserController {
 	private UserService service;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> detail(@PathVariable("id") int id) throws Exception {
+	public ResponseEntity<?> detail(@PathVariable("id") long id) throws Exception {
 		Users user = service.getUserById(id);
 		return ResponseEntity.ok(user);
 		

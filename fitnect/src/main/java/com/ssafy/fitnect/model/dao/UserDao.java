@@ -4,7 +4,7 @@ import com.ssafy.fitnect.model.dto.Users;
 
 public interface UserDao {
 	
-    Users selectOne(int id);
+    Users selectOne(long id);
     int insert(Users user);
     int update(Users user);
     int delete(int id);
