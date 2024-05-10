@@ -24,7 +24,6 @@
         <!-- Association mappings -->
         <association property="amenity" javaType="com.ssafy.fitnect.model.dto.Amenity">
             <id property="amenityId" column="amenityId"/>
-            <result property="gymId" column="gymId"/>
             <result property="freeParking" column="freeParking"/>
             <result property="paidParking" column="paidParking"/>
             <result property="allDay" column="allDay"/>

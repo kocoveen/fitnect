@@ -151,7 +151,7 @@ CREATE TABLE `AMENITY` (
 	`freeParking`	boolean	NOT NULL,
 	`paidParking`	boolean	NOT NULL,
 	`allDay`	boolean	NOT NULL,
-	`shower facilities`	boolean	NOT NULL,
+	`showerFacilities`	boolean	NOT NULL,
 	`Sportswear`	boolean	NOT NULL,
 	`sharedLocker`	boolean	NOT NULL,
 	`personalLocker`	boolean	NOT NULL,

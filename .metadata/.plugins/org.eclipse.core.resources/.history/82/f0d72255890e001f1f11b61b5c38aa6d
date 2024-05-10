@@ -24,11 +24,10 @@
         <!-- Association mappings -->
         <association property="amenity" javaType="com.ssafy.fitnect.model.dto.Amenity">
             <id property="amenityId" column="amenityId"/>
-            <result property="gymId" column="gymId"/>
             <result property="freeParking" column="freeParking"/>
             <result property="paidParking" column="paidParking"/>
             <result property="allDay" column="allDay"/>
-            <result property="showerFacilities" column="showerFacilities"/>
+            <result property="showerFacilities" column="shower facilities"/>
             <result property="sportsWear" column="sportsWear"/>
             <result property="sharedLocker" column="sharedLocker"/>
             <result property="personalLocker" column="personalLocker"/>
