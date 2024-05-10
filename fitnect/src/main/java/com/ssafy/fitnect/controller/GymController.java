@@ -21,7 +21,6 @@ public class GymController {
 	private final GymService gymService;
 	
 	
-
 	@Autowired
 	public GymController(GymService gymService) {
 		this.gymService = gymService;
@@ -33,6 +32,12 @@ public class GymController {
 		List<Gym> result = gymService.getAllGym();
 		return ResponseEntity.ok().body(result);
 	}
+	
+	@GetMapping("/gym_with_asso")
+	public ResponseEntity<?> gymAllListWithAsso() {
+		List<Gym> result = gymService.getAllGymWithAsso();
+		return ResponseEntity.ok().body(result);
+	} 
 	
 	@Data
 	private class Result<T> {

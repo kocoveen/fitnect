@@ -10,5 +10,7 @@ public interface GymService {
 	public List<Gym> getAllGym();
 	
 	
-	public List<Gym> searchGym(SearchCondition cond); 
+	public List<Gym> searchGym(SearchCondition cond);
+
+	public List<Gym> getAllGymWithAsso(); 
 }
