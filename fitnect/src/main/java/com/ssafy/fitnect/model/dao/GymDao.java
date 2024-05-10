@@ -7,6 +7,8 @@ import com.ssafy.fitnect.model.dto.SearchCondition;
 
 public interface GymDao {
 	public List<Gym> selectAllGym();
+	public List<Gym> selectAllGymWithAsso();
+	
 	public List<Gym> search(SearchCondition cond);
 	
 	

@@ -11,7 +11,7 @@ CREATE TABLE `USERS` (
 	`userId`	bigint(20) AUTO_INCREMENT PRIMARY KEY,
 	`email`	varchar(100)	NOT NULL,
 	`password`	varchar(255)	NOT NULL,
-	`phone`	varchar(11)	NOT NULL,
+	`phone`	varchar(13)	NOT NULL,
 	`name`	varchar(100)	NOT NULL,
 	`address`	varchar(255)	NOT NULL,
 	`longitude`	double	NOT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE `CLASS` (
 	`minimum`	int(3)	NOT NULL	DEFAULT 0,
 	`current`	int(3)	NOT NULL	DEFAULT 0,
 	`maximum`	int(3)	NOT NULL	DEFAULT 0,
-	`price`	bigint(20)	NOT NULL	DEFAULT 0
+	`classPrice`	bigint(20)	NOT NULL	DEFAULT 0
 );
 
 DROP TABLE IF EXISTS `TRAINOR`;
@@ -133,13 +133,13 @@ CREATE TABLE `TRAINOR` (
 	`major`	varchar(100)	NULL
 );
 
-DROP TABLE IF EXISTS `PRICE`;
+DROP TABLE IF EXISTS `PRICES`;
 
-CREATE TABLE `PRICE` (
+CREATE TABLE `PRICES` (
 	`priceId` bigint(20) AUTO_INCREMENT	PRIMARY KEY,
 	`gymId`	bigint(20)	NOT NULL,
 	`name`	VARCHAR(255)	NOT NULL,
-	`bigint(20)`	VARCHAR(255)	NOT NULL	DEFAULT 0,
+	`price`	bigint(20)	NOT NULL	DEFAULT 0,
 	`text`	VARCHAR(255)	NOT NULL
 );
 
@@ -151,7 +151,7 @@ CREATE TABLE `AMENITY` (
 	`freeParking`	boolean	NOT NULL,
 	`paidParking`	boolean	NOT NULL,
 	`allDay`	boolean	NOT NULL,
-	`shower facilities`	boolean	NOT NULL,
+	`showerFacilities`	boolean	NOT NULL,
 	`Sportswear`	boolean	NOT NULL,
 	`sharedLocker`	boolean	NOT NULL,
 	`personalLocker`	boolean	NOT NULL,
@@ -179,10 +179,10 @@ REFERENCES `USERS` (
 	`userId`
 );
 
-ALTER TABLE `REGIST_USERS` ADD CONSTRAINT `FK_PRICE_TO_REGIST_USERS_1` FOREIGN KEY (
+ALTER TABLE `REGIST_USERS` ADD CONSTRAINT `FK_PRICES_TO_REGIST_USERS_1` FOREIGN KEY (
 	`priceId`
 )
-REFERENCES `PRICE` (
+REFERENCES `PRICES` (
 	`priceId`
 );
 
@@ -270,7 +270,7 @@ REFERENCES `GYM` (
 	`gymId`
 );
 
-ALTER TABLE `PRICE` ADD CONSTRAINT `FK_GYM_TO_PRICE_1` FOREIGN KEY (
+ALTER TABLE `PRICES` ADD CONSTRAINT `FK_GYM_TO_PRICES_1` FOREIGN KEY (
 	`gymId`
 )
 REFERENCES `GYM` (
@@ -283,4 +283,3 @@ ALTER TABLE `AMENITY` ADD CONSTRAINT `FK_GYM_TO_AMENITY_1` FOREIGN KEY (
 REFERENCES `GYM` (
 	`gymId`
 );
-

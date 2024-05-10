@@ -29,5 +29,10 @@ public class GymServiceImpl implements GymService {
 		return gymDao.selectAllGym();
 	}
 	
+	@Override
+	public List<Gym> getAllGymWithAsso() {
+		return gymDao.selectAllGymWithAsso();
+	}
+	
 
 }

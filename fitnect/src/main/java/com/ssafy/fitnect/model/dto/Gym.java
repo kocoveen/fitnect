@@ -1,6 +1,7 @@
 package com.ssafy.fitnect.model.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,4 +30,8 @@ public class Gym {
 	private LocalDateTime createdDate;
 	private LocalDateTime modifiedDate;
 	
+	private Amenity amenity; // 1:1
+	private List<Class> clazz; // 1:N
+	private List<GymMachine> gymMachine; // 1:N
+	private List<Prices> prices; // 1:N
 }
