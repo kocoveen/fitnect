@@ -1,4 +1,0 @@
-spring.application.name=fitnect
-
-
-spring.devtools.restart.enabled=true

@@ -4,6 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.fitnect.model.dao.GymDao">
 
+    <select id="selectAllGym">
+        SELECT * FROM GYM
+    </select>
+
+
     <!-- Amenity resultMap -->
     <resultMap id="amenityResultMap" type="com.ssafy.fitnect.model.dto.Amenity">
         <id property="amenityId" column="amenityId"/>
@@ -22,7 +27,7 @@
     <resultMap id="classResultMap" type="com.ssafy.fitnect.model.dto.Class">
         <id property="classId" column="classId"/>
         <result property="gymId" column="gymId"/>
-        <result property="trainorId" column="trainorId"/>
+        <result property="trainerId" column="trainerId"/>
         <result property="name" column="name"/>
         <result property="startDate" column="startDate"/>
         <result property="endDate" column="endDate"/>
@@ -78,59 +83,148 @@
 		<collection property="prices" ofType="java.util.Map" resultMap="pricesResultMap" notNullColumn="priceId"/>
     </resultMap>
     
-<select id="selectAllGymWithAsso" resultMap="gymResultMap">
-    SELECT
-        g.gymId,
-        g.name,
-        g.address,
-        g.longitude,
-        g.latitude,
-        g.phone,
-        g.content,
-        g.type,
-        g.operationHours,
-        g.closedDay,
-        g.gymImgUrl,
-        g.capacity,
-        g.rating,
-        g.createdDate,
-        g.modifiedDate,
-        a.amenityId,
-        a.freeParking,
-        a.paidParking,
-        a.allDay,
-        a.showerFacilities,
-        a.sportsWear,
-        a.sharedLocker,
-        a.personalLocker,
-        a.unmanded,
-		c.classId,
-        c.trainorId,
-        c.name,
-        c.startDate,
-        c.endDate,
-        c.createdDate,
-        c.minimum,
-        c.current,
-        c.maximum,
-        c.classPrice,
-        m.infoId,
-        m.machineCount,
-        m.machineName,
-        p.priceId,
-        p.gymId,
-        p.name,
-        p.price,
-        p.text
-    FROM gym g
-    LEFT JOIN amenity a ON g.gymId = a.gymId
-    LEFT JOIN class c ON g.gymId = c.gymId
-    LEFT JOIN gym_machine m ON g.gymId = m.gymId
-    LEFT JOIN prices p ON g.gymId = p.gymId
-</select>
+	<select id="selectAllGymWithAsso" resultMap="gymResultMap">
+	    SELECT
+	        g.gymId,
+	        g.name,
+	        g.address,
+	        g.longitude,
+	        g.latitude,
+	        g.phone,
+	        g.content,
+	        g.type,
+	        g.operationHours,
+	        g.closedDay,
+	        g.gymImgUrl,
+	        g.capacity,
+	        g.rating,
+	        g.createdDate,
+	        g.modifiedDate,
+	        a.amenityId,
+	        a.freeParking,
+	        a.paidParking,
+	        a.allDay,
+	        a.showerFacilities,
+	        a.sportsWear,
+	        a.sharedLocker,
+	        a.personalLocker,
+	        a.unmanded,
+			c.classId,
+	        c.trainerId,
+	        c.name,
+	        c.startDate,
+	        c.endDate,
+	        c.createdDate,
+	        c.minimum,
+	        c.current,
+	        c.maximum,
+	        c.classPrice,
+	        m.infoId,
+	        m.machineCount,
+	        m.machineName,
+	        p.priceId,
+	        p.gymId,
+	        p.name,
+	        p.price,
+	        p.text
+	    FROM gym g
+	    LEFT JOIN amenity a ON g.gymId = a.gymId
+	    LEFT JOIN class c ON g.gymId = c.gymId
+	    LEFT JOIN gym_machine m ON g.gymId = m.gymId
+	    LEFT JOIN prices p ON g.gymId = p.gymId
+	</select>
+
+
+	
+	
+    <resultMap id="reviewTrainerResultMap" type="com.ssafy.fitnect.model.dto.ReviewTrainer">
+	    <id property="reviewTrainerId" column="reviewTrainerId"/>
+	    <result property="userId" column="reviewTrainerUserId"/>
+	    <result property="tranierRating" column="reviewTrainerRating"/>
+	    <result property="content" column="reviewTrainerContent"/>
+	    <result property="createdDate" column="reviewTrainerCreatedDate"/>
+	    <result property="modifiedDate" column="reviewTrainerModifiedDate"/>
+	</resultMap>
+	
+    <resultMap id="trainerAndReviewResultMap" type="com.ssafy.fitnect.model.dto.TrainerAndReview">
+	    <id property="trainerId" column="trainerId"/>
+	    <result property="userId" column="userId"/>
+	    <result property="gymId" column="gymId"/>
+	    <result property="career" column="career"/>
+	    <result property="major" column="major"/>
+	    
+	    <collection property="reviewTrainer" ofType="java.util.Map" resultMap="reviewTrainerResultMap" notNullColumn="reviewTrainerId"/>
+	</resultMap>
+	
+	<resultMap type="com.ssafy.fitnect.model.dto.ReviewGym" id="reviewGymResultMap">
+		<id property="reviewGymId" column="reviewGymId"/>
+	    <result property="userId" column="reviewGymUserId"/>
+	    <result property="gymId" column="gymId"/>
+	    <result property="content" column="reviewGymContent"/>
+	    <result property="rating" column="reviewGymRating"/>
+	    <result property="createdDate" column="reviewGymCreatedDate"/>
+	    <result property="modifiedDate" column="reviewGymModifiedDate"/>
+	</resultMap>
+	
+    <resultMap id="gymOneResultMap" type="com.ssafy.fitnect.model.dto.GymAndTrainerReviewDto">
+        <id property="gymId" column="gymId"/>
+        <result property="name" column="name"/>
+        <result property="address" column="address"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="phone" column="phone"/>
+        <result property="content" column="content"/>
+        <result property="type" column="type"/>
+        <result property="operationHours" column="operationHours"/>
+        <result property="closedDay" column="closedDay"/>
+        <result property="gymImgUrl" column="gymImgUrl"/>
+        <result property="capacity" column="capacity"/>
+        <result property="rating" column="rating"/>
+        
+        <collection property="reviewGym" ofType="java.util.Map" resultMap="reviewGymResultMap" notNullColumn="reviewGymId"/>
+        <collection property="trainerAndReview" ofType="java.util.Map" resultMap="trainerAndReviewResultMap" notNullColumn="trainerId" />
+    </resultMap>
     
-    <select id="selectAllGym">
-        SELECT * FROM GYM
+    <select id="selectOneWithReview" resultMap="gymOneResultMap">
+	    SELECT
+	        g.gymId,
+	        g.name,
+	        g.address,
+	        g.longitude,
+	        g.latitude,
+	        g.phone,
+	        g.content,
+	        g.type,
+	        g.operationHours,
+	        g.closedDay,
+	        g.gymImgUrl,
+	        g.capacity,
+	        g.rating,
+	        t.trainerId,
+	        t.career,
+	        t.major,
+	        rtr.reviewTrainerId,
+	        rtr.userId AS reviewTrainerUserId,
+	        rtr.content AS reviewTrainerContent,
+	        rtr.rating AS reviewTrainerRating,
+	        rtr.createdDate AS reviewTrainerCreatedDate,
+	        rtr.modifiedDate AS reviewTrainerModifiedDate,
+	        rg.reviewGymId,
+	        rg.userId AS reviewGymUserId,
+	        rg.content AS reviewGymContent,
+	        rg.rating AS reviewGymRating,
+	        rg.createdDate AS reviewGymCreatedDate,
+	        rg.modifiedDate AS reviewGymModifiedDate
+	    FROM
+	        GYM g
+	    LEFT JOIN
+	        TRAINER t ON g.gymId = t.gymId
+	    LEFT JOIN
+	        REVIEW_TRAINER rtr ON t.trainerId = rtr.trainerId
+	    LEFT JOIN
+	        REVIEW_GYM rg ON g.gymId = rg.gymId
+	    WHERE
+	        g.gymId = #{gymId}
     </select>
 
 </mapper>

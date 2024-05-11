@@ -1,8 +1,0 @@
-package com.ssafy.fitnect.model.dto;
-
-public class GymMachine {
-	private long infoId;
-	private long gymId;
-	private int machineCount;
-	private String machineName;
-}

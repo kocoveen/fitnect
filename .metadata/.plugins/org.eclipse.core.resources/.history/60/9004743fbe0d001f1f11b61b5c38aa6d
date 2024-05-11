@@ -1,6 +1,0 @@
-package com.ssafy.fitnect;
-
-import com.ssafy.fitnect.model.dto.Gym;
-
-public class test {
-}

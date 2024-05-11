@@ -3,6 +3,7 @@ package com.ssafy.fitnect.model.dao;
 import java.util.List;
 
 import com.ssafy.fitnect.model.dto.Gym;
+import com.ssafy.fitnect.model.dto.GymAndTrainerReviewDto;
 import com.ssafy.fitnect.model.dto.SearchCondition;
 
 public interface GymDao {
@@ -10,6 +11,7 @@ public interface GymDao {
 	public List<Gym> selectAllGymWithAsso();
 	
 	public List<Gym> search(SearchCondition cond);
+	public GymAndTrainerReviewDto selectOneWithReview(long id);
 	
 	
 }

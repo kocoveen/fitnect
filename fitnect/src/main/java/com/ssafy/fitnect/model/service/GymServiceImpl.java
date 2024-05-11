@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.fitnect.model.dao.GymDao;
 import com.ssafy.fitnect.model.dto.Gym;
+import com.ssafy.fitnect.model.dto.GymAndTrainerReviewDto;
 import com.ssafy.fitnect.model.dto.SearchCondition;
 
 @Service
@@ -32,6 +33,12 @@ public class GymServiceImpl implements GymService {
 	@Override
 	public List<Gym> getAllGymWithAsso() {
 		return gymDao.selectAllGymWithAsso();
+	}
+
+	@Override
+	public GymAndTrainerReviewDto gymGetOneByIdWithReview(long id) {
+//		return new GymAndTrainerReviewDto();
+		return gymDao.selectOneWithReview(id);
 	}
 	
 

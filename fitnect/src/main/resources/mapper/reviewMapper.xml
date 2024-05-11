@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.fitnect.model.dao.ReviewDao">
+
+	<select id="selectAllReviewGymById">
+		SELECT * FROM REVIEW_GYM
+		WHERE gymId = #{gymId};
+	</select>
+	
+	<select id="selectOneReviewGymById">
+		SELECT * FROM REVIEW_GYM
+		WHERE reviewGymId = #{id};
+	</select>
+	
+	<insert id="insertReviewGym" parameterType="com.ssafy.fitnect.model.dto.ReviewGymSaveDto">
+		INSERT INTO REVIEW_GYM 
+		(`userId`, `gymId`, `content`, `rating`)
+		VALUES
+		(#{userId}, #{gymId}, #{content}, #{rating});
+	</insert>
+	
+	<update id="updateReviewGym" parameterType="com.ssafy.fitnect.model.dto.ReviewGymUpdateDto">
+		UPDATE REVIEW_GYM
+		SET  `userId` = #{userId}, `gymId` = #{gymId}, `content` =  #{content}, `rating` = #{rating}
+		WHERE reviewGymId = #{reviewGymId}
+	</update>
+	
+	<delete id="deleteReviewGym">
+		DELETE FROM REVIEW_GYM WHERE reviewGymId = #{reviewGymId};
+	</delete>
+	
+	
+	
+	
+	
+	<select id="selectAllReviewTrainerById">
+		SELECT * FROM REVIEW_TRAINER
+		WHERE trainerId = #{trainerId};
+	</select>
+	
+	<select id="selectOneReviewTrainerById">
+		SELECT * FROM REVIEW_TRAINER
+		WHERE reviewTrainerId = #{id};
+	</select>
+	
+	
+	<insert id="insertReviewTrainer" parameterType="com.ssafy.fitnect.model.dto.ReviewTrainerSaveDto">
+		INSERT INTO REVIEW_Trainer
+		(`userId`, `trainerId`, `content`, `rating`)
+		VALUES
+		(#{userId}, #{trainerId}, #{content}, #{trainerRating});
+	</insert>
+	
+	<update id="updateReviewTrainer" parameterType="com.ssafy.fitnect.model.dto.ReviewTrainerUpdateDto">
+		UPDATE REVIEW_Trainer
+		SET  `userId` = #{userId}, `trainerId` = #{trainerId}, `content` =  #{content}, `rating` = #{trainerRating}
+		WHERE reviewTrainerId = #{reviewTrainerId}
+	</update>
+	
+	<delete id="deleteReviewTrainer">
+		DELETE FROM REVIEW_Trainer WHERE reviewTrainerId = #{reviewTrainerId};
+	</delete>
+	
+</mapper>
