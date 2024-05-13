@@ -287,29 +287,126 @@ REFERENCES `GYM` (
 );
 
 
--- amenity --
-INSERT INTO `AMENITY` (`gymId`, `freeParking`, `paidParking`, `allDay`, `showerFacilities`, `Sportswear`, `sharedLocker`, `personalLocker`, `unmanded`)
-SELECT 
-    gymIds.gymId,
-    ROUND(RAND()) AS freeParking,
-    ROUND(RAND()) AS paidParking,
-    ROUND(RAND()) AS allDay,
-    ROUND(RAND()) AS showerFacilities,
-    ROUND(RAND()) AS Sportswear,
-    ROUND(RAND()) AS sharedLocker,
-    ROUND(RAND()) AS personalLocker,
-    ROUND(RAND()) AS unmanded
-FROM
-    (SELECT 1 AS gymId UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5
-    UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10
-    UNION ALL SELECT 11 UNION ALL SELECT 12 UNION ALL SELECT 13 UNION ALL SELECT 14 UNION ALL SELECT 15
-    UNION ALL SELECT 16 UNION ALL SELECT 17 UNION ALL SELECT 18 UNION ALL SELECT 19 UNION ALL SELECT 20
-    UNION ALL SELECT 21 UNION ALL SELECT 22 UNION ALL SELECT 23 UNION ALL SELECT 24 UNION ALL SELECT 25
-    UNION ALL SELECT 26 UNION ALL SELECT 27 UNION ALL SELECT 28 UNION ALL SELECT 29 UNION ALL SELECT 30
-    UNION ALL SELECT 31 UNION ALL SELECT 32 UNION ALL SELECT 33 UNION ALL SELECT 34 UNION ALL SELECT 35
-    UNION ALL SELECT 36 UNION ALL SELECT 37 UNION ALL SELECT 38 UNION ALL SELECT 39 UNION ALL SELECT 40
-    UNION ALL SELECT 41 UNION ALL SELECT 42 UNION ALL SELECT 43 UNION ALL SELECT 44 UNION ALL SELECT 45
-    UNION ALL SELECT 46 UNION ALL SELECT 47) AS gymIds;
+
+-- gymAndTrainerTrigger
+DELIMITER //
+
+CREATE TRIGGER calculate_gym_rating_after_review_change AFTER INSERT ON `fitnectdb`.`review_gym`
+FOR EACH ROW
+BEGIN
+    DECLARE total_rating DECIMAL(5, 2);
+    DECLARE num_reviews INT;
+
+    -- Calculate total rating and number of reviews for the gym
+    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
+    FROM `fitnectdb`.`review_gym`
+    WHERE `gymId` = NEW.`gymId`;
+
+    -- Update gym rating
+    UPDATE `fitnectdb`.`gym`
+    SET `rating` = total_rating / num_reviews
+    WHERE `gymId` = NEW.`gymId`;
+END;
+//
+
+CREATE TRIGGER recalculate_gym_rating_after_review_deletion AFTER DELETE ON `fitnectdb`.`review_gym`
+FOR EACH ROW
+BEGIN
+    DECLARE total_rating DECIMAL(5, 2);
+    DECLARE num_reviews INT;
+
+    -- Calculate total rating and number of reviews for the gym
+    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
+    FROM `fitnectdb`.`review_gym`
+    WHERE `gymId` = OLD.`gymId`;
+
+    -- Update gym rating
+    UPDATE `fitnectdb`.`gym`
+    SET `rating` = total_rating / num_reviews
+    WHERE `gymId` = OLD.`gymId`;
+END;
+//
+
+CREATE TRIGGER update_gym_rating_after_review_update AFTER UPDATE ON `fitnectdb`.`review_gym`
+FOR EACH ROW
+BEGIN
+    DECLARE total_rating DECIMAL(5, 2);
+    DECLARE num_reviews INT;
+
+    -- Calculate total rating and number of reviews for the gym
+    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
+    FROM `fitnectdb`.`review_gym`
+    WHERE `gymId` = OLD.`gymId`;
+
+    -- Update gym rating
+    UPDATE `fitnectdb`.`gym`
+    SET `rating` = total_rating / num_reviews
+    WHERE `gymId` = OLD.`gymId`;
+END;
+//
+
+DELIMITER ;
+
+
+
+
+DELIMITER //
+
+CREATE TRIGGER calculate_trainer_rating_after_review_change AFTER INSERT ON `fitnectdb`.`review_trainer`
+FOR EACH ROW
+BEGIN
+    DECLARE total_rating DECIMAL(5, 2);
+    DECLARE num_reviews INT;
+
+    -- Calculate total rating and number of reviews for the trainer
+    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
+    FROM `fitnectdb`.`review_trainer`
+    WHERE `trainerId` = NEW.`trainerId`;
+
+    -- Update trainer rating
+    UPDATE `fitnectdb`.`trainer`
+    SET `rating` = total_rating / num_reviews
+    WHERE `trainerId` = NEW.`trainerId`;
+END;
+//
+
+CREATE TRIGGER recalculate_trainer_rating_after_review_deletion AFTER DELETE ON `fitnectdb`.`review_trainer`
+FOR EACH ROW
+BEGIN
+    DECLARE total_rating DECIMAL(5, 2);
+    DECLARE num_reviews INT;
+
+    -- Calculate total rating and number of reviews for the trainer
+    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
+    FROM `fitnectdb`.`review_trainer`
+    WHERE `trainerId` = OLD.`trainerId`;
+
+    -- Update trainer rating
+    UPDATE `fitnectdb`.`trainer`
+    SET `rating` = total_rating / num_reviews
+    WHERE `trainerId` = OLD.`trainerId`;
+END;
+//
+
+CREATE TRIGGER update_trainer_rating_after_review_update AFTER UPDATE ON `fitnectdb`.`review_trainer`
+FOR EACH ROW
+BEGIN
+    DECLARE total_rating DECIMAL(5, 2);
+    DECLARE num_reviews INT;
+
+    -- Calculate total rating and number of reviews for the trainer
+    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
+    FROM `fitnectdb`.`review_trainer`
+    WHERE `trainerId` = OLD.`trainerId`;
+
+    -- Update trainer rating
+    UPDATE `fitnectdb`.`trainer`
+    SET `rating` = total_rating / num_reviews
+    WHERE `trainerId` = OLD.`trainerId`;
+END;
+//
+
+DELIMITER ;
 
 -- gym --
 -- 수영
@@ -319,7 +416,7 @@ VALUES
     ('블루워터 강남', '서울특별시 강남구 학동로20길 25(논현동)', 127.0285345, 37.5115038, '010-2345-6789', '수영', 80, 0),
     ('실버워터 강남', '서울특별시 강남구 강남대로 396(역삼동, 2호선 강남역1번,12번 출구 중간)', 127.0283079, 37.49816465, '010-3456-7890', '수영', 120, 0),
     ('액티브워터 강남', '서울특별시 강남구 테헤란로 538(역삼동, 지하1층 역무실앞)', 127.063073, 37.508862, '010-4567-8901', '수영', 90, 0),
-    ('플라잉워터 강남', '서울특별시 강남구 도곡로77길 23(대치동)', 127.0578495, 37.49972974, '010-5678-9012', '수영', 110, 4.8),
+    ('플라잉워터 강남', '서울특별시 강남구 도곡로77길 23(대치동)', 127.0578495, 37.49972974, '010-5678-9012', '수영', 110, 0),
     ('피쉬워터 역삼1동', '서울특별시 강남구 역삼로7길 16(역삼동, 역삼1동주민센터 1층 로비)', 127.0332838, 37.49537321, '010-6789-0123', '수영', 70, 0),
     ('디럭스워터 삼성', '서울특별시 강남구 봉은사로 616(삼성동)', 127.062501, 37.5143323, '010-7890-1234', '수영', 150, 0),
     ('미러워터 강남', '서울특별시 강남구 학동로 425(청담동)', 127.0469585, 37.51871603, '010-8901-2345', '수영', 85, 0),
@@ -486,6 +583,31 @@ VALUES
     (46, "6개월권", 350000, "6개월권", 180),
     (47, "3개월권", 200000, "3개월권", 90),
     (47, "6개월권", 350000, "6개월권", 180);
+    
+    
+-- amenity --
+INSERT INTO `AMENITY` (`gymId`, `freeParking`, `paidParking`, `allDay`, `showerFacilities`, `Sportswear`, `sharedLocker`, `personalLocker`, `unmanded`)
+SELECT 
+    gymIds.gymId,
+    ROUND(RAND()) AS freeParking,
+    ROUND(RAND()) AS paidParking,
+    ROUND(RAND()) AS allDay,
+    ROUND(RAND()) AS showerFacilities,
+    ROUND(RAND()) AS Sportswear,
+    ROUND(RAND()) AS sharedLocker,
+    ROUND(RAND()) AS personalLocker,
+    ROUND(RAND()) AS unmanded
+FROM
+    (SELECT 1 AS gymId UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5
+    UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10
+    UNION ALL SELECT 11 UNION ALL SELECT 12 UNION ALL SELECT 13 UNION ALL SELECT 14 UNION ALL SELECT 15
+    UNION ALL SELECT 16 UNION ALL SELECT 17 UNION ALL SELECT 18 UNION ALL SELECT 19 UNION ALL SELECT 20
+    UNION ALL SELECT 21 UNION ALL SELECT 22 UNION ALL SELECT 23 UNION ALL SELECT 24 UNION ALL SELECT 25
+    UNION ALL SELECT 26 UNION ALL SELECT 27 UNION ALL SELECT 28 UNION ALL SELECT 29 UNION ALL SELECT 30
+    UNION ALL SELECT 31 UNION ALL SELECT 32 UNION ALL SELECT 33 UNION ALL SELECT 34 UNION ALL SELECT 35
+    UNION ALL SELECT 36 UNION ALL SELECT 37 UNION ALL SELECT 38 UNION ALL SELECT 39 UNION ALL SELECT 40
+    UNION ALL SELECT 41 UNION ALL SELECT 42 UNION ALL SELECT 43 UNION ALL SELECT 44 UNION ALL SELECT 45
+    UNION ALL SELECT 46 UNION ALL SELECT 47) AS gymIds;
 
 
 -- gymMachine
@@ -630,136 +752,15 @@ VALUES
 ('user17@example.com', 'password19', '010-9999-9999', '임지훈', '서울 강남구 역삼동', 37.503204, 127.036267, NULL, NULL, NULL, 'user'),
 ('user18@example.com', 'password20', '010-0000-0000', '장예진', '서울 강남구 역삼동', 37.504177, 127.037266, NULL, NULL, NULL, 'user');
 
-INSERT INTO `TRAINERS` (`userId`, `gymId`, `career`, `major`)
+INSERT INTO `TRAINER` (`userId`, `gymId`, `career`, `major`)
 VALUES
 (1, 1, "국가대표 수영 코치", "자유영"),
 (2, 1, "XXX 대회 금상", "접영");
 
 
--- gymAndTrainerTrigger
-DELIMITER //
-
-CREATE TRIGGER calculate_gym_rating_after_review_change AFTER INSERT ON `fitnectdb`.`review_gym`
-FOR EACH ROW
-BEGIN
-    DECLARE total_rating DECIMAL(5, 2);
-    DECLARE num_reviews INT;
-
-    -- Calculate total rating and number of reviews for the gym
-    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
-    FROM `fitnectdb`.`review_gym`
-    WHERE `gymId` = NEW.`gymId`;
-
-    -- Update gym rating
-    UPDATE `fitnectdb`.`gym`
-    SET `rating` = total_rating / num_reviews
-    WHERE `gymId` = NEW.`gymId`;
-END;
-//
-
-CREATE TRIGGER recalculate_gym_rating_after_review_deletion AFTER DELETE ON `fitnectdb`.`review_gym`
-FOR EACH ROW
-BEGIN
-    DECLARE total_rating DECIMAL(5, 2);
-    DECLARE num_reviews INT;
-
-    -- Calculate total rating and number of reviews for the gym
-    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
-    FROM `fitnectdb`.`review_gym`
-    WHERE `gymId` = OLD.`gymId`;
-
-    -- Update gym rating
-    UPDATE `fitnectdb`.`gym`
-    SET `rating` = total_rating / num_reviews
-    WHERE `gymId` = OLD.`gymId`;
-END;
-//
-
-CREATE TRIGGER update_gym_rating_after_review_update AFTER UPDATE ON `fitnectdb`.`review_gym`
-FOR EACH ROW
-BEGIN
-    DECLARE total_rating DECIMAL(5, 2);
-    DECLARE num_reviews INT;
-
-    -- Calculate total rating and number of reviews for the gym
-    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
-    FROM `fitnectdb`.`review_gym`
-    WHERE `gymId` = OLD.`gymId`;
-
-    -- Update gym rating
-    UPDATE `fitnectdb`.`gym`
-    SET `rating` = total_rating / num_reviews
-    WHERE `gymId` = OLD.`gymId`;
-END;
-//
-
-DELIMITER ;
-
-
-
-
-DELIMITER //
-
-CREATE TRIGGER calculate_trainer_rating_after_review_change AFTER INSERT ON `fitnectdb`.`review_trainer`
-FOR EACH ROW
-BEGIN
-    DECLARE total_rating DECIMAL(5, 2);
-    DECLARE num_reviews INT;
-
-    -- Calculate total rating and number of reviews for the trainer
-    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
-    FROM `fitnectdb`.`review_trainer`
-    WHERE `trainerId` = NEW.`trainerId`;
-
-    -- Update trainer rating
-    UPDATE `fitnectdb`.`trainer`
-    SET `rating` = total_rating / num_reviews
-    WHERE `trainerId` = NEW.`trainerId`;
-END;
-//
-
-CREATE TRIGGER recalculate_trainer_rating_after_review_deletion AFTER DELETE ON `fitnectdb`.`review_trainer`
-FOR EACH ROW
-BEGIN
-    DECLARE total_rating DECIMAL(5, 2);
-    DECLARE num_reviews INT;
-
-    -- Calculate total rating and number of reviews for the trainer
-    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
-    FROM `fitnectdb`.`review_trainer`
-    WHERE `trainerId` = OLD.`trainerId`;
-
-    -- Update trainer rating
-    UPDATE `fitnectdb`.`trainer`
-    SET `rating` = total_rating / num_reviews
-    WHERE `trainerId` = OLD.`trainerId`;
-END;
-//
-
-CREATE TRIGGER update_trainer_rating_after_review_update AFTER UPDATE ON `fitnectdb`.`review_trainer`
-FOR EACH ROW
-BEGIN
-    DECLARE total_rating DECIMAL(5, 2);
-    DECLARE num_reviews INT;
-
-    -- Calculate total rating and number of reviews for the trainer
-    SELECT SUM(`rating`), COUNT(*) INTO total_rating, num_reviews
-    FROM `fitnectdb`.`review_trainer`
-    WHERE `trainerId` = OLD.`trainerId`;
-
-    -- Update trainer rating
-    UPDATE `fitnectdb`.`trainer`
-    SET `rating` = total_rating / num_reviews
-    WHERE `trainerId` = OLD.`trainerId`;
-END;
-//
-
-DELIMITER ;
-
 -- classes
-INSERT INTO CLASSES
-(gymId, trainerId, name, startDate, endDate, minimum, current, maximum, classPrice)
-VALUES
-(1, 1, '기초 수영 강좌' '2024-05-25', '2024-05-31', 5, 0, 10, 20000),
-(1, 2, '수영의 정석' '2024-05-03', '2024-05-06', 5, 7, 10, 20000),
-(1, 2, '수영의 정석(심화)' '2024-05-25', '2024-05-31', 5, 10, 10, 30000);
+INSERT INTO `CLASSES` (`gymId`, `trainerId`, `name`, `startDate`, `endDate`, `minimum`, `current`, `maximum`, `classPrice`)
+VALUES 
+(1, 1, '기초 수영 강좌', '2024-05-25', '2024-05-31', 5, 0, 10, 20000),
+(1, 2, '수영의 정석', '2024-05-03', '2024-05-06', 5, 7, 10, 20000),
+(1, 2, '수영의 정석(심화)', '2024-05-25', '2024-05-31', 5, 10, 10, 30000);
