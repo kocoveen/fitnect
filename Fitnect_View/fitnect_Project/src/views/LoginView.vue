@@ -1,7 +1,7 @@
 <template>
   <div id="login-body">
     <div id="card">
-      <img src="@/assets/index/카리나.jpg" style="width: 50%; height: 100%" />
+      <img src="@/assets/imgs/카리나.jpg" style="width: 50%; height: 100%" />
       <div id="info">
         <div style="margin: 5% 0">
           <span style="font-size: 24px; font-weight: bold"> Sign In </span>
