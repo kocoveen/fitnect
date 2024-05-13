@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.fitnect.model.dao.ClassDao">
+	
+	<insert id="insertClassUser" parameterType="map">
+		INSERT INTO REGIST_CLASSES
+		(`classId`, `userId`)
+		VALUES
+		(#{classId}, #{userId})
+	</insert>
+	
+	
+	<delete id="deleteClassUser" parameterType="map">
+		DELETE FROM REGIST_CLASSES
+		WHERE userId = #{userId} AND classId = #{classId};
+	</delete>
+	
+	<select id="selectClassById">
+		SELECT * FROM CLASSES
+		WHERE classId = #{classId}
+	</select>
+	
+	
+	<select id="selectAllClassByGymId">
+		SELECT * FROM CLASSES
+		WHERE gymId = #{gymId}
+	</select>
+
+</mapper>

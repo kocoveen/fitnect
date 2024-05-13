@@ -31,3 +31,8 @@ VALUES
 ('user16@example.com', 'password18', '010-8888-8888', '윤서연', '서울 강남구 역삼동', 37.503768, 127.036856, NULL, NULL, NULL, 'user'),
 ('user17@example.com', 'password19', '010-9999-9999', '임지훈', '서울 강남구 역삼동', 37.503204, 127.036267, NULL, NULL, NULL, 'user'),
 ('user18@example.com', 'password20', '010-0000-0000', '장예진', '서울 강남구 역삼동', 37.504177, 127.037266, NULL, NULL, NULL, 'user');
+
+INSERT INTO `TRAINERS` (`userId`, `gymId`, `career`, `major`)
+VALUES
+(1, 1, "국가대표 수영 코치", "자유영"),
+(2, 1, "XXX 대회 금상", "접영");

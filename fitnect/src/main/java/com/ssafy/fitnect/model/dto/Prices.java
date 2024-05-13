@@ -15,5 +15,6 @@ public class Prices {
 	private String name;
 	private long price;
 	private String text;
+	private int days;
 	
 }
