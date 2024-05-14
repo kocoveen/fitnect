@@ -57,4 +57,31 @@ public class GymServiceImpl implements GymService {
 		PriceDayDto priceDayDto = priceDao.selectPriceOneByPriceId(priceId);
 		return gymDao.insertRegistUser(userId, gymId, priceId, priceDayDto.getDays());
 	}
+	
+	@Override
+	public int quitGym(int userId, long gymId) {
+		return gymDao.deleteRegistUser(userId, gymId);
+	}
+
+	@Override
+	public int favGym(long gymId, long loginUserId) {
+		return gymDao.insertFavGym(gymId, loginUserId);
+	}
+
+	@Override
+	public int unfavGym(long gymId, long loginUserId) {
+		return gymDao.deleteFavGym(gymId, loginUserId);
+	}
+
+	@Override
+	public List<Gym> findFavGymByUserId(long userId) {
+		return gymDao.selectAllFavGym(userId);
+	}
+
+	@Override
+	public List<Gym> findMyGymByUserId(long userId) {
+		// TODO Auto-generated method stub
+		return gymDao.selectAllMyGym(userId);
+	}
+
 }

@@ -290,6 +290,36 @@
 	    VALUES
 	    (#{gymId}, #{userId}, #{priceId}, DATE_ADD(now(), INTERVAL #{days} DAY))
 	</insert>
+	
+	<delete id="deleteRegistUser">
+		DELETE FROM REGIST_USERS
+		WHERE userId = #{userId} AND gymId = #{gymId}
+	</delete>
+	
+	
+	<insert id="insertFavGym">
+		INSERT INTO FAV_GYM
+		(`userId`, `gymId`) VALUES (#{userId}, #{gymId})
+	</insert>
+	
+	<delete id="deleteFavGym">
+		DELETE FROM FAV_GYM
+		WHERE userId = #{userId} AND gymId = #{gymId}
+	</delete>
+	
+	
+	<select id="selectAllFavGym" resultType="com.ssafy.fitnect.model.dto.Gym">
+		SELECT g.* FROM GYM g
+		INNER JOIN FAV_GYM fg ON g.gymId = fg.gymId
+		WHERE g.gymId = #{gymId}
+	</select>
+	
+	
+	<select id="selectAllMyGym" resultType="com.ssafy.fitnect.model.dto.Gym">
+		SELECT g.* FROM GYM g
+		INNER JOIN REGIST_USERS ru ON g.gymId = ru.gymId
+		WHERE g.gymId = #{gymId}
+	</select>
 
 </mapper>
 
