@@ -11,7 +11,7 @@
         <div class="nav-btn" @click.native="scrollToTop">Home</div>
         <div class="nav-btn2" @click="scrollToAbout">About</div>
         <div class="nav-btn3" @click="scrollToContactUs">Contact Us</div>
-        <div id="login" @click="LoginPage">sign up</div>
+        <div id="login" @click="LoginPage">Sign in</div>
       </div>
     </div>
 
@@ -86,7 +86,7 @@
             <div class="col-lg-4">
               <div class="trainer-item">
                 <div class="image-thumb">
-                  <img src="@/assets/imgs/second-trainer.jpg" alt="" />
+                  <img src="@/assets/imgs/ungki.jpg" alt="" />
                 </div>
                 <div class="down-content">
                   <span>Muscle Trainer</span>
@@ -285,8 +285,17 @@
             <div class="footer-item d-flex flex-column">
               <h4 class="mb-4 text-white">Contact Info</h4>
               <a href=""
-                ><i class="fa fa-map-marker-alt me-2"></i> 123 Street, New York,
-                USA</a
+                ><i
+                  class="fa fa-map-marker-alt me-2"
+                  style="
+                    font-weight: 900;
+                    font-family: 'Font Awesome 5 Free';
+                    font-style: normal;
+                    font-variant: normal;
+                    line-height: 1;
+                  "
+                ></i>
+                123 Street, New York, USA</a
               >
               <a href=""
                 ><i class="fas fa-envelope me-2"></i> info@example.com</a
@@ -457,7 +466,7 @@ window.addEventListener("scroll", () => {
 }
 
 .nav-btn {
-  color: #30becc;
+  color: #25c3d3;
   margin: 0 1.5%;
   font-weight: bold;
   cursor: pointer;
@@ -479,7 +488,7 @@ window.addEventListener("scroll", () => {
 }
 
 .nav-btn2:hover {
-  color: #30becc;
+  color: #25c3d3;
 }
 
 .nav-btn3 {
@@ -492,13 +501,13 @@ window.addEventListener("scroll", () => {
 }
 
 .nav-btn3:hover {
-  color: #30becc;
+  color: #25c3d3;
 }
 
 #login {
   border-radius: 10px;
   height: 50px;
-  background-color: #208d98;
+  background-color: #25c3d3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -511,7 +520,7 @@ window.addEventListener("scroll", () => {
 
 #login:hover {
   background-color: white;
-  color: #30becc;
+  color: #25c3d3;
 }
 
 #login > a {
@@ -539,7 +548,7 @@ window.addEventListener("scroll", () => {
 .nav-btn.active,
 .nav-btn2.active,
 .nav-btn3.active {
-  color: #30becc !important;
+  color: #25c3d3 !important;
 }
 
 /* Header Animation */
@@ -824,7 +833,7 @@ section {
   display: inline-block;
   font-size: 13px;
   padding: 11px 17px;
-  background-color: #1ed9ec;
+  background-color: #25c3d3;
   color: #fff;
   text-align: center;
   font-weight: 400;
@@ -833,6 +842,7 @@ section {
   border: none;
   outline: none;
   margin-top: -8px;
+  font-weight: bold;
 }
 
 #map {
