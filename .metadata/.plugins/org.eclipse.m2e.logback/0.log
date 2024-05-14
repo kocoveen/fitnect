@@ -875,3 +875,561 @@
 2024-05-10 16:26:20,921 [Worker-275: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2024-05-10 16:26:20,924 [Worker-275: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
 2024-05-10 16:26:44,176 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-05-13 10:46:49,657 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-05-13 10:47:04,078 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-05-13 10:47:17,280 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-05-13 10:47:36,682 [Worker-5: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ssafy:fitnect:0.0.1-SNAPSHOT @ C:\Users\SSAFY\Desktop\fitnect\fitnect\pom.xml.
+2024-05-13 10:47:36,682 [Worker-9: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ssafy:fitnect:0.0.1-SNAPSHOT @ C:\Users\SSAFY\Desktop\fitnect\fitnect\pom.xml.
+2024-05-13 10:47:38,932 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 10:47:38,945 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 10:47:38,960 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 10:47:40,651 [Worker-3: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ssafy:fitnect:0.0.1-SNAPSHOT @ C:\Users\SSAFY\Desktop\fitnect\fitnect\pom.xml.
+2024-05-13 10:49:30,927 [Worker-1: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2024-05-13 10:49:31,173 [Worker-1: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ssafy:fitnect:0.0.1-SNAPSHOT @ C:\Users\SSAFY\Desktop\fitnect\fitnect\pom.xml.
+2024-05-13 10:49:31,630 [Worker-1: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /fitnect/src/main/java
+2024-05-13 10:49:31,631 [Worker-1: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /fitnect/src/main/resources
+2024-05-13 10:49:31,631 [Worker-1: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /fitnect/src/main/resources
+2024-05-13 10:49:31,632 [Worker-1: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /fitnect/src/test/java
+2024-05-13 10:49:31,632 [Worker-1: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /fitnect/src/test/resources
+2024-05-13 10:49:31,906 [Worker-1: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed for 1 poms: local refresh takes 0.00 sec, refresh facades takes 0.00 sec, update config takes 0.00 sec 
+2024-05-13 10:49:32,459 [Worker-6: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 10:49:32,476 [Worker-6: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 10:49:32,488 [Worker-6: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 10:52:40,808 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 10:52:40,822 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 10:52:40,826 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 10:53:13,909 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 10:53:13,912 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 10:53:13,915 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 10:56:18,948 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 10:56:18,950 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources from src\main\resources to target\classes
+2024-05-13 10:56:18,953 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 10:56:45,361 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 10:56:45,371 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 10:56:45,375 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 10:59:23,952 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 10:59:23,956 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 10:59:23,960 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:05:30,519 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:05:30,524 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:05:30,528 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:06:33,798 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:06:33,802 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:06:33,806 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:07:23,724 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:07:23,728 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:07:23,732 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:09:17,033 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:09:17,036 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:09:17,040 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:09:21,502 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:09:21,505 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:09:21,508 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:09:22,558 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:09:22,561 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:09:22,565 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:09:29,946 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:09:29,950 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:09:29,954 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:09:46,687 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:09:46,690 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:09:46,693 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:10:07,837 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:10:07,840 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:10:07,843 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:10:11,370 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:10:11,373 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:10:11,377 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:10:22,690 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:10:22,693 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:10:22,696 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:13:40,307 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:13:40,310 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:13:40,313 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:15:03,296 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:15:03,299 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:15:03,302 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:15:14,643 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:15:14,652 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:15:14,656 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:16:02,624 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:16:02,628 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:16:02,631 [Worker-16: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:16:06,490 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:16:06,494 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:16:06,498 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:16:22,102 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:16:22,104 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-13 11:16:22,108 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:16:54,540 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 11:16:54,542 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:16:54,551 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:17:20,324 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 11:17:20,326 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:17:20,328 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:19:14,677 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 11:19:14,678 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:19:14,681 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:23:34,289 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:23:34,292 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:23:34,296 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:23:49,723 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 11:23:49,725 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:23:49,727 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:23:57,720 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 11:23:57,721 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:23:57,724 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:24:32,971 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 11:24:32,973 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:24:32,975 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:26:20,751 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:26:20,754 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:26:20,758 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:26:51,166 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:26:51,172 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:26:51,175 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:30:12,207 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:30:12,212 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:30:12,215 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:30:15,250 [Worker-23: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:30:15,253 [Worker-23: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:30:15,257 [Worker-23: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:46:27,896 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:46:27,900 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:46:27,904 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:46:47,476 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:46:47,480 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:46:47,483 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:47:52,543 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:47:52,546 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:47:52,550 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:48:10,304 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:48:10,306 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:48:10,310 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:48:51,686 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 11:48:51,687 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:48:51,689 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:52:23,458 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:52:23,460 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:52:23,464 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:52:28,724 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:52:28,728 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:52:28,730 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:52:59,410 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:52:59,413 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:52:59,417 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:56:27,888 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:56:27,891 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:56:27,894 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:57:07,573 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:57:07,579 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:57:07,583 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:57:46,569 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:57:46,571 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:57:46,575 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:57:57,270 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:57:57,273 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:57:57,276 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:57:58,337 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:57:58,339 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:57:58,343 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:58:12,366 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:58:12,369 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:58:12,372 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 11:59:29,660 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-05-13 11:59:49,154 [Worker-7: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 11:59:49,171 [Worker-7: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 11:59:49,176 [Worker-7: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 12:01:03,769 [Worker-0: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 12:01:03,773 [Worker-0: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 12:01:03,779 [Worker-0: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 12:01:54,337 [Worker-7: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 12:01:54,345 [Worker-7: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 12:01:54,350 [Worker-7: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 12:01:56,439 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 12:01:56,443 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 12:01:56,447 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 12:02:08,705 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 12:02:08,709 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 12:02:08,713 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:24:24,741 [Worker-19: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:24:24,744 [Worker-19: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:24:24,749 [Worker-19: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:25:13,108 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:25:13,111 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:25:13,116 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:27:25,876 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:27:25,884 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:27:25,889 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:27:33,435 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:27:33,438 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:27:33,442 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:28:35,032 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:28:35,035 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:28:35,039 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:29:17,597 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:29:17,599 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:29:17,603 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:30:25,260 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:30:25,264 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:30:25,268 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:31:26,275 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:31:26,280 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:31:26,284 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:31:35,260 [Worker-19: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:31:35,263 [Worker-19: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:31:35,267 [Worker-19: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:32:04,773 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:32:04,780 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:32:04,785 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:32:06,149 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:32:06,153 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:32:06,157 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:35:02,938 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:35:02,941 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:35:02,945 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:35:07,229 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:35:07,232 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:35:07,236 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:35:20,082 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:35:20,085 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:35:20,089 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:35:25,700 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:35:25,706 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:35:25,710 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:35:28,189 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:35:28,191 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:35:28,196 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:35:34,760 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:35:34,763 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:35:34,767 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:35:47,200 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:35:47,202 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:35:47,206 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:35:49,207 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:35:49,209 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:35:49,213 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:36:18,797 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:36:18,804 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:36:18,809 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:36:48,542 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:36:48,544 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:36:48,548 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:37:13,559 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:37:13,562 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:37:13,567 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:37:18,666 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:37:18,672 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:37:18,676 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:37:19,722 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:37:19,725 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:37:19,728 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:37:29,909 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:37:29,912 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:37:29,916 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:37:35,810 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:37:35,813 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:37:35,817 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:37:44,476 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:37:44,478 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:37:44,482 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:38:54,140 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:38:54,143 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:38:54,147 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:39:02,308 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:39:02,310 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:39:02,314 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:39:06,342 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:39:06,345 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:39:06,349 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:39:13,308 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:39:13,311 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:39:13,314 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:39:39,344 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:39:39,346 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:39:39,349 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:39:57,290 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:39:57,291 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:39:57,293 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:41:09,939 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:41:09,942 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:41:09,944 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:41:17,882 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:41:17,884 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:41:17,886 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:41:58,759 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:41:58,761 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:41:58,763 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:42:47,997 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:42:48,000 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:42:48,004 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:43:03,495 [Worker-20: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:43:03,497 [Worker-20: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:43:03,499 [Worker-20: Launching fitnect - FitnectApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:43:29,345 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:43:29,347 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:43:29,349 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:43:59,797 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:43:59,799 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:43:59,803 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:44:06,451 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:44:06,452 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:44:06,455 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:44:30,883 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:44:30,885 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:44:30,889 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:46:37,074 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:46:37,076 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:46:37,078 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:46:42,134 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:46:42,136 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:46:42,138 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:46:49,265 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:46:49,267 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:46:49,270 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:47:03,446 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:47:03,448 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:47:03,450 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:47:18,911 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:47:18,913 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:47:18,915 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:48:15,382 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:48:15,383 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:48:15,386 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:49:03,516 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:49:03,518 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:49:03,520 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:52:56,540 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:52:56,542 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:52:56,544 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:53:07,170 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:53:07,174 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 13:53:07,178 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 13:54:19,479 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 13:54:19,480 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 13:54:19,483 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:08:24,303 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:08:24,308 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:08:24,311 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:09:17,566 [Worker-40: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:09:17,568 [Worker-40: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:09:17,571 [Worker-40: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:09:32,563 [Worker-47: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:09:32,566 [Worker-47: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:09:32,571 [Worker-47: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:09:45,284 [Worker-47: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:09:45,286 [Worker-47: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:09:45,290 [Worker-47: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:11:05,930 [Worker-48: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:11:05,933 [Worker-48: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:11:05,937 [Worker-48: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:12:13,056 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:12:13,062 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:12:13,066 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:12:15,190 [Worker-47: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:12:15,193 [Worker-47: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:12:15,196 [Worker-47: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:12:46,388 [Worker-51: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:12:46,391 [Worker-51: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:12:46,395 [Worker-51: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:13:14,387 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:13:14,389 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:13:14,393 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:13:17,519 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:13:17,522 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:13:17,525 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:13:39,102 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:13:39,103 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:13:39,106 [Worker-49: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:13:56,407 [Worker-48: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:13:56,408 [Worker-48: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:13:56,411 [Worker-48: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:14:50,064 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:14:50,065 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:14:50,067 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:23:45,240 [Worker-54: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:23:45,242 [Worker-54: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:23:45,245 [Worker-54: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:27:48,286 [Worker-52: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:27:48,287 [Worker-52: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:27:48,289 [Worker-52: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:28:32,801 [Worker-57: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:28:32,807 [Worker-57: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:28:32,811 [Worker-57: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:29:11,330 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:29:11,336 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:29:11,339 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:29:55,366 [Worker-52: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:29:55,370 [Worker-52: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:29:55,373 [Worker-52: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:31:01,768 [Worker-57: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:31:01,770 [Worker-57: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:31:01,772 [Worker-57: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:32:19,193 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:32:19,194 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:32:19,197 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:33:32,036 [Worker-56: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:33:32,038 [Worker-56: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:33:32,040 [Worker-56: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:33:58,368 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:33:58,370 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:33:58,372 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:35:51,807 [Worker-60: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 14:35:51,809 [Worker-60: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:35:51,811 [Worker-60: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:37:34,356 [Worker-52: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:37:34,359 [Worker-52: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:37:34,362 [Worker-52: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 14:59:11,923 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 14:59:11,930 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 14:59:11,935 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:01:20,045 [Worker-61: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:01:20,046 [Worker-61: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:01:20,048 [Worker-61: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:01:21,100 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:01:21,104 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 15:01:21,108 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:01:22,155 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:01:22,162 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 12 resources from src\main\resources to target\classes
+2024-05-13 15:01:22,167 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:02:54,955 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:02:54,956 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:02:54,959 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:03:51,254 [Worker-66: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:03:51,255 [Worker-66: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:03:51,258 [Worker-66: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:04:07,843 [Worker-64: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:04:07,844 [Worker-64: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:04:07,846 [Worker-64: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:08:00,842 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:08:00,843 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:08:00,846 [Worker-59: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:08:41,289 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:08:41,290 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:08:41,292 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:08:49,244 [Worker-66: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:08:49,247 [Worker-66: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:08:49,251 [Worker-66: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:09:26,241 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:09:26,244 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:09:26,247 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:09:37,052 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:09:37,055 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:09:37,059 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:09:51,610 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:09:51,614 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:09:51,618 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:10:29,309 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:10:29,311 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:10:29,315 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:10:37,147 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:10:37,148 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:10:37,150 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:12:50,444 [Worker-70: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:12:50,447 [Worker-70: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:12:50,450 [Worker-70: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:12:52,987 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:12:52,990 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:12:52,994 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:14:45,086 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:14:45,089 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:14:45,092 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:15:26,716 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:15:26,718 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:15:26,720 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:21:03,266 [Worker-69: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:21:03,267 [Worker-69: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources from src\main\resources to target\classes
+2024-05-13 15:21:03,271 [Worker-69: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:25:14,931 [Worker-75: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 15:25:14,932 [Worker-75: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:25:14,935 [Worker-75: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:29:27,173 [Worker-76: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:29:27,178 [Worker-76: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:29:27,183 [Worker-76: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:35:01,578 [Worker-81: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:35:01,582 [Worker-81: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:35:01,586 [Worker-81: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 15:39:08,268 [Worker-81: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 15:39:08,274 [Worker-81: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 15:39:08,278 [Worker-81: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:01:41,759 [Worker-79: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:01:41,771 [Worker-79: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:01:41,776 [Worker-79: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:02:10,530 [Worker-84: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:02:10,536 [Worker-84: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:02:10,540 [Worker-84: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:03:33,961 [Worker-83: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:03:33,967 [Worker-83: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:03:33,971 [Worker-83: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:03:47,012 [Worker-86: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:03:47,015 [Worker-86: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:03:47,020 [Worker-86: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:13:00,061 [Worker-89: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:13:00,063 [Worker-89: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:13:00,067 [Worker-89: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:13:40,558 [Worker-90: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:13:40,561 [Worker-90: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:13:40,565 [Worker-90: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:14:10,655 [Worker-89: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 16:14:10,657 [Worker-89: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:14:10,659 [Worker-89: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:14:12,757 [Worker-90: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:14:12,763 [Worker-90: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:14:12,767 [Worker-90: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:14:42,688 [Worker-87: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:14:42,691 [Worker-87: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:14:42,695 [Worker-87: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:14:49,394 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:14:49,397 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:14:49,401 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:29:32,434 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:29:32,440 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:29:32,444 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:29:37,038 [Worker-91: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:29:37,045 [Worker-91: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:29:37,050 [Worker-91: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:30:00,801 [Worker-93: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:30:00,803 [Worker-93: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:30:00,807 [Worker-93: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:30:07,121 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:30:07,124 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:30:07,128 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:33:05,069 [Worker-91: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:33:05,071 [Worker-91: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:33:05,075 [Worker-91: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:36:04,973 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:36:04,976 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:36:04,980 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:40:14,337 [Worker-99: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:40:14,339 [Worker-99: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:40:14,344 [Worker-99: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:43:38,780 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:43:38,782 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:43:38,786 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:46:58,053 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:46:58,056 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:46:58,060 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:46:59,291 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:46:59,294 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:46:59,298 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:48:12,496 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:48:12,501 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:48:12,505 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:48:14,230 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:48:14,238 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 13 resources from src\main\resources to target\classes
+2024-05-13 16:48:14,242 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:49:05,920 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 16:49:05,921 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:49:05,924 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:57:05,152 [Worker-109: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 16:57:05,153 [Worker-109: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources from src\main\resources to target\classes
+2024-05-13 16:57:05,157 [Worker-109: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 16:57:21,344 [Worker-109: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 16:57:21,346 [Worker-109: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 16:57:21,349 [Worker-109: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 17:04:24,231 [Worker-107: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 17:04:24,232 [Worker-107: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 17:04:24,235 [Worker-107: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources
+2024-05-13 17:05:24,628 [Worker-111: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-13 17:05:24,629 [Worker-111: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-13 17:05:24,632 [Worker-111: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitnect\fitnect\src\test\resources

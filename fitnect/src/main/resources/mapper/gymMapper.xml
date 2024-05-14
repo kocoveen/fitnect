@@ -24,7 +24,7 @@
     </resultMap>
 
     <!-- Class resultMap -->
-    <resultMap id="classResultMap" type="com.ssafy.fitnect.model.dto.Class">
+    <resultMap id="classResultMap" type="com.ssafy.fitnect.model.dto.Classes">
         <id property="classId" column="classId"/>
         <result property="gymId" column="gymId"/>
         <result property="trainerId" column="trainerId"/>
@@ -53,6 +53,7 @@
         <result property="name" column="name"/>
         <result property="price" column="price"/>
         <result property="text" column="text"/>
+        <result property="days" column="days"/>
     </resultMap>
 
     <!-- Gym resultMap -->
@@ -78,7 +79,7 @@
 		<association property="amenity" resultMap="amenityResultMap"/>
 		
 		<!-- Collection mappings -->
-		<collection property="clazz" ofType="java.util.Map" resultMap="classResultMap" notNullColumn="classId"/>
+		<collection property="classes" ofType="java.util.Map" resultMap="classResultMap" notNullColumn="classId"/>
 		<collection property="gymMachine" ofType="java.util.Map" resultMap="gymMachineResultMap" notNullColumn="infoId"/>
 		<collection property="prices" ofType="java.util.Map" resultMap="pricesResultMap" notNullColumn="priceId"/>
     </resultMap>
@@ -126,12 +127,67 @@
 	        p.gymId,
 	        p.name,
 	        p.price,
-	        p.text
+	        p.text,
+	        p.days
 	    FROM gym g
 	    LEFT JOIN amenity a ON g.gymId = a.gymId
-	    LEFT JOIN class c ON g.gymId = c.gymId
+	    LEFT JOIN classes c ON g.gymId = c.gymId
 	    LEFT JOIN gym_machine m ON g.gymId = m.gymId
 	    LEFT JOIN prices p ON g.gymId = p.gymId
+	</select>
+	
+	
+	<select id="selectOneGymWithAsso" resultMap="gymResultMap">
+	    SELECT
+	        g.gymId,
+	        g.name,
+	        g.address,
+	        g.longitude,
+	        g.latitude,
+	        g.phone,
+	        g.content,
+	        g.type,
+	        g.operationHours,
+	        g.closedDay,
+	        g.gymImgUrl,
+	        g.capacity,
+	        g.rating,
+	        g.createdDate,
+	        g.modifiedDate,
+	        a.amenityId,
+	        a.freeParking,
+	        a.paidParking,
+	        a.allDay,
+	        a.showerFacilities,
+	        a.sportsWear,
+	        a.sharedLocker,
+	        a.personalLocker,
+	        a.unmanded,
+			c.classId,
+	        c.trainerId,
+	        c.name,
+	        c.startDate,
+	        c.endDate,
+	        c.createdDate,
+	        c.minimum,
+	        c.current,
+	        c.maximum,
+	        c.classPrice,
+	        m.infoId,
+	        m.machineCount,
+	        m.machineName,
+	        p.priceId,
+	        p.gymId,
+	        p.name,
+	        p.price,
+	        p.text,
+	        p.days
+	    FROM gym g
+	    LEFT JOIN amenity a ON g.gymId = a.gymId
+	    LEFT JOIN classes c ON g.gymId = c.gymId
+	    LEFT JOIN gym_machine m ON g.gymId = m.gymId
+	    LEFT JOIN prices p ON g.gymId = p.gymId
+   	    WHERE g.gymId = #{gymId}
 	</select>
 
 
@@ -227,4 +283,13 @@
 	        g.gymId = #{gymId}
     </select>
 
+
+	<insert id="insertRegistUser">
+	    INSERT INTO REGIST_USERS
+	    (`gymId`, `userId`, `priceId`, `expiredDate`)
+	    VALUES
+	    (#{gymId}, #{userId}, #{priceId}, DATE_ADD(now(), INTERVAL #{days} DAY))
+	</insert>
+
 </mapper>
+

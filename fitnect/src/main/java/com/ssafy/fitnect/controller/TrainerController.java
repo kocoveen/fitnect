@@ -17,6 +17,7 @@ import com.ssafy.fitnect.model.dto.ReviewTrainer;
 import com.ssafy.fitnect.model.dto.ReviewTrainerSaveDto;
 import com.ssafy.fitnect.model.dto.ReviewTrainerUpdateDto;
 import com.ssafy.fitnect.model.service.ReviewService;
+import com.ssafy.fitnect.model.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class TrainerController {
 	
 	private final ReviewService reviewService;
+	private final UserService userService;
 	
 	@GetMapping("/{trainerId}/review")
 	public ResponseEntity<?> selectAllReviewTrainer(@PathVariable("trainerId") long trainerId) throws Exception {
@@ -42,21 +44,34 @@ public class TrainerController {
 	@PostMapping("/{trainerId}/review")
 	public ResponseEntity<?> insertReviewTrainer(@PathVariable("trainerId") long trainerId, @RequestBody ReviewTrainerSaveDto reviewTrainer) throws Exception {
 		reviewTrainer.setTrainerId(trainerId);
+		reviewTrainer.setUserId(getLoginUserId());
 		int result = reviewService.writeReviewTrainer(reviewTrainer);
 		return new ResponseEntity<>(result, result == 1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
 	}
 	
 	@PutMapping("/{trainerId}/review/{id}")
 	public ResponseEntity<?> updateReviewTrainer(@PathVariable("trainerId") long trainerId, @PathVariable("id") long id, @RequestBody ReviewTrainerUpdateDto reviewTrainer) throws Exception {
-		reviewTrainer.setTrainerId(trainerId);
-		reviewTrainer.setReviewTrainerId(id);
-		int result = reviewService.modifyReviewTrainer(reviewTrainer);
-		return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+		
+		if (getLoginUserId() == reviewService.findOneReviewTrainerById(id).getUserId()) {
+			reviewTrainer.setReviewTrainerId(id);
+			int result = reviewService.modifyReviewTrainer(reviewTrainer);
+			return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<>("본인이 아닙니다.", HttpStatus.BAD_REQUEST);
 	}
 	
 	@DeleteMapping("/{trainerId}/review/{id}")
 	public ResponseEntity<?> updateReviewTrainer(@PathVariable("trainerId") long trainerId, @PathVariable("id") long id) throws Exception {
-		int result = reviewService.removeReviewTrainer(id);
-		return new ResponseEntity<>(result, result == 1 ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
+		if (getLoginUserId() == reviewService.findOneReviewTrainerById(id).getUserId()) {
+			int result = reviewService.removeReviewTrainer(id);
+			return new ResponseEntity<>(result, result == 1 ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>("본인이 아닙니다.", HttpStatus.BAD_REQUEST);
+	}
+	
+	
+	private long getLoginUserId() {
+		return userService.getUserById(3).getUserId();
 	}
 }

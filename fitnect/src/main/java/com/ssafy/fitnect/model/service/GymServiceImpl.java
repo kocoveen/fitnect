@@ -6,28 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.fitnect.model.dao.GymDao;
+import com.ssafy.fitnect.model.dao.PriceDao;
 import com.ssafy.fitnect.model.dto.Gym;
 import com.ssafy.fitnect.model.dto.GymAndTrainerReviewDto;
+import com.ssafy.fitnect.model.dto.PriceDayDto;
 import com.ssafy.fitnect.model.dto.SearchCondition;
 
 @Service
 public class GymServiceImpl implements GymService {
 	
 	private final GymDao gymDao;
+	private final PriceDao priceDao;
 	
 	@Autowired
-	public GymServiceImpl(GymDao gymDao) {
+	public GymServiceImpl(GymDao gymDao, PriceDao priceDao) {
 		this.gymDao = gymDao;
+		this.priceDao = priceDao;
 	}
 
 	@Override
 	public List<Gym> searchGym(SearchCondition cond) {
 		return null;
 	} 
-
+	
 	@Override
-	public List<Gym> getAllGym() {
-		return gymDao.selectAllGym();
+	public Gym getOneGymWithAsso(long gymId) {
+		return gymDao.selectOneGymWithAsso(gymId);
 	}
 	
 	@Override
@@ -40,6 +44,17 @@ public class GymServiceImpl implements GymService {
 //		return new GymAndTrainerReviewDto();
 		return gymDao.selectOneWithReview(id);
 	}
-	
 
+
+	
+	@Override
+	public List<Gym> getAllGym() {
+		return gymDao.selectAllGym();
+	}
+
+	@Override
+	public int registGym(long userId, long gymId, long priceId) {
+		PriceDayDto priceDayDto = priceDao.selectPriceOneByPriceId(priceId);
+		return gymDao.insertRegistUser(userId, gymId, priceId, priceDayDto.getDays());
+	}
 }
