@@ -31,13 +31,7 @@
 
           <div id="signup-btn">
             <span>회원이 아니신가요?</span>
-            <router-link
-              to="/signup"
-              id="signup"
-              style="text-decoration: underline"
-            >
-              Create an account
-            </router-link>
+            <router-link to="/signup" id="signup" style="text-decoration: underline"> Create an account </router-link>
           </div>
         </div>
       </div>

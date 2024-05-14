@@ -19,29 +19,15 @@
           <span>PHONE</span>
           <input type="text" class="inputbox" placeholder="Enter your number" />
 
-          <div id="address">
-            <span>ADDRESS</span
-            ><button id="postcode" @click="openPostcode">주소 찾기</button>
-          </div>
-          <input
-            type="text"
-            class="inputbox"
-            v-model="roadAddress"
-            placeholder="Enter your adress"
-            readonly
-          />
+          <div id="address"><span>ADDRESS</span><button id="postcode" @click="openPostcode">주소 찾기</button></div>
+          <input type="text" class="inputbox" v-model="roadAddress" placeholder="Enter your adress" readonly />
         </div>
         <div>
           <div>
             <div id="check-area">
               <input type="checkbox" id="check_btn" />
               <label for="check_btn">
-                <span
-                  >I agree to
-                  <a href="#" style="text-decoration: underline"
-                    >privacy policy & terms</a
-                  ></span
-                >
+                <span>I agree to <a href="#" style="text-decoration: underline">privacy policy & terms</a></span>
               </label>
             </div>
           </div>
@@ -50,13 +36,7 @@
 
           <div id="signup-btn">
             <span>회원이신가요?</span>
-            <router-link
-              to="/login"
-              id="login"
-              style="text-decoration: underline"
-            >
-              Sign in instead
-            </router-link>
+            <router-link to="/login" id="login" style="text-decoration: underline"> Sign in instead </router-link>
           </div>
         </div>
       </div>

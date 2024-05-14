@@ -8,7 +8,7 @@
         </router-link>
       </div>
       <div id="navBar">
-        <div class="nav-btn" @click.native="scrollToTop">Home</div>
+        <div class="nav-btn" @click="scrollToTop">Home</div>
         <div class="nav-btn2" @click="scrollToAbout">About</div>
         <div class="nav-btn3" @click="scrollToContactUs">Contact Us</div>
         <div id="login" @click="LoginPage">Sign in</div>
@@ -44,10 +44,7 @@
             <div class="section-heading">
               <h2>Expert <em>Trainers</em></h2>
               <img src="@/assets/imgs/line-dec.png" alt="" />
-              <p>
-                Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed
-                viverra ipsum dolor, ultricies fermentum massa consequat eu.
-              </p>
+              <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
             </div>
           </div>
         </div>
@@ -59,13 +56,9 @@
                   <img src="@/assets/imgs/climing.jpg" alt="" />
                 </div>
                 <div class="down-content">
-                  <span>Strength Trainer</span>
+                  <span>The King God General Programmer</span>
                   <h4>Jin S. OCK</h4>
-                  <p>
-                    Bitters cliche tattooed 8-bit distillery mustache. Keytar
-                    succulents gluten-free vegan church-key pour-over seitan
-                    flannel.
-                  </p>
+                  <p>Bitters cliche tattooed 8-bit distillery mustache. Keytar succulents gluten-free vegan church-key pour-over seitan flannel.</p>
                   <ul class="social-icons">
                     <li>
                       <a href="#"><i class="fa fa-facebook"></i></a>
@@ -89,13 +82,9 @@
                   <img src="@/assets/imgs/ungki.jpg" alt="" />
                 </div>
                 <div class="down-content">
-                  <span>Muscle Trainer</span>
+                  <span>Just Dumbel Pull Over</span>
                   <h4>UNGKI JANG</h4>
-                  <p>
-                    Bitters cliche tattooed 8-bit distillery mustache. Keytar
-                    succulents gluten-free vegan church-key pour-over seitan
-                    flannel.
-                  </p>
+                  <p>Bitters cliche tattooed 8-bit distillery mustache. Keytar succulents gluten-free vegan church-key pour-over seitan flannel.</p>
                   <ul class="social-icons">
                     <li>
                       <a href="#"><i class="fa fa-facebook"></i></a>
@@ -142,57 +131,27 @@
                 <div class="row">
                   <div class="col-md-6 col-sm-12">
                     <fieldset>
-                      <input
-                        name="name"
-                        type="text"
-                        id="name"
-                        placeholder="Your Name*"
-                        required=""
-                      />
+                      <input name="name" type="text" id="name" placeholder="Your Name*" required="" />
                     </fieldset>
                   </div>
                   <div class="col-md-6 col-sm-12">
                     <fieldset>
-                      <input
-                        name="email"
-                        type="text"
-                        id="email"
-                        pattern="[^ @]*@[^ @]*"
-                        placeholder="Your Email*"
-                        required=""
-                      />
+                      <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email*" required="" />
                     </fieldset>
                   </div>
                   <div class="col-md-12 col-sm-12">
                     <fieldset>
-                      <input
-                        name="subject"
-                        type="text"
-                        id="subject"
-                        placeholder="Subject"
-                      />
+                      <input name="subject" type="text" id="subject" placeholder="Subject" />
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <textarea
-                        name="message"
-                        rows="6"
-                        id="message"
-                        placeholder="Message"
-                        required=""
-                      ></textarea>
+                      <textarea name="message" rows="6" id="message" placeholder="Message" required=""></textarea>
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <button
-                        type="submit"
-                        id="form-submit"
-                        class="main-button"
-                      >
-                        Send Message
-                      </button>
+                      <button type="submit" id="form-submit" class="main-button">Send Message</button>
                     </fieldset>
                   </div>
                 </div>
@@ -210,36 +169,16 @@
         <div class="row g-5">
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="footer-item d-flex flex-column">
-              <h4 class="text-white mb-4">
-                <i class="fas fa-star-of-life me-3"></i>Fitnect
-              </h4>
+              <h4 class="text-white mb-4"><i class="fas fa-star-of-life me-3"></i>Fitnect</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Delectus dolorem impedit eos autem dolores laudantium quia, qui
-                similique
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus dolorem impedit eos autem dolores laudantium quia, qui similique
               </p>
               <div class="d-flex align-items-center">
                 <i class="fas fa-share fa-2x text-white me-2"></i>
-                <a
-                  class="btn-square btn btn-primary text-white rounded-circle mx-1"
-                  href=""
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-                <a
-                  class="btn-square btn btn-primary text-white rounded-circle mx-1"
-                  href=""
-                  ><i class="fab fa-twitter"></i
-                ></a>
-                <a
-                  class="btn-square btn btn-primary text-white rounded-circle mx-1"
-                  href=""
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  class="btn-square btn btn-primary text-white rounded-circle mx-1"
-                  href=""
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
+                <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
+                <a class="btn-square btn btn-primary text-white rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
               </div>
             </div>
           </div>
@@ -248,37 +187,21 @@
               <h4 class="mb-4 text-white">Quick Links</h4>
               <a href=""><i class="fas fa-angle-right me-2"></i> About Us</a>
               <a href=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
-              <a href=""
-                ><i class="fas fa-angle-right me-2"></i> Privacy Policy</a
-              >
-              <a href=""
-                ><i class="fas fa-angle-right me-2"></i> Terms & Conditions</a
-              >
-              <a href=""
-                ><i class="fas fa-angle-right me-2"></i> Our Blog & News</a
-              >
+              <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
+              <a href=""><i class="fas fa-angle-right me-2"></i> Terms & Conditions</a>
+              <a href=""><i class="fas fa-angle-right me-2"></i> Our Blog & News</a>
               <a href=""><i class="fas fa-angle-right me-2"></i> Our Team</a>
             </div>
           </div>
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="footer-item d-flex flex-column">
               <h4 class="mb-4 text-white">Fitnect Services</h4>
-              <a href=""
-                ><i class="fas fa-angle-right me-2"></i> All Services</a
-              >
-              <a href=""
-                ><i class="fas fa-angle-right me-2"></i> Physiotherapy</a
-              >
+              <a href=""><i class="fas fa-angle-right me-2"></i> All Services</a>
+              <a href=""><i class="fas fa-angle-right me-2"></i> Physiotherapy</a>
               <a href=""><i class="fas fa-angle-right me-2"></i> Diagnostics</a>
-              <a href=""
-                ><i class="fas fa-angle-right me-2"></i> Manual Therapy</a
-              >
-              <a href=""
-                ><i class="fas fa-angle-right me-2"></i> Massage Therapy</a
-              >
-              <a href=""
-                ><i class="fas fa-angle-right me-2"></i> Rehabilitation</a
-              >
+              <a href=""><i class="fas fa-angle-right me-2"></i> Manual Therapy</a>
+              <a href=""><i class="fas fa-angle-right me-2"></i> Massage Therapy</a>
+              <a href=""><i class="fas fa-angle-right me-2"></i> Rehabilitation</a>
             </div>
           </div>
           <div class="col-md-6 col-lg-6 col-xl-3">
@@ -287,26 +210,14 @@
               <a href=""
                 ><i
                   class="fa fa-map-marker-alt me-2"
-                  style="
-                    font-weight: 900;
-                    font-family: 'Font Awesome 5 Free';
-                    font-style: normal;
-                    font-variant: normal;
-                    line-height: 1;
-                  "
+                  style="font-weight: 900; font-family: 'Font Awesome 5 Free'; font-style: normal; font-variant: normal; line-height: 1"
                 ></i>
                 123 Street, New York, USA</a
               >
-              <a href=""
-                ><i class="fas fa-envelope me-2"></i> info@example.com</a
-              >
-              <a href=""
-                ><i class="fas fa-envelope me-2"></i> info@example.com</a
-              >
+              <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
+              <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
               <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-              <a href="" class="mb-3"
-                ><i class="fas fa-print me-2"></i> +012 345 67890</a
-              >
+              <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
             </div>
           </div>
         </div>
@@ -314,9 +225,7 @@
     </div>
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary btn-lg-square back-to-top"
-      ><i class="fa fa-arrow-up"></i
-    ></a>
+    <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
   </div>
 </template>
 
@@ -851,8 +760,7 @@ section {
 
 /*** Footer Start ***/
 .footer {
-  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
-    url(../img/carousel-2.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(../img/carousel-2.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
