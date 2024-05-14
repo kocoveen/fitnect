@@ -23,4 +23,16 @@ public interface GymDao {
 				@Param("priceId") long priceId, 
 				@Param("days") int days
 			);
+	
+	public int deleteRegistUser(
+			@Param("userId") long userId,
+			@Param("gymId") long gymId
+		);
+
+	public int insertFavGym(long gymId, long loginUserId);
+
+	public int deleteFavGym(long gymId, long loginUserId);
+
+	public List<Gym> selectAllFavGym(long userId);
+	public List<Gym> selectAllMyGym(long userId);
 }

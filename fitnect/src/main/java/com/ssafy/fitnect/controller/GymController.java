@@ -117,14 +117,28 @@ public class GymController {
 		return new ResponseEntity<>(result, result == 1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
 	}
 	
-//	@DeleteMapping("/{gymId}/quit")
-//	public ResponseEntity<?> registGym(@PathVariable("gymId") long gymId) throws Exception {
-//		
-//		Users user = userService.getUserById(3);
-//		
-//		int result = gymService.registGym(user.getUserId(), gymId);
-//		return new ResponseEntity<>(result, result == 1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
-//	}
+	@DeleteMapping("/{gymId}/quit")
+	public ResponseEntity<?> quitGym(@PathVariable("gymId") long gymId) throws Exception {
+		
+		Users user = userService.getUserById(3);
+		
+		int result = gymService.quitGym(user.getUserId(), gymId);
+		return new ResponseEntity<>(result, result == 1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
+	}
+	
+	@PostMapping("/{gymId}/fav")
+	public ResponseEntity<?> favGym(@PathVariable("gymId") long gymId) throws Exception {
+		
+		int result = gymService.favGym(gymId, getLoginUserId());
+		return new ResponseEntity<>(result, result == 1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
+	}
+	
+	@DeleteMapping("/{gymId}/unfav")
+	public ResponseEntity<?> unfavGym(@PathVariable("gymId") long gymId) throws Exception {
+		
+		int result = gymService.unfavGym(gymId, getLoginUserId());
+		return new ResponseEntity<>(result, result == 1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
+	}
 	
 	
 	@GetMapping("/{gymId}/classes")
@@ -132,6 +146,8 @@ public class GymController {
 		List<Classes> classes = classService.findClassesByGymId(gymId);
 		return ResponseEntity.ok(classes);
 	}
+	
+	
 	
 	
 	private long getLoginUserId() {
