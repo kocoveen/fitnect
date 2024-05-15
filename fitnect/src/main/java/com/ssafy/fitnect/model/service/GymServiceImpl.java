@@ -59,7 +59,7 @@ public class GymServiceImpl implements GymService {
 	}
 	
 	@Override
-	public int quitGym(int userId, long gymId) {
+	public int quitGym(long userId, long gymId) {
 		return gymDao.deleteRegistUser(userId, gymId);
 	}
 

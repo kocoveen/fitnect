@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.fitnect.auth.CustomUserDetails;
 import com.ssafy.fitnect.model.dto.Classes;
 import com.ssafy.fitnect.model.dto.Users;
 import com.ssafy.fitnect.model.service.ClassService;
@@ -59,7 +62,14 @@ public class ClassController {
 	
 	
 	private long getLoginUserId() {
-		return userService.getUserById(3).getUserId();
+		return ( (CustomUserDetails) 
+					( (UserDetails) SecurityContextHolder
+									.getContext()
+									.getAuthentication()
+									.getPrincipal()
+					)
+				)
+				.getUserId();
 	}
 
 }

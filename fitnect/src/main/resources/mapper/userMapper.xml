@@ -17,17 +17,9 @@
 		WHERE email = #{email}
 	</select>
 
-	<insert id="insertUser" parameterType="com.ssafy.fitnect.model.dto.Users">
-		INSERT INTO USERS 
-		(userId, email, password, phone, name, address, longitude,
-		latitude, createdDate, modifiedDate, profileImgUrl, height, weight, auth)
-		
-		VALUES 
-		( 
-			#{userId}, #{email}, #{password}, #{phone}, #{name}, #{address},
-			#{longitude}, #{latitude}, #{createdDate}, #{modifiedDate},
-			#{profileImgUrl}, #{height}, #{weight}, #{auth}
-		)
+	<insert id="insertUser" parameterType="com.ssafy.fitnect.model.dto.UserSignUpRequestDto" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO USERS (email, password, phone, name, address, longitude, latitude, auth)
+        VALUES (#{email}, #{password}, #{phone}, #{name}, #{address}, #{longitude}, #{latitude}, #{auth})
 	</insert>
 
 	<update id="updateUser" parameterType="com.ssafy.fitnect.model.dto.Users">
