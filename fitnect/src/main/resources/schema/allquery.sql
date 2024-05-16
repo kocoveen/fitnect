@@ -22,7 +22,7 @@ CREATE TABLE `USERS` (
 	`weight`	int	NULL,
 	`auth`	varchar(255)	NOT NULL,
 	`createdDate`	timestamp	NOT NULL	DEFAULT now(),
-	`modifiedDate`	timestamp	NOT NULL	DEFAULT now()
+	`modifiedDate`	timestamp	NOT NULL	DEFAULT now() ON UPDATE now()
 );
 
 DROP TABLE IF EXISTS `GYM`;
@@ -42,7 +42,7 @@ CREATE TABLE `GYM` (
 	`capacity`	int(10)	NOT NULL,
 	`rating`	decimal(2, 1)	NOT NULL	DEFAULT 0,
 	`createdDate`	timestamp	NOT NULL	DEFAULT now(),
-	`modifiedDate`	timestamp	NOT NULL	DEFAULT now()
+	`modifiedDate`	timestamp	NOT NULL	DEFAULT now() ON UPDATE now()
 );
 
 DROP TABLE IF EXISTS `GYM_MACHINE`;
@@ -74,7 +74,7 @@ CREATE TABLE `REVIEW_GYM` (
 	`content`	varchar(255)	NOT NULL,
 	`rating`	int(1)	NOT NULL	DEFAULT 0,
 	`createdDate`	timestamp	NOT NULL	DEFAULT now(),
-	`modifiedDate`	timestamp	NOT NULL	DEFAULT now()
+	`modifiedDate`	timestamp	NOT NULL	DEFAULT now() ON UPDATE now()
 );
 
 DROP TABLE IF EXISTS `REGIST_CLASSES`;
@@ -94,7 +94,7 @@ CREATE TABLE `REVIEW_TRAINER` (
 	`content`	varchar(255)	NOT NULL,
 	`rating`	int(1)	NOT NULL,
 	`createdDate`	timestamp	NOT NULL	DEFAULT now(),
-	`modifiedDate`	timestamp	NOT NULL	DEFAULT now()
+	`modifiedDate`	timestamp	NOT NULL	DEFAULT now() ON UPDATE now()
 );
 
 DROP TABLE IF EXISTS `FAV_GYM`;
@@ -104,7 +104,7 @@ CREATE TABLE `FAV_GYM` (
 	`userId`	bigint(20)	NOT NULL,
 	`gymId`	bigint(20)	NOT NULL,
 	`createdDate`	timestamp	NOT NULL	DEFAULT now(),
-	`modifiedDate`	timestamp	NOT NULL	DEFAULT now()
+	`modifiedDate`	timestamp	NOT NULL	DEFAULT now() ON UPDATE now()
 );
 
 DROP TABLE IF EXISTS `CLASSES`;
@@ -117,7 +117,7 @@ CREATE TABLE `CLASSES` (
 	`startDate`	timestamp	NOT NULL,
 	`endDate`	timestamp	NOT NULL,
 	`createdDate`	timestamp	NOT NULL	DEFAULT now(),
-	`modifiedDate`	timestamp	NOT NULL	DEFAULT now(),
+	`modifiedDate`	timestamp	NOT NULL	DEFAULT now() ON UPDATE now(),
 	`minimum`	int(3)	NOT NULL	DEFAULT 0,
 	`current`	int(3)	NOT NULL	DEFAULT 0,
 	`maximum`	int(3)	NOT NULL	DEFAULT 0,
@@ -729,33 +729,35 @@ VALUES
 
 -- users --
 -- 20개의 임의의 유저 데이터 삽입 쿼리
+-- 20개의 임의의 유저 데이터 삽입 쿼리
 INSERT INTO `USERS` (`email`, `password`, `phone`, `name`, `address`, `longitude`, `latitude`, `profileImgUrl`, `height`, `weight`, `auth`)
 VALUES
-('trainer1@example.com', 'password1', '010-1234-5678', '김민지', '서울 강남구 역삼동', 37.504062, 127.036209, NULL, 160, 50, 'trainer'),
-('trainer2@example.com', 'password2', '010-2345-6789', '이민준', '서울 강남구 논현동', 37.516066, 127.035760, NULL, 170, 60, 'trainer'),
-('user1@example.com', 'password3', '010-3456-7890', '박서연', '서울 강남구 대치동', 37.501704, 127.058740, NULL, 175, 65, 'user'),
-('user2@example.com', 'password4', '010-4567-8901', '최지훈', '서울 강남구 삼성동', 37.510571, 127.060315, NULL, 165, 55, 'user'),
-('user3@example.com', 'password5', '010-5678-9012', '정예진', '서울 강남구 역삼동', 37.498255, 127.039721, NULL, 180, 70, 'user'),
-('user4@example.com', 'password6', '010-6789-0123', '강지우', '서울 강남구 역삼동', 37.502194, 127.039634, NULL, 165, 55, 'user'),
-('user5@example.com', 'password7', '010-7890-1234', '손민지', '서울 강남구 역삼동', 37.497974, 127.038981, NULL, 170, 60, 'user'),
-('user6@example.com', 'password8', '010-8901-2345', '윤서연', '서울 강남구 역삼동', 37.500649, 127.042879, NULL, 175, 65, 'user'),
-('user7@example.com', 'password9', '010-9012-3456', '임지훈', '서울 강남구 역삼동', 37.499939, 127.035914, NULL, 170, 60, 'user'),
-('user8@example.com', 'password10', '010-0123-4567', '장예진', '서울 강남구 역삼동', 37.502901, 127.037615, NULL, 160, 50, 'user'),
-('user9@example.com', 'password11', '010-1111-1111', '김태연', '서울 강남구 역삼동', 37.503170, 127.036722, NULL, NULL, NULL, 'user'),
-('user10@example.com', 'password12', '010-2222-2222', '이서연', '서울 강남구 역삼동', 37.504019, 127.035682, NULL, NULL, NULL, 'user'),
-('user11@example.com', 'password13', '010-3333-3333', '박민지', '서울 강남구 역삼동', 37.502497, 127.036539, NULL, NULL, NULL, 'user'),
-('user12@example.com', 'password14', '010-4444-4444', '최지훈', '서울 강남구 역삼동', 37.503349, 127.036525, NULL, NULL, NULL, 'user'),
-('user13@example.com', 'password15', '010-5555-5555', '정예진', '서울 강남구 역삼동', 37.502864, 127.036124, NULL, NULL, NULL, 'user'),
-('user14@example.com', 'password16', '010-6666-6666', '강지우', '서울 강남구 역삼동', 37.503878, 127.037178, NULL, NULL, NULL, 'user'),
-('user15@example.com', 'password17', '010-7777-7777', '손민지', '서울 강남구 역삼동', 37.502937, 127.036466, NULL, NULL, NULL, 'user'),
-('user16@example.com', 'password18', '010-8888-8888', '윤서연', '서울 강남구 역삼동', 37.503768, 127.036856, NULL, NULL, NULL, 'user'),
-('user17@example.com', 'password19', '010-9999-9999', '임지훈', '서울 강남구 역삼동', 37.503204, 127.036267, NULL, NULL, NULL, 'user'),
-('user18@example.com', 'password20', '010-0000-0000', '장예진', '서울 강남구 역삼동', 37.504177, 127.037266, NULL, NULL, NULL, 'user');
+('admin@ssafy.com', '$2a$10$QwTQdqJUeUugHWXEiXH2Ye54tV4KICMo/bejjpPLZyq3.70RbRi3a', '010-0000-0000', 'admin', '대한민국', 0.0, 0.0, NULL, NULL, NULL, 'admin'),
+('trainer1@example.com', '$2a$10$EMfAFExQxF5UfeIBnCDlNuaC.k3ZcNADEGYvIhCwrztuuaU3Cb/ky', '010-1234-5678', '김민지', '서울 강남구 역삼동', 37.504062, 127.036209, NULL, 160, 50, 'trainer'),
+('trainer2@example.com', '$2a$10$o3XEszF8ytlINbbNaOeaVuEBbf144KpGcPCV0p7eorGPVMs9lbK86', '010-2345-6789', '이민준', '서울 강남구 논현동', 37.516066, 127.035760, NULL, 170, 60, 'trainer'),
+('user1@example.com', '$2a$10$B54QP0PVWMfZZ/tSHvA7qOYKTTrsWCwPN5MspUuT4hHlEJ5kQumqS', '010-3456-7890', '박서연', '서울 강남구 대치동', 37.501704, 127.058740, NULL, 175, 65, 'user'),
+('user2@example.com', '$2a$10$gntqMiMzp1Iq0Rbm6VG5/.NPQKfYlO20Ke/TBB54dvI/trJmOkYou', '010-4567-8901', '최지훈', '서울 강남구 삼성동', 37.510571, 127.060315, NULL, 165, 55, 'user'),
+('user3@example.com', '$2a$10$tpv2DkUpn6cRLvte4X2bU.C85vO0rmhn2EMhtaDEI0cJ.3g5sN5F2', '010-5678-9012', '정예진', '서울 강남구 역삼동', 37.498255, 127.039721, NULL, 180, 70, 'user'),
+('user4@example.com', '$2a$10$nuIeTb7/47CqBMJo.xYMqONQFYhvwZo6PaWaQm5e754Vaec2BLulG', '010-6789-0123', '강지우', '서울 강남구 역삼동', 37.502194, 127.039634, NULL, 165, 55, 'user'),
+('user5@example.com', '$2a$10$73.Uyzk8gjphoyV6H58bB.6rGWbg6bn103EiZsGDGzUiO6F0mBmfi', '010-7890-1234', '손민지', '서울 강남구 역삼동', 37.497974, 127.038981, NULL, 170, 60, 'user'),
+('user6@example.com', '$2a$10$iv5iey/.xsxVVVPy80bVkOeHDIjqATCTsi4LumKJiakiMG7bvWaf.', '010-8901-2345', '윤서연', '서울 강남구 역삼동', 37.500649, 127.042879, NULL, 175, 65, 'user'),
+('user7@example.com', '$2a$10$R99a6YoBl1bJAjqcGhQYHeTdAglImLyHnPEYZbZo8BeDcpt.8kNRK', '010-9012-3456', '임지훈', '서울 강남구 역삼동', 37.499939, 127.035914, NULL, 170, 60, 'user'),
+('user8@example.com', '$2a$10$dvjnSa.Gad0XTKMQMTMtXuE026mkcabnWkUH3lQn5sI1vjJ7eTCnG', '010-0123-4567', '장예진', '서울 강남구 역삼동', 37.502901, 127.037615, NULL, 160, 50, 'user'),
+('user9@example.com', '$2a$10$7h14eno0.ANs0eDFuKg56OtCkJ7nU1H8vNI8xCWn9ewuA3Gts12dW', '010-1111-1111', '김태연', '서울 강남구 역삼동', 37.503170, 127.036722, NULL, NULL, NULL, 'user'),
+('user10@example.com', '$2a$10$/PAhmlybO/L.lwTL.5aV0OIYQAn6CDFXqjGPIVJ/kVUT7ySAF2bKK', '010-2222-2222', '이서연', '서울 강남구 역삼동', 37.504019, 127.035682, NULL, NULL, NULL, 'user'),
+('user11@example.com', '$2a$10$Pdv4FS/YdrpKCkOxyoynAuik5ag.U6CSVxCJ.iLwYSnk3u47nP1Ie', '010-3333-3333', '박민지', '서울 강남구 역삼동', 37.502497, 127.036539, NULL, NULL, NULL, 'user'),
+('user12@example.com', '$2a$10$EEr7q.K9hgS.KR.d7sbTgu91IyTBMnhUMFqYBcTn5r6JUrBMunOCO', '010-4444-4444', '최지훈', '서울 강남구 역삼동', 37.503349, 127.036525, NULL, NULL, NULL, 'user'),
+('user13@example.com', '$2a$10$xzdkzfcrklKf4NSmorBTOexjckyrTUYH7n8CnUNMwP2fRuyBGfE6q', '010-5555-5555', '정예진', '서울 강남구 역삼동', 37.502864, 127.036124, NULL, NULL, NULL, 'user'),
+('user14@example.com', '$2a$10$ycjGU/.TxCexTY1n92vUBefDDkYIWakDTJCN0Q4Z8zApOPn9fHZUu', '010-6666-6666', '강지우', '서울 강남구 역삼동', 37.503878, 127.037178, NULL, NULL, NULL, 'user'),
+('user15@example.com', '$2a$10$DB3lMIHfDYUkMoORnhvjDew5Kdgh9f3cd6fkwnUVI0C2kDmSpjde.', '010-7777-7777', '손민지', '서울 강남구 역삼동', 37.502937, 127.036466, NULL, NULL, NULL, 'user'),
+('user16@example.com', '$2a$10$SamIUA3XFynMZ5Lv7sXRROfXAjfKOV0xt/WlY2k6gobbS0pFcXywu', '010-8888-8888', '윤서연', '서울 강남구 역삼동', 37.503768, 127.036856, NULL, NULL, NULL, 'user'),
+('user17@example.com', '$2a$10$7saoRe1SNTt/BCRQojF1C.UnP9QF9OXRlRVRfLen3TTl5YzTE1XeG', '010-9999-9999', '임지훈', '서울 강남구 역삼동', 37.503204, 127.036267, NULL, NULL, NULL, 'user'),
+('user18@example.com', '$2a$10$VxRDhegQIaHOHhgijSEWY.9LGBI7IxJWJCtm1AjziJC9q1WujW1TS', '010-0000-0000', '장예진', '서울 강남구 역삼동', 37.504177, 127.037266, NULL, NULL, NULL, 'user');
 
 INSERT INTO `TRAINER` (`userId`, `gymId`, `career`, `major`)
 VALUES
-(1, 1, "국가대표 수영 코치", "자유영"),
-(2, 1, "XXX 대회 금상", "접영");
+(2, 1, "국가대표 수영 코치", "자유영"),
+(3, 1, "XXX 대회 금상", "접영");
 
 
 -- classes

@@ -18,7 +18,7 @@ public interface GymService {
 	public GymAndTrainerReviewDto gymGetOneByIdWithReview(long id);
 	
 	public int registGym(long userId, long gymId, long priceId);
-	public int quitGym(int userId, long gymId);
+	public int quitGym(long userId, long gymId);
 	
 	public int favGym(long gymId, long loginUserId);
 	public int unfavGym(long gymId, long loginUserId);

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Users {
 	
-	private int userId;
+	private long userId;
 	private String email;
 	private String password;
 	private String phone;
@@ -25,6 +25,7 @@ public class Users {
 	private String address;
 	private double longitude;
 	private double latitude;
+	private String auth;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -36,7 +37,4 @@ public class Users {
 	private String profileImgUrl;
 	private int height;
 	private int weight;
-	private String auth;
-	
-	
 }

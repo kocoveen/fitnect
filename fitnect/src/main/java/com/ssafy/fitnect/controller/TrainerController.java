@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.fitnect.auth.CustomUserDetails;
 import com.ssafy.fitnect.model.dto.ReviewTrainer;
 import com.ssafy.fitnect.model.dto.ReviewTrainerSaveDto;
 import com.ssafy.fitnect.model.dto.ReviewTrainerUpdateDto;
@@ -52,7 +55,7 @@ public class TrainerController {
 	@PutMapping("/{trainerId}/review/{id}")
 	public ResponseEntity<?> updateReviewTrainer(@PathVariable("trainerId") long trainerId, @PathVariable("id") long id, @RequestBody ReviewTrainerUpdateDto reviewTrainer) throws Exception {
 		
-		if (getLoginUserId() == reviewService.findOneReviewTrainerById(id).getUserId()) {
+		if (getLoginUserId() == trainerId) {
 			reviewTrainer.setReviewTrainerId(id);
 			int result = reviewService.modifyReviewTrainer(reviewTrainer);
 			return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
@@ -63,7 +66,7 @@ public class TrainerController {
 	
 	@DeleteMapping("/{trainerId}/review/{id}")
 	public ResponseEntity<?> updateReviewTrainer(@PathVariable("trainerId") long trainerId, @PathVariable("id") long id) throws Exception {
-		if (getLoginUserId() == reviewService.findOneReviewTrainerById(id).getUserId()) {
+		if (getLoginUserId() == trainerId) {
 			int result = reviewService.removeReviewTrainer(id);
 			return new ResponseEntity<>(result, result == 1 ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
 		}
@@ -72,6 +75,13 @@ public class TrainerController {
 	
 	
 	private long getLoginUserId() {
-		return userService.getUserById(3).getUserId();
+		return ( (CustomUserDetails) 
+					( (UserDetails) SecurityContextHolder
+									.getContext()
+									.getAuthentication()
+									.getPrincipal()
+					)
+				)
+				.getUserId();
 	}
 }
