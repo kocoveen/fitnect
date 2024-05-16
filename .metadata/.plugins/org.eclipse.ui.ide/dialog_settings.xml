@@ -30,9 +30,13 @@
 		<item value="org.eclipse.tm.terminal.view.feature:11.4.0.202311142324"/>
 		<item value="org.eclipse.userstorage:1.2.0.v20210517-0327"/>
 		<item value="org.eclipse.wst.common.fproj:3.7.4.v202308161955"/>
+		<item value="org.eclipse.wst.jsdt.chromium.debug.feature:0.7.0.v202307190351"/>
+		<item value="org.eclipse.wst.jsdt.feature:2.4.500.v202307190318"/>
 		<item value="org.eclipse.wst.json_ui.feature:1.1.11.v202308160419"/>
 		<item value="org.eclipse.wst.web_ui.feature:3.31.0.v202309280406"/>
+		<item value="org.eclipse.wst.xml.xpath2.processor.feature:2.1.0.v202307260822"/>
 		<item value="org.eclipse.wst.xml_ui.feature:3.31.0.v202308200343"/>
+		<item value="org.eclipse.wst.xsl.feature:1.3.1500.v202307260701"/>
 		<item value="org.jboss.tools.m2e.wro4j.feature:1.2.1.202301111328"/>
 		<item value="org.sonatype.m2e.egit.feature:0.17.0.202209271423"/>
 	</list>
