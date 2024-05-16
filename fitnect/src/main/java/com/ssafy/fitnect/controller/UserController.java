@@ -35,6 +35,7 @@ import com.ssafy.fitnect.model.dto.UserSignUpRequestDto;
 import com.ssafy.fitnect.model.dto.Users;
 import com.ssafy.fitnect.model.service.GymService;
 import com.ssafy.fitnect.model.service.UserService;
+import com.ssafy.fitnect.util.ApiResponse;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -55,14 +56,16 @@ public class UserController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> detail(@PathVariable("id") long id) throws Exception {
-		Users user = userService.getUserById(id);
-		return ResponseEntity.ok(user);
 		
+		if (id == getLoginUserId()) {
+			Users user = userService.getUserById(id);
+			return ResponseEntity.ok().body(ApiResponse.success(null, user));			
+		}
+		return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));	
 	}
 	
     @PostMapping("/sign-in")
     public ResponseEntity<?> login(@RequestBody UserLoginDto userLoginDto) {
-    	
     	
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(userLoginDto.getEmail(), userLoginDto.getPassword());
@@ -87,29 +90,48 @@ public class UserController {
         httpHeaders.add("location","http://localhost:5137");
 
         // tokenDto를 이용해 response body에도 넣어서 리턴
-        return new ResponseEntity<>(token, httpHeaders, HttpStatus.OK);
+        return ResponseEntity.ok().headers(httpHeaders).body(ApiResponse.success(HttpStatus.OK, token));
     }
 
 	@PostMapping("/sign-up")
-	public ResponseEntity<?> insert(@ModelAttribute UserSignUpRequestDto user) throws Exception {
+	public ResponseEntity<?> signup(@ModelAttribute UserSignUpRequestDto user) throws Exception {
 		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		int result = userService.insert(user);
-		return new ResponseEntity<>(result, result == 1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
+		if (result == 1) {
+			return ResponseEntity.created(null).body(ApiResponse.success(HttpStatus.CREATED, result));
+		} else {
+			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
+		}
+	}
+	
+	@PostMapping("/sign-out")
+	public ResponseEntity<?> signout() {
+		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, "로그아웃 완료"));
 	}
 
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, Users user) throws Exception {
-		user.setUserId(id);
+		user.setUserId(getLoginUserId());
 		int result = userService.update(user);
-		return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+		
+		if (result == 1) {
+			return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
+		} else {
+			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
+		}
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id) throws Exception {
 		int result = userService.delete(id);
-		return new ResponseEntity<>(result, result == 1 ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
+		
+		if (id == getLoginUserId()) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.NO_CONTENT, result));
+		} else {
+			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
+		}
 	}
 	
 	
@@ -118,9 +140,10 @@ public class UserController {
 	public ResponseEntity<?> getFavGym() throws Exception {
 		
 		long loginUserId = getLoginUserId();
+		List<Gym> result = gymService.findFavGymByUserId(loginUserId);
 		
-		List<Gym> favGyms = gymService.findFavGymByUserId(loginUserId);
-		return new ResponseEntity<>(favGyms, favGyms.size() == 0 ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
+		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
+		
 	}
 	
 	
@@ -129,8 +152,8 @@ public class UserController {
 		
 		long loginUserId = getLoginUserId();
 		
-		List<Gym> favGyms = gymService.findFavGymByUserId(loginUserId);
-		return new ResponseEntity<>(favGyms, favGyms.size() == 0 ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
+		List<Gym> result = gymService.findFavGymByUserId(loginUserId);
+		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
 	}
 	
 	

@@ -8,14 +8,24 @@
         </div>
         <div id="input-area">
           <span>EMAIL</span>
-          <input type="text" class="inputbox" placeholder="Enter your email" />
+          <input
+            v-model="data.email"
+            type="text"
+            class="inputbox"
+            placeholder="Enter your email"
+          />
           <div class="forgot-pass">
             <span>PASSWORD</span>
             <router-link to="/" id="forgot">
               <span>Forgot Password?</span>
             </router-link>
           </div>
-          <input type="password" class="inputbox" placeholder="············" />
+          <input
+            v-model="data.password"
+            type="password"
+            class="inputbox"
+            placeholder="············"
+          />
         </div>
         <div>
           <div>
@@ -31,7 +41,13 @@
 
           <div id="signup-btn">
             <span>회원이 아니신가요?</span>
-            <router-link to="/signup" id="signup" style="text-decoration: underline"> Create an account </router-link>
+            <router-link
+              to="/signup"
+              id="signup"
+              style="text-decoration: underline"
+            >
+              Create an account
+            </router-link>
           </div>
         </div>
       </div>
@@ -40,12 +56,31 @@
 </template>
 
 <script setup>
+import axios from "axios";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
+const data = ref({
+  email: "",
+  password: "",
+});
+
 const HomePage = () => {
-  router.push("/");
+  axios
+    .post(`http://localhost:8080/user/sign-in`, data.value, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+      router.push("/");
+    })
+    .catch((e) => {
+      alert("로그인 실패");
+    });
 };
 </script>
 

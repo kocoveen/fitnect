@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Order(0)
-@Component
+//@Component
 @Slf4j
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -34,18 +34,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		try {
 			String accessToken = resolveToken(request);
-
+			
 			if (StringUtils.hasText(accessToken)) {
-				
-				tokenProvider.validateToken(accessToken); // void로 에러가 생기면 잡아서 보내는데 ExceptionResponseHandler가 처리
-				
 				log.info("validate ok");
 				Authentication authentication = tokenProvider.getAuthentication(accessToken);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
+			} else {
+				tokenProvider.validateToken(accessToken);
 			}
 
 		} catch (Exception e) {
-			log.info("exception message={}", e.getMessage());
+			log.info("exception message={}", e.getClass());
 			request.setAttribute("exception", e);
 		}
 		

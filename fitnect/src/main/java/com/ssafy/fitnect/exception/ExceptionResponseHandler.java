@@ -15,6 +15,9 @@ import io.jsonwebtoken.security.SignatureException;
 @RestControllerAdvice
 public class ExceptionResponseHandler {
     //...
+	
+//	@ExceptionHandler()
+	
     @ExceptionHandler(SignatureException.class)
     public ResponseEntity<?> handleSignatureException() {
         return ResponseEntity
@@ -34,6 +37,13 @@ public class ExceptionResponseHandler {
         return ResponseEntity
         		.status(HttpStatus.UNAUTHORIZED)
         		.body(ApiResponse.error(HttpStatus.UNAUTHORIZED, "토큰이 만료되었습니다. 다시 로그인해주세요."));
+    }
+    
+    @ExceptionHandler(TokenNotFoundException.class)
+    public ResponseEntity<?> handleTokenNotFoundJwtException() {
+        return ResponseEntity
+        		.status(HttpStatus.UNAUTHORIZED)
+        		.body(ApiResponse.error(HttpStatus.UNAUTHORIZED, "토큰이 존재하지 않습니다."));
     }
 
 }

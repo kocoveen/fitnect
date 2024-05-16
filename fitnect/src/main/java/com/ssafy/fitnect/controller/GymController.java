@@ -76,7 +76,7 @@ public class GymController {
 	@GetMapping("/{gymId}/review")
 	public ResponseEntity<?> gymGetOneIWithReview(@PathVariable("gymId") long gymId) {
 		GymAndTrainerReviewDto result = gymService.gymGetOneByIdWithReview(gymId);
-		return ResponseEntity.ok().body(result);
+		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
 	}
 	
 	@GetMapping("/{gymId}/review/{id}")
@@ -123,7 +123,7 @@ public class GymController {
 			int result = reviewService.removeReviewGym(id);
 			
 			if (result == 1) {
-				return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.OK, result));
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.NO_CONTENT, result));
 			} else {
 				return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
 			}
@@ -152,7 +152,7 @@ public class GymController {
 		int result = gymService.quitGym(user.getUserId(), gymId);
 		
 		if (result == 1) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.OK, result));
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.NO_CONTENT, result));
 		} else {
 			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
 		}
@@ -175,7 +175,7 @@ public class GymController {
 		int result = gymService.unfavGym(gymId, getLoginUserId());
 		
 		if (result == 1) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.OK, result));
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.NO_CONTENT, result));
 		} else {
 			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
 		}

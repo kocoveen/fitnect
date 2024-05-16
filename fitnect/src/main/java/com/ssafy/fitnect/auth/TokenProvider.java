@@ -17,6 +17,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
+import com.ssafy.fitnect.exception.TokenNotFoundException;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -100,10 +102,15 @@ public class TokenProvider {
 	}
 	
 	
-	public void validateToken(String token){
+	public void validateToken(String token) throws TokenNotFoundException {
+		try {
 			Jwts.parser().verifyWith(secretKey)
-				.build()
-				.parseSignedClaims(token);
+			.build()
+			.parseSignedClaims(token);
+		} catch (IllegalArgumentException e) {
+			throw new TokenNotFoundException();
+		}
+
 	}
 
 	
