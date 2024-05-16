@@ -35,7 +35,6 @@ public class WebSecurityConfig {
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	
-//	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Value("${auth.whitelist}")
     private String[] AUTH_WHITELIST;
@@ -54,9 +53,9 @@ public class WebSecurityConfig {
                 .csrf(CsrfConfigurer<HttpSecurity>::disable)
 //                .exceptionHandling((exceptionHandling) -> //컨트롤러의 예외처리를 담당하는 exception handler와는 다름.
 //                	exceptionHandling
-//                        .accessDeniedHandler(jwtAccessDeniedHandler)
-//                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-//        			)
+//                    	.accessDeniedHandler(jwtAccessDeniedHandler)
+//                       .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//    			)
                 .cors(c -> c.configurationSource( corsConfigurationSource() ))
                 .headers(headers -> headers.frameOptions(FrameOptionsConfig::sameOrigin))	// H2 콘솔 사용을 위한 설정
                 .authorizeHttpRequests(requests ->
@@ -64,7 +63,7 @@ public class WebSecurityConfig {
                                 .anyRequest().authenticated()	// 그 외의 모든 요청은 인증 필요
                 )
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))	// 세션을 사용하지 않으므로 STATELESS 설정
-                .addFilterBefore(new JwtAuthenticationFilter(tokenProvider), BasicAuthenticationFilter.class)
+                .addFilterAfter(new JwtAuthenticationFilter(tokenProvider), BasicAuthenticationFilter.class)
                 .exceptionHandling((exceptionHandling) -> //컨트롤러의 예외처리를 담당하는 exception handler와는 다름.
 	            	exceptionHandling
 	                    .accessDeniedHandler(jwtAccessDeniedHandler)

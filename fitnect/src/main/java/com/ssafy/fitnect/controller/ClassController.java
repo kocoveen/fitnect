@@ -23,6 +23,7 @@ import com.ssafy.fitnect.model.service.ClassService;
 import com.ssafy.fitnect.model.service.GymService;
 import com.ssafy.fitnect.model.service.ReviewService;
 import com.ssafy.fitnect.model.service.UserService;
+import com.ssafy.fitnect.util.ApiResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -42,22 +43,37 @@ public class ClassController {
     	
     	if (classes.getCurrent() == classes.getMaximum() || 
     		classes.getStartDate().isBefore(LocalDateTime.now())) {
-    		return new ResponseEntity<>("등록이 불가능합니다.", HttpStatus.BAD_REQUEST);
+    		return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "등록이 불가능합니다."));
     	}
+    	
     	int result = classService.registClass(classId, userId);
-    	return new ResponseEntity<>(result, result == 1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
+		if (result == 1) {
+			return ResponseEntity.created(null).body(ApiResponse.success(HttpStatus.CREATED, result));
+		} else {
+			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
+		}
     }
 
 	@DeleteMapping("/{classId}")
 	public ResponseEntity<?> drop(@PathVariable("classId") long classId) throws Exception {
 		long userId = getLoginUserId();
 		
-		try {
-			int result = classService.dropClass(classId, userId);
-			return new ResponseEntity<>(result, result == 1 ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);			
-		} catch (Exception e) {
-			return new ResponseEntity<>("맞는 강의가 없습니다.", HttpStatus.BAD_REQUEST);
+		int result = classService.dropClass(classId, userId);
+		
+		
+		if (result == 1) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.NO_CONTENT, result));
+		} else {
+			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
 		}
+		
+		
+//		try {
+//			int result = classService.dropClass(classId, userId);
+//			return new ResponseEntity<>(result, result == 1 ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);			
+//		} catch (Exception e) {
+//			return new ResponseEntity<>("맞는 강의가 없습니다.", HttpStatus.BAD_REQUEST);
+//		}
 	}
 	
 	
