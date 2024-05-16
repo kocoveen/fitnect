@@ -37,7 +37,7 @@
             </div>
           </div>
 
-          <div id="nav-area" @click="HomePage">Sign in</div>
+          <div id="nav-area" @click="login">Sign in</div>
 
           <div id="signup-btn">
             <span>회원이 아니신가요?</span>
@@ -67,7 +67,7 @@ const data = ref({
   password: "",
 });
 
-const HomePage = () => {
+const login = () => {
   axios
     .post(`http://localhost:8080/user/sign-in`, data.value, {
       headers: {
@@ -75,7 +75,7 @@ const HomePage = () => {
       },
     })
     .then((response) => {
-      console.log(response.data);
+      sessionStorage.setItem("accessToken", response.data.data.accessToken);
       router.push("/");
     })
     .catch((e) => {

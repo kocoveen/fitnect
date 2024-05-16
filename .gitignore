@@ -6,6 +6,8 @@ application.properties
 
 ### Eclipse ###
 .metadata
+.log
+.txt
 bin/
 tmp/
 *.tmp
