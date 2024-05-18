@@ -1,47 +1,95 @@
 <template>
-  <div>
-    <div style="visibility: hidden" id="map"></div>
-    <div>
-      <div>{{ address.name }}</div>
-      <button @click="locateAddress">지도 확인</button>
-      <div>{{ address.address }}</div>
-      <a :href="address.url" target="_blank">{{ address.url }}</a>
-      <!-- 주소 검색 버튼 추가 -->
-    </div>
-    <!-- <button @click="initMap">내위치</button> -->
-    <form>
-      <input v-model="searchKey" placeholder="주소 검색" required />
-      <button @click="search">검색</button>
-    </form>
-    <div v-show="searchResult.length > 0">
-      <table>
-        <tr>
-          <td>가게 이름</td>
-          <td>가게 주소</td>
-        </tr>
-        <tr v-for="shop in searchResult" :key="shop.id">
-          <td>{{ shop.place_name }}</td>
-          <td>
-            <a :href="generateMapLink(shop.id)" target="_blank">https://map.kakao.com/link/map/{{ shop.id }}</a>
-          </td>
-        </tr>
-      </table>
+  <div class="main-container">
+    <nav class="sidebar">
+      <div class="search">
+        <input class="inputbox" v-model="keyword" placeholder="검색어 입력">
+        <div class="search-icon" @click="isTrueRender()">
+            <img src="@/assets/imgs/search.svg" />
+        </div>
+      </div>
+      <div class="items">
+        <template v-for="gym in filteredGymList" :key="gym.gymId">
+          <div class="item" @click="showInfo(gym)">
+            {{ gym.name }}
+          </div>
+        </template>
+      </div>
+    </nav>
+    <nav class="gym-info" v-if="selectedGym">
+        <div>{{ selectedGym.name }}</div>
+        <div>{{ selectedGym.address }}</div>
+        <button @click="hideInfo">맵 닫기</button>
+    </nav>
+    <div id="map-container">
+      <div id="map"></div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, toRaw, computed } from "vue";
-
-let map = null;
+import { onMounted, ref } from "vue";
+import axios from 'axios';
 
 const accessToken = sessionStorage.getItem("accessToken");
 
-const x = ref(sessionStorage.getItem("accessToken"));
-const y = ref(126.570667);
+const gymList = ref([]);
+const filteredGymList = ref([]);
+const markers = ref([]); 
+const keyword = ref('');
+
+const isTrueRender = () => {
+  hideMarker();
+  filteredGymList.value = gymList.value.filter(gym => isTrue(gym));
+  showLocationMarker();
+}
+
+const isTrue = (gym) => {
+  if (!keyword.value) {
+    return true;
+  } else {
+    return (gym.name.includes(keyword.value) || gym.type.includes(keyword.value));
+  }
+}
+
+let map = null;
+
+/*------------------------------------------------------------*/
+function base64UrlDecode(str) {
+    return decodeURIComponent(atob(str.replace(/-/g, '+').replace(/_/g, '/')).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+}
+
+// Function to decode the JWT
+function decodeJWT(token) {
+    try {
+        const [header, payload, signature] = token.split('.');
+
+        // Decode the header and payload
+        const decodedHeader = JSON.parse(base64UrlDecode(header));
+        const decodedPayload = JSON.parse(base64UrlDecode(payload));
+        
+        return {
+            header: decodedHeader,
+            payload: decodedPayload,
+            signature: signature
+        };
+    } catch (error) {
+        console.error('Invalid token:', error);
+        return null;
+    }
+}
+
+const loginUser = decodeJWT(accessToken);
+const myLng = Math.round(loginUser.payload.lon * 1000000) / 1000000;
+const myLat = Math.round(loginUser.payload.lat * 1000000) / 1000000;
+/*------------------------------------------------------------*/
+
 // 지도 초기화 함수
 const initMap = function () {
-  let myCenter = new kakao.maps.LatLng(x.value, y.value);
+  // let myCenter = new kakao.maps.LatLng(x.value, y.value);
+  let myCenter = new kakao.maps.LatLng(myLng, myLat);
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       const lat = position.coords.latitude;
@@ -57,77 +105,163 @@ const initMap = function () {
   const container = document.getElementById("map");
   const options = {
     center: myCenter,
-    level: 3,
+    level: 4
   };
   map = new kakao.maps.Map(container, options);
+  
   const mapTypeControl = new kakao.maps.MapTypeControl();
   map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
   const zoomControl = new kakao.maps.ZoomControl();
   map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+  // showLocationMarker(myCenter, "asdf")
+  showLocationMarker();
 };
 
-const address = ref({});
-// 주소로 좌표를 검색하고 마커 표시하는 함수
-const locateAddress = function () {
-  const geocoder = new kakao.maps.services.Geocoder();
-  geocoder.addressSearch(address.value.address, function (result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-      const marker = new kakao.maps.Marker({
-        map: map,
-        position: coords,
-      });
-      const infowindow = new kakao.maps.InfoWindow({
-        content: `<div style="width:150px;text-align:center;padding:6px 0;">${address.value.name}</div>`,
-      });
-      infowindow.open(map, marker);
-      map.setCenter(coords);
-    }
-  });
-  document.getElementById("map").style.visibility = "visible";
-};
-
-const searchKey = ref("");
-const searchResult = ref([]);
-const callback = function (result, status) {
-  if (status === kakao.maps.services.Status.OK) {
-    console.log(result);
-    searchResult.value = result;
-  }
-};
-
-const search = function () {
-  const places = new kakao.maps.services.Places();
-  places.keywordSearch(searchKey.value, callback);
-  searchKey.value = "";
-};
-
-function generateMapLink(id) {
-  return `https://map.kakao.com/link/map/${id}`;
+const showLocationMarker = () => {
+  for (var i = 0; i < filteredGymList.value.length; i++) {
+    const gym = filteredGymList.value[i];
+    const location = new kakao.maps.LatLng(gym.latitude, gym.longitude);
+    const marker = new kakao.maps.Marker({
+      map: map.value,
+      position: location
+    });
+    marker.setMap(map);
+    markers.value.push(marker);
+  };
 }
 
-// 지도 생성 유무
+const hideMarker = () => {
+  for (var i = 0; i < markers.value.length; i++) {
+    markers.value[i].setMap(null);
+  }
+  markers.value.length = 0
+}
+
 onMounted(() => {
-  // 여기에 좌표값 받아오기
-  // kakao 객체가 이미 로드된 경우, 바로 지도 초기화 함수를 호출
   if (window.kakao && window.kakao.maps) {
     kakao.maps.load(initMap);
   } else {
-    // kakao 객체가 로드되지 않은 경우, 스크립트를 동적으로 로드
     const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=18ec83912bcf322b790dd648193570e8&libraries=services`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=18ec83912bcf322b790dd648193570e8&libraries=services&autoload=false`;
     document.head.appendChild(script);
     script.onload = () => {
       kakao.maps.load(initMap);
     };
   }
-  // address.value = store.place;
+
+  axios
+    .get(`http://localhost:8080/gym/with-asso`, {
+      headers: {
+        "Authorization": `bearer ${sessionStorage.getItem('accessToken')}`,
+      },
+    })
+    .then((response) => {
+      gymList.value = response.data.data;
+      filteredGymList.value = gymList.value.filter(gym => isTrue(gym));
+      isTrueRender();
+    })
+    .catch((e) => {
+      
+    });
 });
+
+const selectedGym = ref(null);
+
+const showInfo = (gym) => {
+  selectedGym.value = gym;
+};
+
+const hideInfo = () => {
+  selectedGym.value = null;
+};
+
 </script>
 
 <style scoped>
+.main-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #ffffff;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.search {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.inputbox {
+  padding: 0.4375rem 0.875rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.53;
+  appearance: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #d9dee3;
+  border-radius: 5px;
+  color: #566a7f;
+  transition: border-color 0.5s ease;
+}
+
+.search-icon {
+  background-color: gray;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gym-info {
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  left: 300px;
+  top: 0;
+  z-index: 2;
+}
+
+.items {
+  height: 80%;
+  width: 100%;
+  overflow-y: auto;
+  background-color: #f0f0f0;
+}
+
+.item {
+  height: 80px;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+
+#map-container {
+  flex-grow: 1;
+  position: relative;
+  width: calc(100% - 300px);
+}
+
 #map {
-  width: 500px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
 }
 </style>

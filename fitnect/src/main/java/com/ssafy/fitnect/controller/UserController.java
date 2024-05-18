@@ -87,14 +87,14 @@ public class UserController {
         HttpHeaders httpHeaders = new HttpHeaders();
         // response header에 jwt token에 넣어줌
         httpHeaders.add("accessToken", token.getAccessToken());
-        httpHeaders.add("location","http://localhost:5137");
+        httpHeaders.add("location","http://localhost:5173");
 
         // tokenDto를 이용해 response body에도 넣어서 리턴
         return ResponseEntity.ok().headers(httpHeaders).body(ApiResponse.success(HttpStatus.OK, token));
     }
 
 	@PostMapping("/sign-up")
-	public ResponseEntity<?> signup(@ModelAttribute UserSignUpRequestDto user) throws Exception {
+	public ResponseEntity<?> signup(@RequestBody UserSignUpRequestDto user) throws Exception {
 		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		int result = userService.insert(user);
