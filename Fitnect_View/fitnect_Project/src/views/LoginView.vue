@@ -76,6 +76,8 @@ const login = () => {
     })
     .then((response) => {
       sessionStorage.setItem("accessToken", response.data.data.accessToken);
+      console.log(sessionStorage.getItem("accessToken"));
+
       router.push("/");
     })
     .catch((e) => {

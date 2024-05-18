@@ -8,16 +8,16 @@
         </div>
         <div id="input-area">
           <span>EMAIL</span>
-          <input type="text" class="inputbox" placeholder="Enter your email" />
+          <input type="text" v-model="user.email" class="inputbox" placeholder="Enter your email" />
+          
           <span>PASSWORD</span>
-
-          <input type="password" class="inputbox" placeholder="············" />
+          <input type="password" v-model="user.password" class="inputbox" placeholder="············" />
 
           <span>NAME</span>
-          <input type="text" class="inputbox" placeholder="Enter your name" />
+          <input type="text" v-model="user.name" class="inputbox" placeholder="Enter your name" />
 
           <span>PHONE</span>
-          <input type="text" class="inputbox" placeholder="Enter your number" />
+          <input type="text" v-model="user.phone" class="inputbox" placeholder="Enter your number" />
 
           <div id="address"><span>ADDRESS</span><button id="postcode" @click="openPostcode">주소 찾기</button></div>
           <input type="text" class="inputbox" v-model="roadAddress" placeholder="Enter your adress" readonly />
@@ -32,7 +32,7 @@
             </div>
           </div>
 
-          <div id="nav-area" @click="LoginPage">Sign up</div>
+          <div id="nav-area" @click="signUp">Sign up</div>
 
           <div id="signup-btn">
             <span>회원이신가요?</span>
@@ -45,12 +45,47 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import axios from 'axios';
 
 const router = useRouter();
 
-const LoginPage = () => {
+
+const roadAddress = ref(""); // ref 추가
+const lng = ref();
+const lat = ref();
+
+const user = ref({
+  email: '',
+  password: '',
+  name: '',
+  phone: '',
+  address: '',
+  longitude: lng.value,
+  latitude: lat.value,
+  height: '',
+  weight: '',
+  profileImgUrl: '',
+  auth:'user',
+})
+
+const signUp = () => {
+  console.log(user.value);
+
+  axios
+    .post(`http://localhost:8080/user/sign-up`, user.value, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      router.push("/login");
+    })
+    .catch((e) => {
+      alert("가입 실패");
+  });
+
   router.push("/login");
 };
 
@@ -58,11 +93,26 @@ const openPostcode = () => {
   new window.daum.Postcode({
     oncomplete: (data) => {
       roadAddress.value = data.roadAddress;
-    },
-  }).open();
+      loadCoords(data.roadAddress);
+  }}).open();
 };
 
-const roadAddress = ref(""); // ref 추가
+const loadCoords = (address) => {
+  axios
+    .get(`https://dapi.kakao.com/v2/local/search/address.json?query=${address}`, {
+      headers: {
+        "Authorization": "KakaoAK d00a06f293cd0dd71929545bb8a71c1c",
+      },
+    })
+    .then((response) => {
+      user.value.address = response.data.documents[0]['address_name']; // 도로명 주소
+      user.value.longitude = response.data.documents[0]['y']; // 위도
+      user.value.latitude = response.data.documents[0]['x']; // 경도
+    })
+    .catch((e) => {
+      alert(e)
+    });
+}
 </script>
 
 <style scoped>
