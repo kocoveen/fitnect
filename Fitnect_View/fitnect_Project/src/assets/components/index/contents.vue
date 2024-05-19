@@ -10,8 +10,8 @@
         <h6>Fitness + Connect</h6>
         <h2>사람과 <em>건강</em>을 연결하다</h2>
         <div class="main-button scroll-to-section">
-          <input type="text" placeholder="가까운 점포 찾기..." />
-          <div class="search-icon">
+          <input type="text" v-model="searchKeyword" placeholder="가까운 점포 찾기..." />
+          <div class="search-icon" @click="goToMainView">
             <img src="@/assets/imgs/search.svg" />
           </div>
         </div>
@@ -20,7 +20,17 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const searchKeyword = ref("");
+
+const goToMainView = () => {
+  router.push({ name: "main", query: { keyword: searchKeyword.value } });
+};
+</script>
 
 <style scoped>
 /* Video */
@@ -35,7 +45,7 @@
 /* body */
 #body {
   position: absolute;
-  background-color: rgb(56 67 73 / 65%);
+  background-color: rgb(56 62 73 / 80%);
   top: 0;
   left: 0;
   bottom: 7px;

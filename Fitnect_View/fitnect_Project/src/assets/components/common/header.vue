@@ -9,14 +9,34 @@
       <div class="nav-btn" @click="scrollToTop">Home</div>
       <div class="nav-btn2" @click="scrollToAbout">About</div>
       <div class="nav-btn3" @click="scrollToContactUs">Contact Us</div>
-      <div id="login" @click="LoginPage">Sign in</div>
+      <!-- 로그인 상태에 따라 설정 이미지 표시 -->
+      <div v-if="loginUser" id="user-info">
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap">
+          <!-- 클릭 이벤트를 toggleUserMenu 메서드에 연결 -->
+          <span id="namespace">{{ loginUser.payload.name }}님</span>
+          <!-- 설정 이미지 클릭 시 메뉴 표시 -->
+          <img src="@/assets/imgs/white-up.svg" id="setting-img" @click="toggleUserMenu" :class="{ 'show-menu': showUserMenu }" />
+        </div>
+        <!-- 내정보 관리와 로그아웃 버튼 -->
+        <div v-if="showUserMenu" id="user-menu">
+          <button @click="logout">로그아웃</button>
+          <button @click="goToProfile">내 정보 보기</button>
+        </div>
+      </div>
+      <!-- 로그인하지 않은 상태에서 로그인 버튼 표시 -->
+      <div v-else id="login" @click="LoginPage">Sign in</div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+
+// 로그인 상태 관리 변수
+const loginUser = ref(null);
+// 유저 메뉴 표시 여부 관리 변수
+const showUserMenu = ref(false);
 
 const isLanding = ref(false);
 const router = useRouter();
@@ -32,6 +52,60 @@ const scrollToTop = () => {
     behavior: "smooth",
   });
   isLanding.value = true;
+};
+
+// JWT 디코딩 함수
+function base64UrlDecode(str) {
+  return decodeURIComponent(
+    atob(str.replace(/-/g, "+").replace(/_/g, "/"))
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+}
+
+function decodeJWT(token) {
+  try {
+    const [header, payload, signature] = token.split(".");
+    const decodedHeader = JSON.parse(base64UrlDecode(header));
+    const decodedPayload = JSON.parse(base64UrlDecode(payload));
+
+    return {
+      header: decodedHeader,
+      payload: decodedPayload,
+      signature: signature,
+    };
+  } catch (error) {
+    console.error("Invalid token:", error);
+    return null;
+  }
+}
+
+// 페이지 로드 시 로그인 상태 확인
+onMounted(() => {
+  const accessToken = sessionStorage.getItem("accessToken");
+  if (accessToken) {
+    loginUser.value = decodeJWT(accessToken);
+  }
+});
+
+// 로그아웃 함수
+const logout = () => {
+  sessionStorage.removeItem("accessToken");
+  loginUser.value = null;
+  router.push("/");
+};
+
+// 내 정보 보기 페이지로 이동하는 함수
+const goToProfile = () => {
+  router.push("/profile");
+};
+
+// 유저 메뉴 토글 함수
+const toggleUserMenu = () => {
+  showUserMenu.value = !showUserMenu.value;
 };
 
 // About 섹션으로 스크롤하는 함수
@@ -223,8 +297,13 @@ window.addEventListener("scroll", () => {
 
 .background-header .nav-btn,
 .background-header .nav-btn2,
-.background-header .nav-btn3 {
+.background-header .nav-btn3,
+.background-header #namespace {
   color: black;
+}
+
+.background-header #setting-img {
+  content: url("@/assets/imgs/chevron-up.svg");
 }
 
 /* Header */
@@ -249,5 +328,28 @@ window.addEventListener("scroll", () => {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+#namespace {
+  color: white;
+  font-weight: bold;
+}
+
+#setting-img {
+  margin-left: 5px;
+  transition: content 0.3s;
+}
+
+#setting-img.show-menu {
+  content: url("@/assets/imgs/white-down.svg");
+}
+
+.background-header #setting-img.show-menu {
+  content: url("@/assets/imgs/chevron-down.svg");
+}
+
+#user-info img {
+  margin-left: 10px;
+  cursor: pointer;
 }
 </style>
