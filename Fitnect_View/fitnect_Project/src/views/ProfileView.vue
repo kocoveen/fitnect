@@ -1,7 +1,12 @@
 <template>
-  <div id="profile-container">
-    <ProfileNav />
-    <RouterView />
+  <div class="container">
+    <div style="margin: 40px;"></div>
+    <div class="row gutters-sm">
+      <div class="col-md-4 d-none d-md-block">
+        <ProfileNav />
+      </div>
+      <RouterView />
+    </div>
   </div>
 </template>
 
@@ -61,4 +66,14 @@ function decodeJWT(token) {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+  .gutters-sm {
+      margin-right: -8px;
+      margin-left: -8px;
+  }
+  
+  .gutters-sm>.col, .gutters-sm>[class*=col-] {
+      padding-right: 8px;
+      padding-left: 8px;
+  }
+</style>

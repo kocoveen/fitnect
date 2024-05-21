@@ -173,7 +173,7 @@ public class UserController {
 		
 		long loginUserId = getLoginUserId(loginUser);
 		
-		List<Gym> result = gymService.findFavGymByUserId(loginUserId);
+		List<Gym> result = gymService.findMyGymByUserId(loginUserId);
 		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
 	}
 	
@@ -190,6 +190,8 @@ public class UserController {
 	public ResponseEntity<?> getMyGymReview(@AuthenticationPrincipal User loginUser) throws Exception {
 		
 		long loginUserId = getLoginUserId(loginUser);
+		log.info("user={}", loginUser);
+		log.info("user={}", loginUserId);
 		
 		List<ReviewGym> result = reviewService.findAllGymReviewByUserId(loginUserId);
 		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
