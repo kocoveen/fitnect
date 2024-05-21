@@ -26,7 +26,7 @@ window.addEventListener("scroll", () => {
 #header {
   background-color: #000000bd;
   display: flex;
-  height: 110px;
+  height: 70px;
   min-width: 950px;
   align-items: center;
   justify-content: space-between;
@@ -39,7 +39,7 @@ window.addEventListener("scroll", () => {
 }
 
 #logo > a > img {
-  height: 80px;
+  height: 60px;
 }
 
 #navBar {

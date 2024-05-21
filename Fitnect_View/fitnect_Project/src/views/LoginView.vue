@@ -8,24 +8,14 @@
         </div>
         <div id="input-area">
           <span>EMAIL</span>
-          <input
-            v-model="data.email"
-            type="text"
-            class="inputbox"
-            placeholder="Enter your email"
-          />
+          <input v-model="data.email" type="text" class="inputbox" placeholder="Enter your email" @keyup.enter="login" />
           <div class="forgot-pass">
             <span>PASSWORD</span>
             <button class="btn-forget-password" @click="modalOpen">
               Forgot Password?
             </button>
           </div>
-          <input
-            v-model="data.password"
-            type="password"
-            class="inputbox"
-            placeholder="············"
-          />
+          <input v-model="data.password" type="password" class="inputbox" placeholder="············" @keyup.enter="login" />
         </div>
         <div>
           <div>
@@ -41,13 +31,7 @@
 
           <div id="signup-btn">
             <span>회원이 아니신가요?</span>
-            <router-link
-              to="/signup"
-              id="signup"
-              style="text-decoration: underline"
-            >
-              Create an account
-            </router-link>
+            <router-link to="/signup" id="signup" style="text-decoration: underline"> Create an account </router-link>
           </div>
         </div>
       </div>

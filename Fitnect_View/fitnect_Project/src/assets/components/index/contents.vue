@@ -10,7 +10,7 @@
         <h6>Fitness + Connect</h6>
         <h2>사람과 <em>건강</em>을 연결하다</h2>
         <div class="main-button scroll-to-section">
-          <input type="text" v-model="searchKeyword" placeholder="가까운 점포 찾기..." />
+          <input type="text" v-model="searchKeyword" @keyup.enter="goToMainView" placeholder="가까운 점포 찾기..." />
           <div class="search-icon" @click="goToMainView">
             <img src="@/assets/imgs/search.svg" />
           </div>
