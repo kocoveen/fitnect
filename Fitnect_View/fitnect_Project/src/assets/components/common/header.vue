@@ -19,8 +19,12 @@
         </div>
         <!-- 내정보 관리와 로그아웃 버튼 -->
         <div v-if="showUserMenu" id="user-menu">
-          <button @click="logout">로그아웃</button>
-          <button @click="goToProfile">내 정보 보기</button>
+          <div class="logout-area">{{ loginUser.payload.name }}님, 반갑습니다.</div>
+          <hr style="margin: 0.6rem 0" />
+          <div class="logout-area btn-area">
+            <button @click="goToProfile">My Page</button>
+            <button @click="logout">log out</button>
+          </div>
         </div>
       </div>
       <!-- 로그인하지 않은 상태에서 로그인 버튼 표시 -->
@@ -95,7 +99,7 @@ onMounted(() => {
 const logout = () => {
   sessionStorage.removeItem("accessToken");
   loginUser.value = null;
-  router.push("/");
+  router.replace("/");
 };
 
 // 내 정보 보기 페이지로 이동하는 함수
@@ -209,7 +213,7 @@ window.addEventListener("scroll", () => {
 }
 
 #logo > a > img {
-  height: 70px;
+  height: 60px;
 }
 
 #navBar {
@@ -351,5 +355,47 @@ window.addEventListener("scroll", () => {
 #user-info img {
   margin-left: 10px;
   cursor: pointer;
+}
+
+#user-menu {
+  position: fixed;
+  width: 200px;
+  height: 100px;
+  font-size: 13px;
+  right: 10px;
+  top: 70px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logout-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.btn-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-area button {
+  background-color: #2ea0d7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 80px;
+}
+.btn-area button:hover {
+  background-color: #247aa5;
+  transition: 0.7s;
 }
 </style>
