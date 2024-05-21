@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.fitnect.auth.CustomUserDetails;
 import com.ssafy.fitnect.model.dao.UserDao;
+import com.ssafy.fitnect.model.dto.UserEmailNameDto;
 import com.ssafy.fitnect.model.dto.UserSignUpRequestDto;
 import com.ssafy.fitnect.model.dto.Users;
+import com.ssafy.fitnect.model.dto.UsersUpdatePasswordDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -68,6 +70,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		} else {
 			throw new UsernameNotFoundException("user not found:" + email);
 		}
+	}
+
+	@Override
+	public int changePassword(UsersUpdatePasswordDto userIdAndPassword) {
+		return dao.updatePassword(userIdAndPassword);
+	}
+
+	@Override
+	public boolean isUserEmailNameEqauls(UserEmailNameDto userEmailNameDto) {
+		int result = dao.selectUserEmailAndName(userEmailNameDto);
+		if (result == 0) {
+			return false;
+		}
+		return true;
 	}
 	
 

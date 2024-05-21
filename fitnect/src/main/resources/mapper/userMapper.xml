@@ -27,8 +27,7 @@
 		SET 
 		email = #{email}, password = #{password}, phone = #{phone}, 
 		name = #{name}, address = #{address}, longitude = #{longitude}, 
-		latitude = #{latitude}, createdDate = #{createdDate}, modifiedDate = #{modifiedDate}, 
-		profileImgUrl = #{profileImgUrl}, height = #{height}, weight = #{weight}, 
+		latitude = #{latitude}, profileImgUrl = #{profileImgUrl}, height = #{height}, weight = #{weight}, 
 		auth = #{auth}
 		WHERE userId = #{userId}
 	</update>
@@ -37,6 +36,15 @@
 		DELETE FROM USERS WHERE userId = #{id}
 	</delete>
 
-
+	<update id="updatePassword" parameterType="com.ssafy.fitnect.model.dto.UsersUpdatePasswordDto">
+		UPDATE USERS 
+		SET password = #{password}
+		WHERE userId = #{userId} 
+	</update>
+	
+	<select id="selectUserEmailAndName" parameterType="com.ssafy.fitnect.model.dto.UserEmailNameDto">
+		SELECT COUNT(*) FROM USERS
+		WHERE email = #{email} AND name = #{name}
+	</select>
 
 </mapper>

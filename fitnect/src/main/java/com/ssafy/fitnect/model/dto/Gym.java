@@ -44,4 +44,5 @@ public class Gym {
 	private List<Classes> classes; // 1:N
 	private List<GymMachine> gymMachine; // 1:N
 	private List<Prices> prices; // 1:N
+	private List<GymImg> gymImg; // 1:N
 }

@@ -38,12 +38,20 @@ CREATE TABLE `GYM` (
 	`type`	varchar(255)	NOT NULL,
 	`operationHours`	varchar(255)	NULL,
 	`closedDay`	varchar(255)	NULL,
-	`gymImgUrl`	text	NULL,
 	`capacity`	int(10)	NOT NULL,
 	`rating`	decimal(2, 1)	NOT NULL	DEFAULT 0,
 	`createdDate`	timestamp	NOT NULL	DEFAULT now(),
 	`modifiedDate`	timestamp	NOT NULL	DEFAULT now() ON UPDATE now()
 );
+
+DROP TABLE IF EXISTS `GYM_IMG`;
+
+CREATE TABLE `GYM_IMG` (
+	`gymImgId`	bigint(20) AUTO_INCREMENT	PRIMARY KEY,
+    `gymId` bigint(20),
+	`gymImgUrl`	text	NULL
+);
+
 
 DROP TABLE IF EXISTS `GYM_MACHINE`;
 
@@ -161,6 +169,13 @@ CREATE TABLE `AMENITY` (
 );
 
 ALTER TABLE `GYM_MACHINE` ADD CONSTRAINT `FK_GYM_TO_GYM_MACHINE_1` FOREIGN KEY (
+	`gymId`
+)
+REFERENCES `GYM` (
+	`gymId`
+);
+
+ALTER TABLE `GYM_IMG` ADD CONSTRAINT `FK_GYM_TO_GYM_IMG_1` FOREIGN KEY (
 	`gymId`
 )
 REFERENCES `GYM` (

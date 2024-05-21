@@ -102,7 +102,10 @@ public class GymController {
 	
 	@PutMapping("/{gymId}/review/{id}")
 	public ResponseEntity<?> updateReviewGym(@PathVariable("gymId") long gymId, @PathVariable("id") long id, @RequestBody ReviewGymUpdateDto reviewGym) throws Exception {
-		if (getLoginUserId() == id) {
+		
+		ReviewGym foundGymReview = reviewService.findOneReviewGymById(id);
+		
+		if (getLoginUserId() == foundGymReview.getUserId()) {
 			reviewGym.setGymId(gymId);
 			reviewGym.setReviewGymId(id);
 			int result = reviewService.modifyReviewGym(reviewGym);
@@ -118,7 +121,9 @@ public class GymController {
 	
 	@DeleteMapping("/{gymId}/review/{id}")
 	public ResponseEntity<?> updateReviewGym(@PathVariable("gymId") long gymId, @PathVariable("id") long id) throws Exception {
-		if (getLoginUserId() == id) {
+		ReviewGym foundGymReview = reviewService.findOneReviewGymById(id);
+		
+		if (getLoginUserId() == foundGymReview.getUserId()) {
 		
 			int result = reviewService.removeReviewGym(id);
 			
