@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Prices {
 	private long priceId;
 	private long gymId;
-	private String name;
+	private String priceName;
 	private long price;
 	private String text;
 	private int days;

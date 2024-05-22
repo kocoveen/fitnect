@@ -19,7 +19,7 @@ public class Classes {
 	private long classId;
 	private long gymId;
 	private long trainerId;
-	private String name;
+	private String className;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
