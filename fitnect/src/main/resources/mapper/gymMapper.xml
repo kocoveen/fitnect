@@ -7,6 +7,11 @@
     <select id="selectAllGym">
         SELECT * FROM GYM
     </select>
+    
+    <select id="selectOneGymByGymId">
+    	SELECT * FROM GYM
+    	WHERE gymId = #{gymId}
+    </select>
 
 
     <!-- Amenity resultMap -->
@@ -28,7 +33,7 @@
         <id property="classId" column="classId"/>
         <result property="gymId" column="gymId"/>
         <result property="trainerId" column="trainerId"/>
-        <result property="name" column="name"/>
+        <result property="className" column="className"/>
         <result property="startDate" column="startDate"/>
         <result property="endDate" column="endDate"/>
         <result property="createDate" column="createDate"/>
@@ -36,6 +41,7 @@
         <result property="current" column="current"/>
         <result property="maximum" column="maximum"/>
         <result property="classPrice" column="classPrice"/>
+        <result property="classImgUrl" column="classImgUrl"/>
     </resultMap>
 
     <!-- GymMachine resultMap -->
@@ -50,10 +56,16 @@
     <resultMap id="pricesResultMap" type="com.ssafy.fitnect.model.dto.Prices">
         <id property="priceId" column="priceId"/>
         <result property="gymId" column="gymId"/>
-        <result property="name" column="name"/>
+        <result property="priceName" column="priceName"/>
         <result property="price" column="price"/>
         <result property="text" column="text"/>
         <result property="days" column="days"/>
+    </resultMap>
+    
+    <resultMap id="gymImgResultMap" type="com.ssafy.fitnect.model.dto.GymImg">
+        <id property="gymImgId" column="gymImgId"/>
+        <result property="gymId" column="gymId"/>
+        <result property="gymImgUrl" column="gymImgUrl"/>
     </resultMap>
 
     <!-- Gym resultMap -->
@@ -82,6 +94,7 @@
 		<collection property="classes" ofType="java.util.Map" resultMap="classResultMap" notNullColumn="classId"/>
 		<collection property="gymMachine" ofType="java.util.Map" resultMap="gymMachineResultMap" notNullColumn="infoId"/>
 		<collection property="prices" ofType="java.util.Map" resultMap="pricesResultMap" notNullColumn="priceId"/>
+		<collection property="gymImg" ofType="java.util.Map" resultMap="gymImgResultMap" notNullColumn="gymImgId"/>
     </resultMap>
     
 	<select id="selectAllGymWithAsso" resultMap="gymResultMap">
@@ -96,7 +109,6 @@
 	        g.type,
 	        g.operationHours,
 	        g.closedDay,
-	        g.gymImgUrl,
 	        g.capacity,
 	        g.rating,
 	        g.createdDate,
@@ -112,7 +124,7 @@
 	        a.unmanded,
 			c.classId,
 	        c.trainerId,
-	        c.name,
+	        c.className,
 	        c.startDate,
 	        c.endDate,
 	        c.createdDate,
@@ -120,24 +132,29 @@
 	        c.current,
 	        c.maximum,
 	        c.classPrice,
+	        c.classImgUrl,
 	        m.infoId,
 	        m.machineCount,
 	        m.machineName,
 	        p.priceId,
 	        p.gymId,
-	        p.name,
+	        p.priceName,
 	        p.price,
 	        p.text,
-	        p.days
+	        p.days,
+	        gi.gymImgId,
+	        gi.gymId,
+	        gi.gymImgUrl
 	    FROM gym g
 	    LEFT JOIN amenity a ON g.gymId = a.gymId
 	    LEFT JOIN classes c ON g.gymId = c.gymId
 	    LEFT JOIN gym_machine m ON g.gymId = m.gymId
 	    LEFT JOIN prices p ON g.gymId = p.gymId
+	    LEFT JOIN gym_img gi ON g.gymId = gi.gymId
 	</select>
 	
 	
-	<select id="selectOneGymWithAsso" resultMap="gymResultMap">
+<!-- 	<select id="selectOneGymWithAsso" resultMap="gymResultMap">
 	    SELECT
 	        g.gymId,
 	        g.name,
@@ -165,7 +182,7 @@
 	        a.unmanded,
 			c.classId,
 	        c.trainerId,
-	        c.name,
+	        c.className,
 	        c.startDate,
 	        c.endDate,
 	        c.createdDate,
@@ -178,10 +195,25 @@
 	        m.machineName,
 	        p.priceId,
 	        p.gymId,
-	        p.name,
+	        p.priceName,
 	        p.price,
 	        p.text,
 	        p.days
+	    FROM gym g
+	    LEFT JOIN amenity a ON g.gymId = a.gymId
+	    LEFT JOIN classes c ON g.gymId = c.gymId
+	    LEFT JOIN gym_machine m ON g.gymId = m.gymId
+	    LEFT JOIN prices p ON g.gymId = p.gymId
+   	    WHERE g.gymId = #{gymId}
+	</select> -->
+	
+	<select id="selectOneGymWithAsso" resultMap="gymResultMap">
+	    SELECT
+	        g.*,
+	        a.*,
+			c.*,
+	        m.*,
+	        p.*
 	    FROM gym g
 	    LEFT JOIN amenity a ON g.gymId = a.gymId
 	    LEFT JOIN classes c ON g.gymId = c.gymId
@@ -315,8 +347,20 @@
 	</select>
 	
 	
-	<select id="selectAllMyGym" resultType="com.ssafy.fitnect.model.dto.Gym">
-		SELECT g.* FROM GYM g
+	<select id="selectAllMyGym" resultType="com.ssafy.fitnect.model.dto.GymExpiredDto">
+		SELECT 
+			g.gymId,
+			g.name,
+			g.address,
+			g.phone,
+			g.content,
+			g.type,
+			g.operationHours,
+			g.closedDay,
+			g.capacity,
+			g.rating,
+			ru.expiredDate
+		FROM GYM g
 		INNER JOIN REGIST_USERS ru ON g.gymId = ru.gymId
 		WHERE g.gymId = #{gymId}
 	</select>

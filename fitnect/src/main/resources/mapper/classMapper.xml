@@ -22,10 +22,15 @@
 		WHERE classId = #{classId}
 	</select>
 	
-	
 	<select id="selectAllClassByGymId">
 		SELECT * FROM CLASSES
 		WHERE gymId = #{gymId}
+	</select>
+	
+	<select id="selectAllClassByUserId">
+		SELECT c.* FROM regist_classes rc JOIN classes c
+		ON rc.classId = c.classId
+		WHERE rc.userId = #{userId}
 	</select>
 
 </mapper>

@@ -1,39 +1,43 @@
 package com.ssafy.fitnect.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.fitnect.annotation.AuthRequired;
-import com.ssafy.fitnect.auth.CustomUserDetails;
 import com.ssafy.fitnect.auth.TokenDto;
 import com.ssafy.fitnect.auth.TokenProvider;
+import com.ssafy.fitnect.model.dto.Classes;
 import com.ssafy.fitnect.model.dto.Gym;
+import com.ssafy.fitnect.model.dto.GymExpiredDto;
+import com.ssafy.fitnect.model.dto.ReviewGym;
+import com.ssafy.fitnect.model.dto.ReviewTrainer;
+import com.ssafy.fitnect.model.dto.UserEmailNameDto;
 import com.ssafy.fitnect.model.dto.UserLoginDto;
 import com.ssafy.fitnect.model.dto.UserSignUpRequestDto;
 import com.ssafy.fitnect.model.dto.Users;
+import com.ssafy.fitnect.model.dto.UsersUpdatePasswordDto;
+import com.ssafy.fitnect.model.service.ClassService;
+import com.ssafy.fitnect.model.service.ForgetPasswordService;
 import com.ssafy.fitnect.model.service.GymService;
+import com.ssafy.fitnect.model.service.ReviewService;
 import com.ssafy.fitnect.model.service.UserService;
 import com.ssafy.fitnect.util.ApiResponse;
 
@@ -48,18 +52,21 @@ public class UserController {
 	
 	private final UserService userService;
 	private final GymService gymService;
+	private final ClassService classService;
+	private final ReviewService reviewService;
 	private final TokenProvider tokenProvider;
 	private final AuthenticationManagerBuilder authenticationManagerBuilder;
+	
+	private final ForgetPasswordService forgetPasswordService;
 	
 	private final PasswordEncoder passwordEncoder;
 	
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> detail(@PathVariable("id") long id) throws Exception {
-		
-		if (id == getLoginUserId()) {
+	public ResponseEntity<?> detail(@PathVariable("id") long id, @AuthenticationPrincipal User loginUser) throws Exception {
+		if (id == getLoginUserId(loginUser)) {
 			Users user = userService.getUserById(id);
-			return ResponseEntity.ok().body(ApiResponse.success(null, user));			
+			return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, user));			
 		}
 		return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));	
 	}
@@ -109,11 +116,27 @@ public class UserController {
 	public ResponseEntity<?> signout() {
 		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, "로그아웃 완료"));
 	}
+	
+	@PutMapping("/change-password")
+	public ResponseEntity<?> changePassword(@RequestBody UsersUpdatePasswordDto userIdAndPassword, @AuthenticationPrincipal User loginUser) throws Exception {
+		
+		userIdAndPassword.setPassword(passwordEncoder.encode(userIdAndPassword.getPassword()));
+		
+		int result = userService.changePassword(userIdAndPassword);
+		if (result == 1) {
+			return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
+		} else {
+			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
+		}
+	}	
 
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, Users user) throws Exception {
-		user.setUserId(getLoginUserId());
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Users user, @AuthenticationPrincipal User loginUser) throws Exception {
+		log.info("loginUser={}", loginUser);
+		log.info("user={}", user);
+		
+		user.setUserId(getLoginUserId(loginUser));
 		int result = userService.update(user);
 		
 		if (result == 1) {
@@ -124,10 +147,9 @@ public class UserController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") int id) throws Exception {
-		int result = userService.delete(id);
-		
-		if (id == getLoginUserId()) {
+	public ResponseEntity<?> delete(@PathVariable("id") int id, @AuthenticationPrincipal User loginUser) throws Exception {
+		if (id == getLoginUserId(loginUser)) {
+			int result = userService.delete(id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.NO_CONTENT, result));
 		} else {
 			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
@@ -137,9 +159,9 @@ public class UserController {
 	
 	@AuthRequired
 	@GetMapping("/fav-gym")
-	public ResponseEntity<?> getFavGym() throws Exception {
+	public ResponseEntity<?> getFavGym(@AuthenticationPrincipal User loginUser) throws Exception {
 		
-		long loginUserId = getLoginUserId();
+		long loginUserId = getLoginUserId(loginUser);
 		List<Gym> result = gymService.findFavGymByUserId(loginUserId);
 		
 		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
@@ -148,24 +170,58 @@ public class UserController {
 	
 	
 	@GetMapping("/my-gym")
-	public ResponseEntity<?> getMyGym() throws Exception {
+	public ResponseEntity<?> getMyGym(@AuthenticationPrincipal User loginUser) throws Exception {
 		
-		long loginUserId = getLoginUserId();
+		long loginUserId = getLoginUserId(loginUser);
 		
-		List<Gym> result = gymService.findFavGymByUserId(loginUserId);
+		List<GymExpiredDto> result = gymService.findMyGymByUserId(loginUserId);
 		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
 	}
 	
+	@GetMapping("/my-class")
+	public ResponseEntity<?> getMyClass(@AuthenticationPrincipal User loginUser) throws Exception {
+		
+		long loginUserId = getLoginUserId(loginUser);
+		
+		List<Classes> result = classService.findAllClassByUserId(loginUserId);
+		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
+	}
 	
-	private long getLoginUserId() {
-		return ( (CustomUserDetails) 
-					( (UserDetails) SecurityContextHolder
-									.getContext()
-									.getAuthentication()
-									.getPrincipal()
-					)
-				)
-				.getUserId();
+	@GetMapping("/my-gym-review")
+	public ResponseEntity<?> getMyGymReview(@AuthenticationPrincipal User loginUser) throws Exception {
+		
+		long loginUserId = getLoginUserId(loginUser);
+		log.info("user={}", loginUser);
+		log.info("user={}", loginUserId);
+		
+		List<ReviewGym> result = reviewService.findAllGymReviewByUserId(loginUserId);
+		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
+	}
+	
+	@GetMapping("/my-trainer-review")
+	public ResponseEntity<?> getMyTrainerReview(@AuthenticationPrincipal User loginUser) throws Exception {
+		
+		long loginUserId = getLoginUserId(loginUser);
+		
+		List<ReviewTrainer> result = reviewService.findAllTrainerReviewByUserId(loginUserId);
+		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
+	}
+	
+	@PostMapping("/find-password")
+	public ResponseEntity<?> findPassword(@RequestBody UserEmailNameDto userEmailNameDto) {
+		
+		if (userService.isUserEmailNameEqauls(userEmailNameDto)) {
+			String result = forgetPasswordService.sendPassword(userEmailNameDto);
+			return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
+		} else {
+			return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.NOT_ACCEPTABLE, "이메일과 이름을 다시 확인해주세요."));
+		}
+		
+	}
+	
+	
+	private long getLoginUserId(User user) {
+		return userService.getUserByEmail(user.getUsername()).getUserId();
 	}
 
 }

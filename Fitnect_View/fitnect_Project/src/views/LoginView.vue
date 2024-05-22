@@ -11,9 +11,9 @@
           <input v-model="data.email" type="text" class="inputbox" placeholder="Enter your email" @keyup.enter="login" />
           <div class="forgot-pass">
             <span>PASSWORD</span>
-            <router-link to="/" id="forgot">
-              <span>Forgot Password?</span>
-            </router-link>
+            <button class="btn-forget-password" @click="modalOpen">
+              Forgot Password?
+            </button>
           </div>
           <input v-model="data.password" type="password" class="inputbox" placeholder="············" @keyup.enter="login" />
         </div>
@@ -34,6 +34,22 @@
             <router-link to="/signup" id="signup" style="text-decoration: underline"> Create an account </router-link>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-wrap" v-show="modalCheck">
+    <div class="modal-container">
+      <!--  모달창 content  -->
+      <span class="forgot-span">이메일</span>
+      <input type="text" class="inputbox" v-model="userEmailAndName.email" />
+      <span class="forgot-span">이름</span>
+      <input type="text" class="inputbox" v-model="userEmailAndName.name" />
+      <div class="modal-btn">
+        <button class="btn-in-forget-password" @click="findPassword">
+          임시 비밀번호 발급
+        </button>
+        <button class="btn-in-forget-password" @click="modalOpen">취소</button>
       </div>
     </div>
   </div>
@@ -66,6 +82,29 @@ const login = () => {
     })
     .catch((e) => {
       alert("로그인 실패");
+    });
+};
+
+const userEmailAndName = ref({
+  email: "",
+  name: "",
+});
+
+const tempPassword = ref("");
+
+const modalCheck = ref(false);
+
+const modalOpen = () => {
+  modalCheck.value = !modalCheck.value;
+};
+
+const findPassword = () => {
+  axios
+    .post(`http://localhost:8080/user/find-password`, userEmailAndName.value)
+    .then((response) => {
+      tempPassword.value = response.data.data;
+      alert("임시 비밀번호는 " + tempPassword.value + "입니다.");
+      modalCheck.value = false;
     });
 };
 </script>
@@ -172,6 +211,8 @@ body {
   border-radius: 5px;
   color: #566a7f;
   transition: border-color 0.5s ease;
+
+  margin-bottom: 20px;
 }
 
 .inputbox:focus {
@@ -276,5 +317,56 @@ body {
 }
 #signup:hover {
   color: #20daff;
+}
+
+/* dimmed */
+.modal-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+/* modal or popup */
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.forgot-span {
+  margin-bottom: 5px;
+}
+
+.btn-forget-password {
+  border-radius: 10px;
+  border: 0;
+}
+
+.modal-btn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-in-forget-password {
+  border-radius: 10px;
+  border: 0;
+  height: 35px;
+  width: 140px;
+  font-size: 0.9rem;
+  background-color: #25c3d3;
+  color: white;
+  font-weight: bold;
 }
 </style>

@@ -74,4 +74,17 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.deleteReviewTrainer(id);
 	}
 
+	@Override
+	public List<ReviewGym> findAllGymReviewByUserId(long loginUserId) {
+		return dao.selectAllReviewGymByUserId(loginUserId);
+	}
+
+	@Override
+	public List<ReviewTrainer> findAllTrainerReviewByUserId(long loginUserId) {
+		return dao.selectAllReviewTrainerByUserId(loginUserId);
+	}
+	
+	
+	
+
 }

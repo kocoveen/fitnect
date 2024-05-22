@@ -28,5 +28,7 @@ public interface ReviewService {
 	public int modifyReviewTrainer(ReviewTrainerUpdateDto reviewTrainer);
 	public int removeReviewTrainer(long id);
 	
+	public List<ReviewGym> findAllGymReviewByUserId(long loginUserId);
 	
+	public List<ReviewTrainer> findAllTrainerReviewByUserId(long loginUserId);
 }

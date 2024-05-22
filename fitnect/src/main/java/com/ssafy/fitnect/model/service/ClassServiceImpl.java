@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.fitnect.model.dao.ClassDao;
 import com.ssafy.fitnect.model.dto.Classes;
+import com.ssafy.fitnect.model.dto.Gym;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,6 +34,11 @@ public class ClassServiceImpl implements ClassService {
 	@Override
 	public List<Classes> findClassesByGymId(long gymId) {
 		return classDao.selectAllClassByGymId(gymId);
+	}
+
+	@Override
+	public List<Classes> findAllClassByUserId(long userId) {
+		return classDao.selectAllClassByUserId(userId);
 	}
 	
 }

@@ -63,4 +63,19 @@
 		DELETE FROM REVIEW_Trainer WHERE reviewTrainerId = #{reviewTrainerId};
 	</delete>
 	
+	
+	
+	<select id="selectAllReviewGymByUserId">
+		SELECT * FROM REVIEW_GYM rg
+		JOIN USERS u ON rg.userId = u.userId
+		WHERE u.userId = #{userId}
+	</select>
+	
+	<select id="selectAllReviewTrainerByUserId">
+		SELECT * FROM REVIEW_TRAINER rt
+		JOIN USERS u ON rt.userId = u.userId
+		WHERE u.userId = #{userId}
+	</select>
+	
+	
 </mapper>

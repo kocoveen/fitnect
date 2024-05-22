@@ -27,6 +27,10 @@ public interface ReviewDao {
 	public int insertReviewTrainer(ReviewTrainerSaveDto reviewTrainer);
 	public int updateReviewTrainer(ReviewTrainerUpdateDto reviewTrainer);
 	public int deleteReviewTrainer(long id);
+	
+	
+	public List<ReviewGym> selectAllReviewGymByUserId(long userId);
+	public List<ReviewTrainer> selectAllReviewTrainerByUserId(long userId);
 
 
 }

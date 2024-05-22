@@ -12,4 +12,6 @@ public interface ClassDao {
 	Classes selectClassById(long classId);
 	
 	List<Classes> selectAllClassByGymId(long gymId);
+	
+	List<Classes> selectAllClassByUserId(long userId);
 }

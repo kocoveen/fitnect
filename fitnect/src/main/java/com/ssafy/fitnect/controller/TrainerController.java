@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,17 +47,24 @@ public class TrainerController {
 	}
 	
 	@PostMapping("/{trainerId}/review")
-	public ResponseEntity<?> insertReviewTrainer(@PathVariable("trainerId") long trainerId, @RequestBody ReviewTrainerSaveDto reviewTrainer) throws Exception {
+	public ResponseEntity<?> insertReviewTrainer(@PathVariable("trainerId") long trainerId, 
+												@RequestBody ReviewTrainerSaveDto reviewTrainer,
+												@AuthenticationPrincipal User loginUser) throws Exception {
 		reviewTrainer.setTrainerId(trainerId);
-		reviewTrainer.setUserId(getLoginUserId());
+		reviewTrainer.setUserId(getLoginUserId(loginUser));
 		int result = reviewService.writeReviewTrainer(reviewTrainer);
 		return new ResponseEntity<>(result, result == 1 ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
 	}
 	
 	@PutMapping("/{trainerId}/review/{id}")
-	public ResponseEntity<?> updateReviewTrainer(@PathVariable("trainerId") long trainerId, @PathVariable("id") long id, @RequestBody ReviewTrainerUpdateDto reviewTrainer) throws Exception {
+	public ResponseEntity<?> updateReviewTrainer(@PathVariable("trainerId") long trainerId, 
+			@PathVariable("id") long id, 
+			@RequestBody ReviewTrainerUpdateDto reviewTrainer,
+			@AuthenticationPrincipal User loginUser) throws Exception {
 		
-		if (getLoginUserId() == trainerId) {
+		ReviewTrainer foundReviewTranier = reviewService.findOneReviewTrainerById(id);
+		
+		if (getLoginUserId(loginUser) == foundReviewTranier.getUserId()) {
 			reviewTrainer.setReviewTrainerId(id);
 			int result = reviewService.modifyReviewTrainer(reviewTrainer);
 			return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
@@ -65,8 +74,12 @@ public class TrainerController {
 	}
 	
 	@DeleteMapping("/{trainerId}/review/{id}")
-	public ResponseEntity<?> updateReviewTrainer(@PathVariable("trainerId") long trainerId, @PathVariable("id") long id) throws Exception {
-		if (getLoginUserId() == trainerId) {
+	public ResponseEntity<?> updateReviewTrainer(@PathVariable("trainerId") long trainerId, 
+			@PathVariable("id") long id,
+			@AuthenticationPrincipal User loginUser) throws Exception {
+		
+		ReviewTrainer foundReviewTranier = reviewService.findOneReviewTrainerById(id);
+		if (getLoginUserId(loginUser) == foundReviewTranier.getUserId()) {
 			int result = reviewService.removeReviewTrainer(id);
 			return new ResponseEntity<>(result, result == 1 ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
 		}
@@ -74,14 +87,7 @@ public class TrainerController {
 	}
 	
 	
-	private long getLoginUserId() {
-		return ( (CustomUserDetails) 
-					( (UserDetails) SecurityContextHolder
-									.getContext()
-									.getAuthentication()
-									.getPrincipal()
-					)
-				)
-				.getUserId();
+	private long getLoginUserId(User user) {
+		return userService.getUserByEmail(user.getUsername()).getUserId();
 	}
 }
