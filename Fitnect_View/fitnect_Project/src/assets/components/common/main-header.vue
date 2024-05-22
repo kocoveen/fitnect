@@ -35,11 +35,11 @@ window.addEventListener("scroll", () => {
 }
 
 #logo {
-  margin: 0 2%;
+  margin: 0 20px;
 }
 
 #logo > a > img {
-  height: 60px;
+  height: 50px;
 }
 
 #navBar {

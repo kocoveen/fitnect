@@ -11,25 +11,39 @@
           </div>
         </div>
         <div class="detail-search">
-          <a class="find-me" @click="findMe">내 위치</a>
+          <div>
+            <img src="@/assets/imgs/origin.svg" style="width: 20px; height: 20px" />
+            <a class="find-me" @click="findMe">내 위치</a>
+          </div>
           <a class="detail-button" @click="toggleDetailSearch"> 상세 검색 </a>
         </div>
       </div>
       <transition-group name="slide" tag="div" class="items" :key="renderKey">
         <div v-for="gym in filteredGymList" :key="gym.gymId" class="list-item">
+          <img :src="gym.gymImgUrl || defaultImg" alt="Gym Image" class="gym-image" />
           <div class="item" @click="showInfo(gym)">
-            <div class="gym-name">{{ gym.name }}</div>
-            <div style="font-size: 12px; color: red">{{ gym.content }}</div>
+            <div class="gym-name-info">
+              <div>
+                <div class="gym-name">{{ gym.name }}</div>
+                <div>{{ gym.type }}</div>
+              </div>
+              <img class="star" :src="gym.isStarDown ? starDownImg : starUpImg" @click.stop="toggleStar(gym.gymId)" alt="Star" />
+            </div>
+            <div style="font-size: 12px; color: red">{{ truncateContent(gym.content) }}</div>
             <div class="gym-content">
               <div class="rating-area">
-                <img src="@/assets/imgs/star.svg" style="width: 20px; height: 20px" />
-                {{ gym.rating }}
+                <div>{{ gym.operatingStatus }}</div>
+                <div><img src="@/assets/imgs/circle.svg" style="width: 4px; height: 4px" /></div>
+                <div>
+                  <img src="@/assets/imgs/star.svg" style="width: 20px; height: 20px" />
+                  <div>
+                    {{ gym.rating }}
+                  </div>
+                </div>
+                <div><img src="@/assets/imgs/circle.svg" style="width: 4px; height: 4px" /></div>
               </div>
-              <div>{{ gym.operatingStatus }}</div>
-              <div>{{ gym.type }}</div>
             </div>
           </div>
-          <img :src="gym.gymImgUrl || defaultImg" alt="Gym Image" class="gym-image" />
         </div>
       </transition-group>
       <div v-if="filteredGymList.length === 0" class="no-results" :key="renderKey">검색 결과가 없습니다</div>
@@ -89,6 +103,36 @@ const isSearchFixed = ref(true);
 const selectedTypes = ref([]);
 const renderKey = ref(0);
 const route = useRoute();
+
+const truncateContent = (content) => {
+  const maxLength = 30;
+  if (content.length > maxLength) {
+    return content.substring(0, maxLength) + "...";
+  }
+  return content;
+};
+
+import starDownImg from "@/assets/imgs/star-down.svg";
+import starUpImg from "@/assets/imgs/star-up.svg";
+
+// 체육관 데이터에 isStarDown 속성 추가
+gymList.value = gymList.value.map((gym) => ({
+  ...gym,
+  isStarDown: true, // 기본값 설정
+}));
+
+// 즐겨찾기 토글
+const toggleStar = (gymId) => {
+  const gymIndex = gymList.value.findIndex((g) => g.gymId === gymId);
+  if (gymIndex !== -1) {
+    gymList.value[gymIndex].isStarDown = !gymList.value[gymIndex].isStarDown;
+    // filteredGymList도 업데이트
+    const filteredGymIndex = filteredGymList.value.findIndex((g) => g.gymId === gymId);
+    if (filteredGymIndex !== -1) {
+      filteredGymList.value[filteredGymIndex].isStarDown = gymList.value[gymIndex].isStarDown;
+    }
+  }
+};
 
 const sortList = (sortOption) => {
   filteredGymList.value.sort((a, b) => {
@@ -229,41 +273,62 @@ const findMe = () => {
       console.log(`내 위치: 위도 ${lat}, 경도 ${lon}`); // 내 위치 콘솔 출력
       const myCenter = new kakao.maps.LatLng(lat, lon);
       map.setCenter(myCenter);
+      map.setLevel(4); // 지도 확대 수준 초기화
 
-      if (myLocationMarker) {
-        myLocationMarker.setMap(null);
+      createMyLocationMarker(myCenter); // 내 위치 마커 생성
+
+      // 마커 클릭 시 findMe 함수 호출
+      kakao.maps.event.addListener(myLocationMarker, "click", findMe);
+
+      // 기존 경로 애니메이션 중단 및 제거
+      if (polyline) {
+        polyline.setMap(null);
+        polyline = null; // 기존 polyline 객체 제거
       }
 
-      myLocationMarker = new kakao.maps.Marker({
-        position: myCenter,
-        map: map,
-      });
-      myLocationMarker.setMap(map);
+      // 기존 오버레이 제거
+      if (customOverlay) {
+        customOverlay.setMap(null);
+        customOverlay = null; // 기존 customOverlay 객체 제거
+      }
     });
   } else {
     alert("Geolocation is not supported by this browser.");
   }
 };
 
+// 내 위치 마커 설정 함수
+const createMyLocationMarker = (position) => {
+  const markerImage = new kakao.maps.MarkerImage(
+    "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png",
+    new kakao.maps.Size(24, 35),
+    {
+      offset: new kakao.maps.Point(12, 35),
+      alt: "내 위치", // 마커 이미지에 마우스를 올릴 때 나타나는 대체 텍스트
+    }
+  );
+
+  if (myLocationMarker) {
+    myLocationMarker.setMap(null);
+  }
+
+  myLocationMarker = new kakao.maps.Marker({
+    position,
+    image: markerImage,
+    map,
+  });
+
+  myLocationMarker.setMap(map);
+};
+
 let map = null;
 let myLocationMarker = null;
+let polyline = null; // 전역 변수로 선언
 
 // 지도 초기화 함수
 const initMap = function () {
   let myCenter = new kakao.maps.LatLng(myLng, myLat);
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const lat = myLng;
-      const lon = myLat;
-      myCenter = new kakao.maps.LatLng(lat, lon);
-      new kakao.maps.Marker({
-        map,
-        position: myCenter,
-      });
-      map.setCenter(myCenter);
-    });
-  }
   const container = document.getElementById("map");
   const options = {
     center: myCenter,
@@ -277,14 +342,185 @@ const initMap = function () {
   const zoomControl = new kakao.maps.ZoomControl();
   map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+  // 내 위치 마커 생성
+  createMyLocationMarker(myCenter);
   showLocationMarker();
 };
 
-// 경로 검색 및 거리 계산 함수
+// 체육관 위치 마커 표시
+const showLocationMarker = () => {
+  const origin = { lat: myLat, lng: myLng };
+  for (let i = 0; i < filteredGymList.value.length; i++) {
+    const gym = filteredGymList.value[i];
+    const destination = { lat: gym.latitude, lng: gym.longitude };
+
+    const location = new kakao.maps.LatLng(gym.latitude, gym.longitude);
+    const markerImageSrc = getMarkerImageByType(gym.type); // 타입에 따른 마커 이미지 가져오기
+    const markerImage = new kakao.maps.MarkerImage(markerImageSrc, new kakao.maps.Size(24, 35));
+
+    const marker = new kakao.maps.Marker({
+      map,
+      position: location,
+      image: markerImage, // 마커 이미지 설정
+    });
+
+    kakao.maps.event.addListener(marker, "click", () => {
+      showInfo(gym); // 체육관 정보 표시
+    });
+
+    marker.setMap(map);
+    marker.gymId = gym.gymId; // 마커 객체에 체육관 ID 저장
+    markers.value.push(marker);
+  }
+  // 거리 기준으로 리스트 정렬
+  filteredGymList.value.sort((a, b) => a.distance - b.distance);
+  renderKey.value += 1;
+};
+
+// 체육관 타입에 따른 마커 이미지 설정 함수
+const getMarkerImageByType = (type) => {
+  const images = {
+    헬스: "src/assets/imgs/star.svg",
+    필라테스: "src/assets/imgs/star.svg",
+    요가: "src/assets/imgs/star.svg",
+    // 다른 체육관 타입에 대한 이미지를 추가하세요.
+  };
+  return images[type] || "src/assets/imgs/star.svg"; // 기본 이미지 설정
+};
+
+// 체육관 정보 표시 함수
+const showInfo = async (gym) => {
+  if (selectedGym.value && selectedGym.value.gymId === gym.gymId) {
+    selectedGym.value = null; // 클릭한 체육관이 이미 선택된 경우 닫기
+  } else {
+    selectedGym.value = gym; // 다른 체육관을 선택한 경우 해당 체육관을 표시
+    const location = new kakao.maps.LatLng(gym.latitude, gym.longitude);
+    map.setCenter(location);
+    map.setLevel(4);
+
+    // 기존 경로 애니메이션 중단 및 제거
+    if (polyline) {
+      polyline.setMap(null);
+      polyline = null; // 기존 polyline 객체 제거
+    }
+
+    // 가장 가까운 지하철역 찾기
+    const nearestStation = await findNearestStation(gym);
+
+    if (nearestStation) {
+      console.log(gym.latitude, gym.longitude);
+      console.log("nearestStation : ", nearestStation.name);
+      console.log("show info near : ", nearestStation.lat, nearestStation.lng);
+      console.log(`Distance from ${nearestStation.name} to ${gym.name}: ${nearestStation.distance} meters`);
+
+      // 새로운 경로 표시
+      const path = await calculateDistance(nearestStation, { lng: gym.longitude, lat: gym.latitude });
+      drawPath(path, nearestStation);
+    } else {
+      console.error("No nearest station found.");
+    }
+  }
+  selectOption.value = false;
+};
+
+// 가장 가까운 지하철역 찾기 및 거리를 계산하는 함수
+const findNearestStation = async (gym) => {
+  const url = `https://dapi.kakao.com/v2/local/search/category.json?category_group_code=SW8&x=${gym.longitude}&y=${gym.latitude}&radius=2000&sort=distance`;
+  const headers = {
+    Authorization: "KakaoAK d00a06f293cd0dd71929545bb8a71c1c",
+  };
+
+  try {
+    const response = await axios.get(url, { headers });
+    if (response.data.documents.length > 0) {
+      const nearestStation = {
+        name: response.data.documents[0].place_name,
+        lat: response.data.documents[0].y,
+        lng: response.data.documents[0].x,
+        address: response.data.documents[0].address_name,
+        line: response.data.documents[0].category_name.split(" > ")[1], // 카테고리 이름에서 호선 번호 추출
+      };
+      const distance = await calculateDistance(nearestStation, { lng: gym.longitude, lat: gym.latitude });
+      return { ...nearestStation, distance };
+    } else {
+      console.error("Nearby subway stations not found.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error finding nearest subway station:", error);
+    return null;
+  }
+};
+
+let customOverlay = null; // 전역 변수로 선언하여 오버레이를 추적
+
+const drawPath = (path, nearestStation) => {
+  if (!nearestStation) {
+    console.error("Nearest station is not provided.");
+    return;
+  }
+
+  const linePath = path.map((point) => new kakao.maps.LatLng(point.lat, point.lng));
+
+  if (polyline) {
+    polyline.setMap(null);
+  }
+
+  polyline = new kakao.maps.Polyline({
+    path: linePath,
+    strokeWeight: 5,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.7,
+    strokeStyle: "solid",
+  });
+  polyline.setMap(map);
+
+  // 기존 오버레이 제거
+  if (customOverlay) {
+    customOverlay.setMap(null);
+  }
+
+  // 지하철역 호선 정보 추출
+  const stationName = nearestStation.name;
+  const lineMatch = stationName.match(/(\d+호선|수인분당선)/);
+  const line = lineMatch ? lineMatch[1] : "Unknown";
+
+  // 호선 번호를 표시하는 커스텀 오버레이
+  const lineColor = getLineColor(line); // 호선 번호에 따라 색상 선택
+  const displayLine = line === "수인분당선" ? "수인분당" : line.replace("호선", "");
+  customOverlay = new kakao.maps.CustomOverlay({
+    map: map,
+    position: new kakao.maps.LatLng(nearestStation.lat, nearestStation.lng),
+    content: `<div class="station-label" style="border: 3px solid ${lineColor}; color: ${lineColor}; background-color: white; padding: 5px; border-radius: 15px; width: 60px; height: 30px; display: flex; justify-content: center; align-items: center; font-weight: bold; position: relative; font-size: 11px;">${displayLine}</div>`,
+    yAnchor: 1,
+  });
+};
+
+// 호선 번호에 따른 색상을 반환하는 함수
+const getLineColor = (line) => {
+  const colors = {
+    "1호선": "#0052A4",
+    "2호선": "#009D3E",
+    "3호선": "#EF7C1C",
+    "4호선": "#00A5DE",
+    "5호선": "#996CAC",
+    "6호선": "#CD7C2F",
+    "7호선": "#747F00",
+    "8호선": "#EA545D",
+    "9호선": "#BDB092",
+    수인분당선: "#FABE00",
+    // 다른 호선에 대한 색상을 추가할 수 있습니다.
+  };
+  return colors[line] || "#000000"; // 기본 색상은 검정색
+};
+
+// 전체 경로를 계산하고 애니메이션을 시작하는 함수
 const calculateDistance = async (nearestStation, destination) => {
+  console.log(nearestStation.lng, nearestStation.lat);
+
   const url = `https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json`;
   const headers = {
-    appKey: "En2GXwXo2VadpQnX1x94WSIz6DDC3Nj4TofXTKFe",
+    // appKey: "wgc6OHSHci6FKr6bBMenY3y6vkQnVx633QkglQgN",
     "Content-Type": "application/json",
   };
   const data = {
@@ -300,77 +536,44 @@ const calculateDistance = async (nearestStation, destination) => {
 
   try {
     const response = await axios.post(url, data, { headers });
-    const distance = response.data.features[0].properties.totalDistance;
-    return distance;
-  } catch (error) {
-    console.error("Error calculating distance:", error);
-    return null;
-  }
-};
+    const features = response.data.features;
+    const distance = features[0].properties.totalDistance;
 
-// 가장 가까운 지하철역 찾기 및 거리를 계산하는 함수
-const findNearestStation = async (gym) => {
-  const url = `https://dapi.kakao.com/v2/local/search/category.json?category_group_code=SW8&x=${gym.longitude}&y=${gym.latitude}&radius=2000&sort=distance`;
-  const headers = {
-    Authorization: "KakaoAK d00a06f293cd0dd71929545bb8a71c1c",
-  };
+    let path = [];
 
-  try {
-    const response = await axios.get(url, { headers });
-    if (response.data.documents.length > 0) {
-      const stations = await Promise.all(
-        response.data.documents.map(async (station) => {
-          const nearestStation = {
-            name: station.place_name, // 역 이름
-            lat: station.y, // 위도
-            lng: station.x, // 경도
-            address: station.address_name, // 주소
-          };
-          const distance = await calculateDistance(nearestStation, { lng: gym.longitude, lat: gym.latitude });
-          return { ...nearestStation, distance };
-        })
-      );
+    // 모든 피처의 지오메트리를 반복하여 경로 생성
+    features.forEach((feature) => {
+      const geometry = feature.geometry;
 
-      // 거리가 가장 가까운 지하철 역 찾기
-      const nearestStation = stations.reduce((prev, curr) => (prev.distance < curr.distance ? prev : curr));
-      return nearestStation;
-    } else {
-      console.error("Nearby subway stations not found.");
-      return null;
-    }
-  } catch (error) {
-    console.error("Error finding nearest subway station:", error);
-    return null;
-  }
-};
-
-// 체육관 위치 마커 표시
-const showLocationMarker = () => {
-  const origin = { lat: myLat, lng: myLng };
-  for (let i = 0; i < filteredGymList.value.length; i++) {
-    const gym = filteredGymList.value[i];
-    const destination = { lat: gym.latitude, lng: gym.longitude };
-
-    const location = new kakao.maps.LatLng(gym.latitude, gym.longitude);
-    const marker = new kakao.maps.Marker({
-      map,
-      position: location,
+      if (geometry.type === "Point") {
+        // 'Point' 타입의 경우, 'coordinates'는 [경도, 위도] 형식의 배열
+        path.push({
+          lng: geometry.coordinates[0],
+          lat: geometry.coordinates[1],
+        });
+      } else if (geometry.type === "LineString") {
+        // 'LineString' 타입의 경우, 'coordinates'는 [[경도, 위도], [경도, 위도], ...] 형식의 2차원 배열
+        geometry.coordinates.forEach((coord) => {
+          path.push({
+            lng: coord[0],
+            lat: coord[1],
+          });
+        });
+      } else {
+        console.error("지원되지 않는 지오메트리 타입:", geometry.type);
+      }
     });
 
-    kakao.maps.event.addListener(marker, "click", () => {
-      keyword.value = gym.name;
-      filteredGymList.value = [gym]; // 리스트를 해당 체육관으로 업데이트
-      showInfo(gym); // 체육관 정보 표시
-      renderKey.value += 1; // 리스트 업데이트를 트리거
-    });
+    console.log("경로:", path);
+    drawPath(path, nearestStation); // 애니메이션 없이 경로 그리기
 
-    marker.setMap(map);
-    markers.value.push(marker);
+    console.log(response.data);
+    console.log(distance);
+    return path;
+  } catch (error) {
+    console.error("거리 계산 오류:", error);
+    return [];
   }
-
-  // 거리 기준으로 리스트 정렬
-  filteredGymList.value.sort((a, b) => a.distance - b.distance);
-  renderKey.value += 1;
 };
 
 // 마커 숨기기
@@ -410,6 +613,7 @@ onMounted(() => {
     .then((response) => {
       gymList.value = response.data.data.map((gym) => ({
         ...gym,
+        isStarDown: true, // 기본값 설정
         operatingStatus: getOperatingStatus(gym),
       }));
       filteredGymList.value = gymList.value.filter((gym) => isTrue(gym));
@@ -419,33 +623,6 @@ onMounted(() => {
 
   window.addEventListener("scroll", handleScroll);
 });
-
-// 언마운트 시 실행
-onBeforeUnmount(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
-
-// 체육관 정보 표시 함수
-const showInfo = async (gym) => {
-  if (selectedGym.value && selectedGym.value.gymId === gym.gymId) {
-    selectedGym.value = null; // 클릭한 체육관이 이미 선택된 경우 닫기
-  } else {
-    selectedGym.value = gym; // 다른 체육관을 선택한 경우 해당 체육관을 표시
-    const location = new kakao.maps.LatLng(gym.latitude, gym.longitude);
-    map.setCenter(location);
-
-    // 가장 가까운 지하철역 찾기
-    const nearestStation = await findNearestStation(gym);
-
-    // if (nearestStation) {
-    //   console.log("show info near : ", nearestStation.lat, nearestStation.lng);
-    //   console.log(`Distance from ${nearestStation.name} to ${gym.name}: ${nearestStation.distance} meters`);
-    // } else {
-    //   console.error("No nearest station found.");
-    // }
-  }
-  selectOption.value = false;
-};
 
 // 체육관 정보 숨기기
 const hideInfo = () => {
@@ -461,8 +638,8 @@ const hideInfo = () => {
 
 /* search area */
 .sidebar {
-  width: 450px;
-  min-width: 450px;
+  width: 315px;
+  min-width: 315px;
   height: 100vh;
   overflow-y: auto;
   background-color: #ffffff;
@@ -478,8 +655,8 @@ const hideInfo = () => {
   position: fixed;
   top: 70px;
   left: 0;
-  width: 450px;
-  min-width: 450px;
+  width: 315px;
+  min-width: 315px;
   height: 115px;
   right: 0;
   background-color: #ffffff;
@@ -491,6 +668,7 @@ const hideInfo = () => {
 .search.fixed {
   top: 70px;
   opacity: 1;
+  background: #3787dd69;
 }
 
 .search:not(.fixed) {
@@ -525,12 +703,18 @@ const hideInfo = () => {
   transition: border-color 0.5s ease;
   width: 100%;
   height: 55px;
+  box-shadow: 1px 1px 1px #77777754;
+}
+
+.inputbox::placeholder {
+  color: #a0a0a0;
+  opacity: 0.7;
 }
 
 .search-icon {
   position: absolute;
   top: 50%;
-  right: 375px;
+  right: 237px;
   transform: translateY(-50%);
   width: 24px; /* 아이콘 크기 조정 */
   height: 24px;
@@ -549,11 +733,18 @@ const hideInfo = () => {
   height: 30%;
   font-size: 13px;
   justify-content: space-between;
+  text-shadow: 1px 1px 1px #5b5b5b73;
 }
 
 .detail-button {
-  color: #44b7ce;
+  color: #ffffff;
   cursor: pointer;
+  transition: color 0.2s ease;
+  font-size: 14px;
+}
+
+.detail-button:hover {
+  color: #ffffff8a;
 }
 /* detail-search */
 
@@ -573,10 +764,12 @@ const hideInfo = () => {
 .items > div > div {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   padding: 0 15px;
-  margin: 10px 0;
+  background-color: #f5f5f5;
+  padding: 8px 15px;
+  border-radius: 15px;
 }
 /* items */
 
@@ -588,7 +781,7 @@ const hideInfo = () => {
   min-width: 350px;
   height: 100%;
   position: absolute;
-  left: 450px;
+  left: 315px;
   z-index: 50; /* 사이드바보다 뒤에 오도록 z-index 설정 */
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
@@ -601,8 +794,12 @@ const hideInfo = () => {
 /* gym-info */
 
 .find-me {
-  color: #787878;
+  color: #ffffff;
   cursor: pointer;
+  margin-left: 1px;
+  position: relative;
+  top: 1px;
+  font-size: 14px;
 }
 /* detail-search-options */
 .detail-search-options {
@@ -612,7 +809,7 @@ const hideInfo = () => {
   min-width: 350px;
   height: 100%;
   position: absolute;
-  left: 450px;
+  left: 315px;
   z-index: 50; /* 사이드바보다 뒤에 오도록 z-index 설정 */
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
@@ -657,6 +854,12 @@ const hideInfo = () => {
   height: 100%;
 }
 
+div.search.fixed > div.detail-search > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .detail-area {
   display: flex;
   justify-content: space-between;
@@ -694,13 +897,22 @@ const hideInfo = () => {
   padding: 0px 14px;
   border-bottom: 1px solid #eaeaea;
   background-color: #ffffff;
-  height: 360px;
+  height: 320px;
   flex-direction: column;
+  transition: background-color 0.3s ease;
+}
+
+.list-item:hover {
+  background-color: #f0f8ff; /* 호버 시 색상 변경 */
+}
+
+.list-item:focus {
+  background-color: #f0f8ff; /* 포커스 시 색상 변경 */
 }
 
 .list-item > img {
-  width: 340px;
-  height: 195px;
+  width: 280px;
+  height: 180px;
   border-radius: 15px;
 }
 
@@ -715,18 +927,69 @@ const hideInfo = () => {
 
 .gym-name {
   font-weight: bold;
+  font-size: 14px;
+  color: rgb(0, 104, 195);
+  letter-spacing: -1px;
+}
+
+.gym-name-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px 0;
+}
+.gym-name-info > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.gym-name-info > div > div:nth-child(2) {
+  margin-left: 5px;
+  font-size: 12px;
+  letter-spacing: -0.3px;
+  color: rgb(143, 143, 143);
 }
 
 .gym-content {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
   font-size: 15px;
 }
 
 .rating-area {
   display: flex;
+  width: 100%;
+  height: 25px;
+  color: black;
+}
+.rating-area > div:nth-child(1) {
+  font-size: 12px;
+  letter-spacing: -1px;
+  display: flex;
+  align-items: center;
+}
+
+.rating-area > div:nth-child(3) {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: -1px;
+}
+
+div.gym-content > div > div:nth-child(3) > div {
+  margin-left: 3px;
+  font-weight: bold;
+  color: black;
+  position: relative;
+  top: 1px;
+}
+
+.rating-area > div:nth-child(2),
+.rating-area > div:nth-child(4) {
+  margin: 0px 15px;
 }
 
 .no-results {
@@ -739,5 +1002,19 @@ const hideInfo = () => {
   font-weight: bold;
   color: #353535;
   animation: slideIn-7cfbf8c4 1s ease-in-out;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #44b7ce;
 }
 </style>
