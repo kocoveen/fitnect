@@ -7,7 +7,7 @@
         <div id="sign-text">내 트레이너 리뷰</div>
 
         <ul class="list-group list-group-sm">
-          <template v-if="myGymReview.length > 0">
+          <template v-if="myTrainerReview.length > 0">
             <li
               v-for="trainerReview in myTrainerReview"
               class="list-group-item has-icon"
@@ -23,6 +23,7 @@
               </button>
             </li>
           </template>
+          <template v-else>트레이너에 쓴 리뷰가 없습니다.</template>
         </ul>
       </div>
     </div>

@@ -7,6 +7,11 @@
     <select id="selectAllGym">
         SELECT * FROM GYM
     </select>
+    
+    <select id="selectOneGymByGymId">
+    	SELECT * FROM GYM
+    	WHERE gymId = #{gymId}
+    </select>
 
 
     <!-- Amenity resultMap -->
@@ -36,6 +41,7 @@
         <result property="current" column="current"/>
         <result property="maximum" column="maximum"/>
         <result property="classPrice" column="classPrice"/>
+        <result property="classImgUrl" column="classImgUrl"/>
     </resultMap>
 
     <!-- GymMachine resultMap -->
@@ -126,6 +132,7 @@
 	        c.current,
 	        c.maximum,
 	        c.classPrice,
+	        c.classImgUrl,
 	        m.infoId,
 	        m.machineCount,
 	        m.machineName,
@@ -325,8 +332,20 @@
 	</select>
 	
 	
-	<select id="selectAllMyGym" resultType="com.ssafy.fitnect.model.dto.Gym">
-		SELECT g.* FROM GYM g
+	<select id="selectAllMyGym" resultType="com.ssafy.fitnect.model.dto.GymExpiredDto">
+		SELECT 
+			g.gymId,
+			g.name,
+			g.address,
+			g.phone,
+			g.content,
+			g.type,
+			g.operationHours,
+			g.closedDay,
+			g.capacity,
+			g.rating,
+			ru.expiredDate
+		FROM GYM g
 		INNER JOIN REGIST_USERS ru ON g.gymId = ru.gymId
 		WHERE g.gymId = #{gymId}
 	</select>

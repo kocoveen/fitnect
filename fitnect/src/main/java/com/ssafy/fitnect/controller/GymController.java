@@ -137,31 +137,31 @@ public class GymController {
 	}
 	
 	
-	@PostMapping("/{gymId}/regist")
-	public ResponseEntity<?> registGym(@PathVariable("gymId") long gymId, @RequestParam("priceId") long priceId) throws Exception {
-				
-		int result = gymService.registGym(getLoginUserId(), gymId, priceId);
-		
-		if (result == 1) {
-			return ResponseEntity.created(null).body(ApiResponse.success(HttpStatus.CREATED, result));
-		} else {
-			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
-		}
-	}
-	
-	@DeleteMapping("/{gymId}/quit")
-	public ResponseEntity<?> quitGym(@PathVariable("gymId") long gymId) throws Exception {
-		
-		Users user = userService.getUserById(3);
-		
-		int result = gymService.quitGym(user.getUserId(), gymId);
-		
-		if (result == 1) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.NO_CONTENT, result));
-		} else {
-			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
-		}
-	}
+//	@PostMapping("/{gymId}/regist")
+//	public ResponseEntity<?> registGym(@PathVariable("gymId") long gymId, @RequestParam("priceId") long priceId) throws Exception {
+//				
+//		int result = gymService.registGym(getLoginUserId(), gymId, priceId);
+//		
+//		if (result == 1) {
+//			return ResponseEntity.created(null).body(ApiResponse.success(HttpStatus.CREATED, result));
+//		} else {
+//			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
+//		}
+//	}
+//	
+//	@DeleteMapping("/{gymId}/quit")
+//	public ResponseEntity<?> quitGym(@PathVariable("gymId") long gymId) throws Exception {
+//		
+//		Users user = userService.getUserById(3);
+//		
+//		int result = gymService.quitGym(user.getUserId(), gymId);
+//		
+//		if (result == 1) {
+//			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.success(HttpStatus.NO_CONTENT, result));
+//		} else {
+//			return ResponseEntity.badRequest().body(ApiResponse.error(HttpStatus.BAD_REQUEST, "잘못된 접근입니다."));
+//		}
+//	}
 	
 	@PostMapping("/{gymId}/fav")
 	public ResponseEntity<?> favGym(@PathVariable("gymId") long gymId) throws Exception {

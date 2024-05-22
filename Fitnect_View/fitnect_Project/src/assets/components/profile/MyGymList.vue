@@ -10,7 +10,18 @@
           <template v-if="myGym.length > 0">
             <li v-for="gym in myGym" class="list-group-item has-icon">
               <div>
-                <h6 class="mb-0 font-fit">{{ gym.name }}</h6>
+                <h6 class="mb-4 font-fit">{{ gym.name }}</h6>
+                <div class="mb-2">주소: {{ gym.address }}</div>
+                <div class="mb-2">전화번호: {{ gym.phone }}</div>
+                <div class="mb-2">설명: {{ gym.content }}</div>
+                <div class="mb-2">종목: {{ gym.type }}</div>
+                <div class="mb-2">운영시간: {{ gym.operationHours }}</div>
+                <div class="mb-2">휴무일: {{ gym.closedDay }}</div>
+                <div class="mb-2">수용인원: {{ gym.capacity }}</div>
+                <div class="mb-2">평점: {{ gym.rating }}</div>
+                <div class="mb-2">
+                  계약만료일: {{ gym.expiredDate.split(" ")[0] }}
+                </div>
                 <small class="text-muted"
                   >Your current session seen in United States</small
                 >
@@ -20,6 +31,7 @@
               </button>
             </li>
           </template>
+          <template v-else>등록한 곳이 없습니다.</template>
         </ul>
       </div>
     </div>
