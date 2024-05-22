@@ -56,7 +56,7 @@ public class KakaoPayController {
     	
     	TotalInfoDto totalInfoDto = TotalInfoDto.builder()
     											.userId(userId)
-    											.itemName(getItemName(gym.getName(), price.getName(), classes.getName()))
+    											.itemName(getItemName(gym.getName(), price.getPriceName(), classes.getClassName()))
     											.totalPrice(getTotalPrice(price.getPrice(), classes.getClassPrice()))
     											.build();
     	
