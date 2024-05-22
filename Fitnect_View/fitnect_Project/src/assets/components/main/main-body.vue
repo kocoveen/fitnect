@@ -51,7 +51,6 @@
             </div>
             <div class="gym-content">
               <div class="rating-area">
-                <div>{{ gym.operatingStatus }}</div>
                 <div>
                   <img
                     src="@/assets/imgs/circle.svg"
@@ -73,6 +72,21 @@
                     style="width: 4px; height: 4px"
                   />
                 </div>
+                <div>{{ gym.operatingStatus }}</div>
+                <div>
+                  <img
+                    src="@/assets/imgs/circle.svg"
+                    style="width: 4px; height: 4px"
+                  />
+                </div>
+                <div>리뷰 {{ gym.reviewCount }}</div>
+                <div>
+                  <img
+                    src="@/assets/imgs/circle.svg"
+                    style="width: 4px; height: 4px"
+                  />
+                </div>
+                <div>{{ gym.formattedDistance }}</div>
               </div>
             </div>
           </div>
@@ -287,6 +301,14 @@ const isTrue = (gym) => {
     gym.type.includes(keyword.value);
   const matchesType =
     selectedTypes.value.length === 0 || selectedTypes.value.includes(gym.type);
+  console.log(
+    "matchesKeyword:",
+    matchesKeyword,
+    "matchesType:",
+    matchesType,
+    "gym:",
+    gym
+  );
   return matchesKeyword && matchesType;
 };
 
@@ -480,11 +502,15 @@ const showInfo = async (gym) => {
       );
 
       // 새로운 경로 표시
-      const path = await calculateDistance(nearestStation, {
+      const { path, distance } = await calculateDistance(nearestStation, {
         lng: gym.longitude,
         lat: gym.latitude,
       });
-      drawPath(path, nearestStation);
+      if (path.length > 0) {
+        drawPath(path, nearestStation);
+      } else {
+        console.error("No path found");
+      }
     } else {
       console.error("No nearest station found.");
     }
