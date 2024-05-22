@@ -1,9 +1,29 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
+import { ref, computed } from "vue";
+import { defineStore } from "pinia";
+import axios from "axios";
 
-export const useGymStore = defineStore('gym', () => {
+const REST_GYM_API = `http://localhost:8080/gym/with-asso`;
 
-  const gymAllList = ref({});
+export const useGymStore = defineStore("gym", () => {
+  const gymAllWithAssoList = ref({});
 
-  return { gymAllList };
-})
+  const getGymAllWithAssoList = () => {
+    const ACCESS_TOKEN = sessionStorage.getItem("accessToken");
+    axios({
+      url: REST_GYM_API,
+      method: "GET",
+      headers: {
+        "Content-Type": "applcation/json",
+        Authorization: `bearer ${ACCESS_TOKEN}`,
+      },
+    })
+      .then((response) => {
+        gymAllWithAssoList.value = response.data.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  return { gymAllWithAssoList, getGymAllWithAssoList };
+});

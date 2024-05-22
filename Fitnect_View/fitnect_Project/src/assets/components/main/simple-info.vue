@@ -10,12 +10,14 @@
     <p>Reviews: {{ gym.reviews }}</p>
     <p>Type: {{ gym.type }}</p>
     <p>Members: {{ gym.members }}</p>
-    <p>Price: {{ gym.price }}</p>
+
+    <SelectPayment :gym="gym" />
   </div>
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, ref } from "vue";
+import SelectPayment from "@/assets/components/main/select-payment.vue";
 
 const props = defineProps({
   gym: {

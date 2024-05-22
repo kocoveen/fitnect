@@ -4,7 +4,12 @@
       <div :class="['search', { fixed: isSearchFixed }]">
         <div class="search-area">
           <div class="input-wrapper">
-            <input class="inputbox" v-model="keyword" @keyup.enter="isTrueRender" placeholder="검색어 입력" />
+            <input
+              class="inputbox"
+              v-model="keyword"
+              @keyup.enter="isTrueRender"
+              placeholder="검색어 입력"
+            />
             <div class="search-icon" @click="isTrueRender()">
               <img src="@/assets/imgs/search.svg" />
             </div>
@@ -12,7 +17,10 @@
         </div>
         <div class="detail-search">
           <div>
-            <img src="@/assets/imgs/origin.svg" style="width: 20px; height: 20px" />
+            <img
+              src="@/assets/imgs/origin.svg"
+              style="width: 20px; height: 20px"
+            />
             <a class="find-me" @click="findMe">내 위치</a>
           </div>
           <a class="detail-button" @click="toggleDetailSearch"> 상세 검색 </a>
@@ -20,42 +28,80 @@
       </div>
       <transition-group name="slide" tag="div" class="items" :key="renderKey">
         <div v-for="gym in filteredGymList" :key="gym.gymId" class="list-item">
-          <img :src="gym.gymImgUrl || defaultImg" alt="Gym Image" class="gym-image" />
+          <img
+            :src="gym.gymImgUrl || defaultImg"
+            alt="Gym Image"
+            class="gym-image"
+          />
           <div class="item" @click="showInfo(gym)">
             <div class="gym-name-info">
               <div>
                 <div class="gym-name">{{ gym.name }}</div>
                 <div>{{ gym.type }}</div>
               </div>
-              <img class="star" :src="gym.isStarDown ? starDownImg : starUpImg" @click.stop="toggleStar(gym.gymId)" alt="Star" />
+              <img
+                class="star"
+                :src="gym.isStarDown ? starDownImg : starUpImg"
+                @click.stop="toggleStar(gym.gymId)"
+                alt="Star"
+              />
             </div>
-            <div style="font-size: 12px; color: red">{{ truncateContent(gym.content) }}</div>
+            <div style="font-size: 12px; color: red">
+              {{ truncateContent(gym.content) }}
+            </div>
             <div class="gym-content">
               <div class="rating-area">
                 <div>{{ gym.operatingStatus }}</div>
-                <div><img src="@/assets/imgs/circle.svg" style="width: 4px; height: 4px" /></div>
                 <div>
-                  <img src="@/assets/imgs/star.svg" style="width: 20px; height: 20px" />
+                  <img
+                    src="@/assets/imgs/circle.svg"
+                    style="width: 4px; height: 4px"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="@/assets/imgs/star.svg"
+                    style="width: 20px; height: 20px"
+                  />
                   <div>
                     {{ gym.rating }}
                   </div>
                 </div>
-                <div><img src="@/assets/imgs/circle.svg" style="width: 4px; height: 4px" /></div>
+                <div>
+                  <img
+                    src="@/assets/imgs/circle.svg"
+                    style="width: 4px; height: 4px"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </transition-group>
-      <div v-if="filteredGymList.length === 0" class="no-results" :key="renderKey">검색 결과가 없습니다</div>
+      <div
+        v-if="filteredGymList.length === 0"
+        class="no-results"
+        :key="renderKey"
+      >
+        검색 결과가 없습니다
+      </div>
     </nav>
 
     <transition name="slide-fade">
-      <nav class="gym-info shadow-box" v-if="selectedGym" :key="selectedGym ? selectedGym.gymId : 'default-key'">
+      <nav
+        class="gym-info shadow-box"
+        v-if="selectedGym"
+        :key="selectedGym ? selectedGym.gymId : 'default-key'"
+      >
         <div>
           <div class="detail-area">
             <div>Information</div>
             <div class="button-area">
-              <img @click="hideInfo" src="@/assets/imgs/chevron-left.svg" class="close-icon" />
+              <img
+                @click="hideInfo"
+                src="@/assets/imgs/chevron-left.svg"
+                class="close-icon"
+              />
             </div>
           </div>
           <SimpleInfo :gym="selectedGym" />
@@ -64,7 +110,11 @@
     </transition>
 
     <transition name="slide-fade">
-      <div class="detail-search-options shadow-box" v-if="selectOption" :key="selectOption">
+      <div
+        class="detail-search-options shadow-box"
+        v-if="selectOption"
+        :key="selectOption"
+      >
         <div>
           <div class="detail-area">
             <div>Option</div>
@@ -72,7 +122,11 @@
               <img src="@/assets/imgs/chevron-left.svg" />
             </div>
           </div>
-          <DropDown @sort-change="onSortChange" @filter-type="filterByType" @exercise-change="filterByType" />
+          <DropDown
+            @sort-change="onSortChange"
+            @filter-type="filterByType"
+            @exercise-change="filterByType"
+          />
         </div>
       </div>
     </transition>
@@ -127,9 +181,12 @@ const toggleStar = (gymId) => {
   if (gymIndex !== -1) {
     gymList.value[gymIndex].isStarDown = !gymList.value[gymIndex].isStarDown;
     // filteredGymList도 업데이트
-    const filteredGymIndex = filteredGymList.value.findIndex((g) => g.gymId === gymId);
+    const filteredGymIndex = filteredGymList.value.findIndex(
+      (g) => g.gymId === gymId
+    );
     if (filteredGymIndex !== -1) {
-      filteredGymList.value[filteredGymIndex].isStarDown = gymList.value[gymIndex].isStarDown;
+      filteredGymList.value[filteredGymIndex].isStarDown =
+        gymList.value[gymIndex].isStarDown;
     }
   }
 };
@@ -224,8 +281,12 @@ const isTrueRender = () => {
 
 // 검색 조건에 맞는지 확인
 const isTrue = (gym) => {
-  const matchesKeyword = !keyword.value || gym.name.includes(keyword.value) || gym.type.includes(keyword.value);
-  const matchesType = selectedTypes.value.length === 0 || selectedTypes.value.includes(gym.type);
+  const matchesKeyword =
+    !keyword.value ||
+    gym.name.includes(keyword.value) ||
+    gym.type.includes(keyword.value);
+  const matchesType =
+    selectedTypes.value.length === 0 || selectedTypes.value.includes(gym.type);
   return matchesKeyword && matchesType;
 };
 
@@ -356,7 +417,10 @@ const showLocationMarker = () => {
 
     const location = new kakao.maps.LatLng(gym.latitude, gym.longitude);
     const markerImageSrc = getMarkerImageByType(gym.type); // 타입에 따른 마커 이미지 가져오기
-    const markerImage = new kakao.maps.MarkerImage(markerImageSrc, new kakao.maps.Size(24, 35));
+    const markerImage = new kakao.maps.MarkerImage(
+      markerImageSrc,
+      new kakao.maps.Size(24, 35)
+    );
 
     const marker = new kakao.maps.Marker({
       map,
@@ -411,10 +475,15 @@ const showInfo = async (gym) => {
       console.log(gym.latitude, gym.longitude);
       console.log("nearestStation : ", nearestStation.name);
       console.log("show info near : ", nearestStation.lat, nearestStation.lng);
-      console.log(`Distance from ${nearestStation.name} to ${gym.name}: ${nearestStation.distance} meters`);
+      console.log(
+        `Distance from ${nearestStation.name} to ${gym.name}: ${nearestStation.distance} meters`
+      );
 
       // 새로운 경로 표시
-      const path = await calculateDistance(nearestStation, { lng: gym.longitude, lat: gym.latitude });
+      const path = await calculateDistance(nearestStation, {
+        lng: gym.longitude,
+        lat: gym.latitude,
+      });
       drawPath(path, nearestStation);
     } else {
       console.error("No nearest station found.");
@@ -440,7 +509,10 @@ const findNearestStation = async (gym) => {
         address: response.data.documents[0].address_name,
         line: response.data.documents[0].category_name.split(" > ")[1], // 카테고리 이름에서 호선 번호 추출
       };
-      const distance = await calculateDistance(nearestStation, { lng: gym.longitude, lat: gym.latitude });
+      const distance = await calculateDistance(nearestStation, {
+        lng: gym.longitude,
+        lat: gym.latitude,
+      });
       return { ...nearestStation, distance };
     } else {
       console.error("Nearby subway stations not found.");
@@ -460,7 +532,9 @@ const drawPath = (path, nearestStation) => {
     return;
   }
 
-  const linePath = path.map((point) => new kakao.maps.LatLng(point.lat, point.lng));
+  const linePath = path.map(
+    (point) => new kakao.maps.LatLng(point.lat, point.lng)
+  );
 
   if (polyline) {
     polyline.setMap(null);
@@ -487,7 +561,8 @@ const drawPath = (path, nearestStation) => {
 
   // 호선 번호를 표시하는 커스텀 오버레이
   const lineColor = getLineColor(line); // 호선 번호에 따라 색상 선택
-  const displayLine = line === "수인분당선" ? "수인분당" : line.replace("호선", "");
+  const displayLine =
+    line === "수인분당선" ? "수인분당" : line.replace("호선", "");
   customOverlay = new kakao.maps.CustomOverlay({
     map: map,
     position: new kakao.maps.LatLng(nearestStation.lat, nearestStation.lng),
@@ -846,7 +921,9 @@ const hideInfo = () => {
 #map-container {
   flex-grow: 1;
   position: relative;
-  width: calc(100% - 400px); /* Adjusted to make space for the detail search options */
+  width: calc(
+    100% - 400px
+  ); /* Adjusted to make space for the detail search options */
 }
 
 #map {

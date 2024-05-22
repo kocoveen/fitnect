@@ -1,28 +1,17 @@
 <template>
   <div>
-    <div class="modal-wrap" v-show="modalCheck">
-      <div class="modal-container">
-        <!--  모달창 content  -->
-        <span style="margin-left: 30px; margin-right: 30px">모달</span>
-        <input
-          type="text"
-          class="inputbox input-margin-right"
-          style="margin-bottom: 20px; height: 40px"
-          v-model="totalInfo.gymId"
-        />
-        <div class="modal-btn">
-          <button class="btn-common" @click="payment">결제</button>
-        </div>
-        <button class="btn-common" @click="modalOpen">취소</button>
-      </div>
-    </div>
+    <iframe :src="next_redirect_pc_url" frameborder="0"> </iframe>
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 const accessToken = sessionStorage.getItem("accessToken");
 const loginUser = decodeJWT(accessToken);
 const userId = loginUser.payload.userId;
+
+const next_redirect_pc_url = ref("");
 
 const totalInfo = ref({
   userId,
@@ -42,9 +31,7 @@ const payment = () => {
     .post(`http://localhost:8080/payment/ready`, totalInfo)
     .then((response) => {
       console.log(response.data.data.next_redirect_pc_url);
-      const next_redirect_pc_url =
-        "https://online-pay.kakao.com/mockup/v1/0ef46cfd82416b4aadab8f2578bbe60befae2d4d910f2b2e609ac07d94ba37fb/info";
-      next_redirect_pc_url;
+      next_redirect_pc_url = response.data.data.next_redirect_pc_url;
     })
     .catch((e) => {});
 };
