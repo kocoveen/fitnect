@@ -32,8 +32,6 @@
             <div style="font-size: 12px; color: red">{{ truncateContent(gym.content) }}</div>
             <div class="gym-content">
               <div class="rating-area">
-                <div>{{ gym.operatingStatus }}</div>
-                <div><img src="@/assets/imgs/circle.svg" style="width: 4px; height: 4px" /></div>
                 <div>
                   <img src="@/assets/imgs/star.svg" style="width: 20px; height: 20px" />
                   <div>
@@ -41,6 +39,11 @@
                   </div>
                 </div>
                 <div><img src="@/assets/imgs/circle.svg" style="width: 4px; height: 4px" /></div>
+                <div>{{ gym.operatingStatus }}</div>
+                <div><img src="@/assets/imgs/circle.svg" style="width: 4px; height: 4px" /></div>
+                <div>리뷰 {{ gym.reviewCount }}</div>
+                <div><img src="@/assets/imgs/circle.svg" style="width: 4px; height: 4px" /></div>
+                <div>{{ gym.formattedDistance }}</div>
               </div>
             </div>
           </div>
@@ -85,14 +88,15 @@
 
 <script setup>
 import axios from "axios";
-import { onMounted, onBeforeUnmount, ref } from "vue";
+import { useReviewStore } from "@/stores/review";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 
 import DropDown from "@/assets/components/main/dropdown-menu.vue";
 import SimpleInfo from "@/assets/components/main/simple-info.vue";
-
 import defaultImg from "@/assets/imgs/default.png";
 
+const reviewStore = useReviewStore();
 const gymList = ref([]);
 const filteredGymList = ref([]);
 const markers = ref([]);
@@ -192,14 +196,11 @@ const getOperatingStatus = (gym) => {
   }
 };
 
-// 페이지 로드 시 URL 파라미터에서 검색어 가져오기
-onMounted(() => {
-  const queryKeyword = route.query.keyword;
-  if (queryKeyword) {
-    keyword.value = queryKeyword;
-    isTrueRender();
-  }
-});
+const getReviewCount = (gymId) => {
+  const reviews = reviewStore.reviews[gymId] || [];
+  console.log(`Review count for gymId ${gymId}:`, reviews.length); // 리뷰 카운트 콘솔 출력
+  return reviews.length;
+};
 
 // 상세 검색 토글
 const toggleDetailSearch = () => {
@@ -218,14 +219,22 @@ const isTrueRender = () => {
       ...gym,
       operatingStatus: getOperatingStatus(gym),
     }));
+  console.log("After filtering, filteredGymList:", filteredGymList.value); // 필터링 후 filteredGymList 확인
   renderKey.value += 1;
-  showLocationMarker();
+
+  // Kakao Maps SDK가 로드된 후에만 마커를 표시
+  if (window.kakao && window.kakao.maps) {
+    showLocationMarker();
+  } else {
+    console.error("Kakao Maps SDK is not loaded");
+  }
 };
 
 // 검색 조건에 맞는지 확인
 const isTrue = (gym) => {
   const matchesKeyword = !keyword.value || gym.name.includes(keyword.value) || gym.type.includes(keyword.value);
   const matchesType = selectedTypes.value.length === 0 || selectedTypes.value.includes(gym.type);
+  console.log("matchesKeyword:", matchesKeyword, "matchesType:", matchesType, "gym:", gym);
   return matchesKeyword && matchesType;
 };
 
@@ -325,9 +334,39 @@ let map = null;
 let myLocationMarker = null;
 let polyline = null; // 전역 변수로 선언
 
+// Kakao Maps SDK 로드 함수
+const loadKakaoMap = () => {
+  return new Promise((resolve, reject) => {
+    if (window.kakao && window.kakao.maps) {
+      resolve(); // Kakao Maps SDK가 이미 로드된 경우
+    } else {
+      const script = document.createElement("script");
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=947c159c0ec8a7112a79473f83a0fa8a&libraries=services&autoload=false`;
+      script.onload = () => {
+        if (window.kakao && window.kakao.maps) {
+          kakao.maps.load(() => {
+            resolve();
+          });
+        } else {
+          reject(new Error("Kakao Maps SDK failed to load"));
+        }
+      };
+      script.onerror = (error) => {
+        reject(error);
+      };
+      document.head.appendChild(script);
+    }
+  });
+};
+
 // 지도 초기화 함수
 const initMap = function () {
-  let myCenter = new kakao.maps.LatLng(myLng, myLat);
+  if (!window.kakao || !window.kakao.maps) {
+    console.error("Kakao Maps SDK is not loaded");
+    return;
+  }
+
+  const myCenter = new kakao.maps.LatLng(myLng, myLat);
 
   const container = document.getElementById("map");
   const options = {
@@ -349,6 +388,12 @@ const initMap = function () {
 
 // 체육관 위치 마커 표시
 const showLocationMarker = () => {
+  // 수정된 부분: Kakao Maps SDK가 로드되었는지 확인 후 마커 표시
+  if (!window.kakao || !window.kakao.maps) {
+    console.error("Kakao Maps SDK is not loaded");
+    return;
+  }
+
   const origin = { lat: myLat, lng: myLng };
   for (let i = 0; i < filteredGymList.value.length; i++) {
     const gym = filteredGymList.value[i];
@@ -414,8 +459,12 @@ const showInfo = async (gym) => {
       console.log(`Distance from ${nearestStation.name} to ${gym.name}: ${nearestStation.distance} meters`);
 
       // 새로운 경로 표시
-      const path = await calculateDistance(nearestStation, { lng: gym.longitude, lat: gym.latitude });
-      drawPath(path, nearestStation);
+      const { path, distance } = await calculateDistance(nearestStation, { lng: gym.longitude, lat: gym.latitude });
+      if (path.length > 0) {
+        drawPath(path, nearestStation);
+      } else {
+        console.error("No path found");
+      }
     } else {
       console.error("No nearest station found.");
     }
@@ -516,12 +565,10 @@ const getLineColor = (line) => {
 
 // 전체 경로를 계산하고 애니메이션을 시작하는 함수
 const calculateDistance = async (nearestStation, destination) => {
-  console.log(nearestStation.lng, nearestStation.lat);
-
   const url = `https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json`;
   const headers = {
-    // appKey: "wgc6OHSHci6FKr6bBMenY3y6vkQnVx633QkglQgN",
     "Content-Type": "application/json",
+    appKey: "wgc6OHSHci6FKr6bBMenY3y6vkQnVx633QkglQgN",
   };
   const data = {
     startX: nearestStation.lng,
@@ -564,15 +611,10 @@ const calculateDistance = async (nearestStation, destination) => {
       }
     });
 
-    console.log("경로:", path);
-    drawPath(path, nearestStation); // 애니메이션 없이 경로 그리기
-
-    console.log(response.data);
-    console.log(distance);
-    return path;
+    return { path, distance }; // 경로와 거리를 반환
   } catch (error) {
     console.error("거리 계산 오류:", error);
-    return [];
+    return { path: [], distance: 0 }; // 오류 발생 시 빈 배열과 거리 0 반환
   }
 };
 
@@ -591,35 +633,68 @@ const handleScroll = () => {
   isSearchFixed.value = scrollY < sidebarHeight;
 };
 
-// 마운트 시 실행
-onMounted(() => {
-  if (window.kakao && window.kakao.maps) {
-    kakao.maps.load(initMap);
+const formatDistance = (distance) => {
+  if (distance < 1000) {
+    return `${Math.round(distance)} m`;
   } else {
-    const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=947c159c0ec8a7112a79473f83a0fa8a&libraries=services&autoload=false`;
-    document.head.appendChild(script);
-    script.onload = () => {
-      kakao.maps.load(initMap);
-    };
+    return `${(distance / 1000).toFixed(1)} km`;
+  }
+};
+
+onMounted(async () => {
+  const queryKeyword = route.query.keyword;
+  if (queryKeyword) {
+    keyword.value = queryKeyword;
   }
 
-  axios
-    .get(`http://localhost:8080/gym/with-asso`, {
+  try {
+    const response = await axios.get(`http://localhost:8080/gym/with-asso`, {
       headers: {
         Authorization: `bearer ${sessionStorage.getItem("accessToken")}`,
       },
-    })
-    .then((response) => {
-      gymList.value = response.data.data.map((gym) => ({
-        ...gym,
-        isStarDown: true, // 기본값 설정
-        operatingStatus: getOperatingStatus(gym),
-      }));
-      filteredGymList.value = gymList.value.filter((gym) => isTrue(gym));
-      isTrueRender();
-    })
-    .catch((e) => {});
+    });
+
+    gymList.value = response.data.data.map((gym) => ({
+      ...gym,
+      isStarDown: true, // 기본값 설정
+      operatingStatus: getOperatingStatus(gym),
+    }));
+
+    console.log("gymList before review fetch:", gymList.value); // gymList가 올바르게 설정되었는지 확인
+
+    // 리뷰 데이터를 가져와서 gymList에 리뷰 카운트 추가
+    await Promise.all(
+      gymList.value.map(async (gym) => {
+        await reviewStore.fetchReviews(gym.gymId);
+        console.log(`Reviews for gymId ${gym.gymId}:`, reviewStore.reviews[gym.gymId]);
+        gym.reviewCount = getReviewCount(gym.gymId); // 리뷰 카운트 추가
+        console.log("gym.reviewCount : ", gym.reviewCount);
+      })
+    );
+
+    // 거리 계산 및 포맷팅
+    await Promise.all(
+      gymList.value.map(async (gym) => {
+        const nearestStation = { lat: myLng, lng: myLat };
+        const destination = { lat: gym.latitude, lng: gym.longitude };
+        const { path, distance } = await calculateDistance(nearestStation, destination);
+        gym.distance = distance;
+        gym.formattedDistance = formatDistance(distance);
+      })
+    );
+
+    // 리뷰 개수가 추가된 후 gymList와 filteredGymList 업데이트
+    gymList.value = [...gymList.value]; // 트리거를 위해 새로운 배열 할당
+    filteredGymList.value = gymList.value.filter((gym) => isTrue(gym));
+    console.log("filteredGymList after review fetch:", filteredGymList.value); // filteredGymList가 올바르게 설정되었는지 확인
+
+    // Kakao Maps 로드 완료 후 마커 표시
+    await loadKakaoMap();
+    initMap();
+    isTrueRender(); // Kakao Maps SDK 로드 후에 isTrueRender 호출
+  } catch (error) {
+    console.error("Error fetching gyms:", error);
+  }
 
   window.addEventListener("scroll", handleScroll);
 });
@@ -703,7 +778,6 @@ const hideInfo = () => {
   transition: border-color 0.5s ease;
   width: 100%;
   height: 55px;
-  box-shadow: 1px 1px 1px #77777754;
 }
 
 .inputbox::placeholder {
@@ -733,7 +807,6 @@ const hideInfo = () => {
   height: 30%;
   font-size: 13px;
   justify-content: space-between;
-  text-shadow: 1px 1px 1px #5b5b5b73;
 }
 
 .detail-button {
@@ -965,31 +1038,40 @@ div.gym-name-info > div > div:nth-child(2) {
   height: 25px;
   color: black;
 }
-.rating-area > div:nth-child(1) {
+.rating-area > div:nth-child(3) {
   font-size: 12px;
   letter-spacing: -1px;
   display: flex;
   align-items: center;
+  position: relative;
+  top: 1px;
 }
 
-.rating-area > div:nth-child(3) {
+.rating-area > div:nth-child(1) {
   display: flex;
   align-items: center;
   font-size: 13px;
   letter-spacing: -1px;
 }
 
-div.gym-content > div > div:nth-child(3) > div {
+div.gym-content > div > div:nth-child(1) > div {
   margin-left: 3px;
   font-weight: bold;
   color: black;
-  position: relative;
-  top: 1px;
 }
 
 .rating-area > div:nth-child(2),
-.rating-area > div:nth-child(4) {
-  margin: 0px 15px;
+.rating-area > div:nth-child(4),
+.rating-area > div:nth-child(6) {
+  margin: 0px 10px;
+}
+
+.rating-area > div:nth-child(5),
+.rating-area > div:nth-child(7) {
+  color: black;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
 }
 
 .no-results {
