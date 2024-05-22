@@ -9,6 +9,7 @@ import com.ssafy.fitnect.model.dao.GymDao;
 import com.ssafy.fitnect.model.dao.PriceDao;
 import com.ssafy.fitnect.model.dto.Gym;
 import com.ssafy.fitnect.model.dto.GymAndTrainerReviewDto;
+import com.ssafy.fitnect.model.dto.GymExpiredDto;
 import com.ssafy.fitnect.model.dto.PriceDayDto;
 import com.ssafy.fitnect.model.dto.SearchCondition;
 
@@ -23,11 +24,18 @@ public class GymServiceImpl implements GymService {
 		this.gymDao = gymDao;
 		this.priceDao = priceDao;
 	}
+	
+
+	@Override
+	public Gym findGymOneById(long gymId) {
+		// TODO Auto-generated method stub
+		return gymDao.selectOneGymByGymId(gymId);
+	}
 
 	@Override
 	public List<Gym> searchGym(SearchCondition cond) {
 		return null;
-	} 
+	}
 	
 	@Override
 	public Gym getOneGymWithAsso(long gymId) {
@@ -52,16 +60,16 @@ public class GymServiceImpl implements GymService {
 		return gymDao.selectAllGym();
 	}
 
-	@Override
-	public int registGym(long userId, long gymId, long priceId) {
-		PriceDayDto priceDayDto = priceDao.selectPriceOneByPriceId(priceId);
-		return gymDao.insertRegistUser(userId, gymId, priceId, priceDayDto.getDays());
-	}
-	
-	@Override
-	public int quitGym(long userId, long gymId) {
-		return gymDao.deleteRegistUser(userId, gymId);
-	}
+//	@Override
+//	public int registGym(long userId, long gymId, long priceId) {
+//		PriceDayDto priceDayDto = priceDao.selectPriceOneByPriceId(priceId);
+//		return gymDao.insertRegistUser(userId, gymId, priceId, priceDayDto.getDays());
+//	}
+//	
+//	@Override
+//	public int quitGym(long userId, long gymId) {
+//		return gymDao.deleteRegistUser(userId, gymId);
+//	}
 
 	@Override
 	public int favGym(long gymId, long loginUserId) {
@@ -79,7 +87,7 @@ public class GymServiceImpl implements GymService {
 	}
 
 	@Override
-	public List<Gym> findMyGymByUserId(long userId) {
+	public List<GymExpiredDto> findMyGymByUserId(long userId) {
 		// TODO Auto-generated method stub
 		return gymDao.selectAllMyGym(userId);
 	}

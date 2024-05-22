@@ -32,6 +32,7 @@ public class Classes {
 	private int minimum;
 	private int current;
 	private int maximum;
-	private int classPrice;
+	private long classPrice;
+	private String classImgUrl;
 	
 }

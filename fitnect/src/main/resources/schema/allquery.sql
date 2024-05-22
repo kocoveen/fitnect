@@ -129,7 +129,8 @@ CREATE TABLE `CLASSES` (
 	`minimum`	int(3)	NOT NULL	DEFAULT 0,
 	`current`	int(3)	NOT NULL	DEFAULT 0,
 	`maximum`	int(3)	NOT NULL	DEFAULT 0,
-	`classPrice`	bigint(20)	NOT NULL	DEFAULT 0
+	`classPrice`	bigint(20)	NOT NULL	DEFAULT 0,
+    `classImgUrl` 	text	NULL
 );
 
 DROP TABLE IF EXISTS `TRAINER`;
@@ -167,6 +168,24 @@ CREATE TABLE `AMENITY` (
 	`personalLocker`	boolean	NOT NULL,
 	`unmanded`	boolean	NOT NULL
 );
+
+DROP TABLE IF EXISTS `ORDERS`;
+
+CREATE TABLE `ORDERS` (
+	`orderId`	bigint(20) AUTO_INCREMENT	PRIMARY KEY,
+	`userId` bigint(20),
+    `itemName` varchar(255),
+    `totalPrice` bigint(20),
+	`createdDate`	timestamp	NOT NULL	DEFAULT now()
+);
+
+ALTER TABLE `ORDERS` ADD CONSTRAINT `FK_USERS_TO_ORDERS_1` FOREIGN KEY (
+	`userId`
+)
+REFERENCES `USERS` (
+	`userId`
+);
+
 
 ALTER TABLE `GYM_MACHINE` ADD CONSTRAINT `FK_GYM_TO_GYM_MACHINE_1` FOREIGN KEY (
 	`gymId`
@@ -422,6 +441,42 @@ END;
 //
 
 DELIMITER ;
+
+
+DELIMITER //
+
+-- Insert 트리거: REGIST_CLASSES에 새로운 레코드가 삽입될 때마다 실행
+CREATE TRIGGER update_current_count_after_insert
+AFTER INSERT ON REGIST_CLASSES
+FOR EACH ROW
+BEGIN
+    DECLARE class_count INT;
+    
+    -- 해당 클래스(classId)에 대한 등록된 학생 수를 계산
+    SELECT COUNT(*) INTO class_count FROM REGIST_CLASSES WHERE classId = NEW.classId;
+    
+    -- CLASSES 테이블의 해당 클래스(classId)의 current 값을 업데이트
+    UPDATE CLASSES SET current = class_count WHERE classId = NEW.classId;
+END;
+//
+
+-- Delete 트리거: REGIST_CLASSES에서 레코드가 삭제될 때마다 실행
+CREATE TRIGGER update_current_count_after_delete
+AFTER DELETE ON REGIST_CLASSES
+FOR EACH ROW
+BEGIN
+    DECLARE class_count INT;
+    
+    -- 해당 클래스(classId)에 대한 등록된 학생 수를 계산
+    SELECT COUNT(*) INTO class_count FROM REGIST_CLASSES WHERE classId = OLD.classId;
+    
+    -- CLASSES 테이블의 해당 클래스(classId)의 current 값을 업데이트
+    UPDATE CLASSES SET current = class_count WHERE classId = OLD.classId;
+END;
+//
+
+DELIMITER ;
+
 
 -- gym --
 -- 수영
@@ -744,10 +799,9 @@ VALUES
 
 -- users --
 -- 20개의 임의의 유저 데이터 삽입 쿼리
--- 20개의 임의의 유저 데이터 삽입 쿼리
 INSERT INTO `USERS` (`email`, `password`, `phone`, `name`, `address`, `longitude`, `latitude`, `profileImgUrl`, `height`, `weight`, `auth`)
 VALUES
-('admin@ssafy.com', '$2a$10$QwTQdqJUeUugHWXEiXH2Ye54tV4KICMo/bejjpPLZyq3.70RbRi3a', '010-0000-0000', 'admin', '대한민국', 0.0, 0.0, NULL, NULL, NULL, 'admin'),
+('admin', '$2a$10$QwTQdqJUeUugHWXEiXH2Ye54tV4KICMo/bejjpPLZyq3.70RbRi3a', '010-0000-0000', 'admin', '대한민국', 0.0, 0.0, NULL, NULL, NULL, 'admin'),
 ('trainer1@example.com', '$2a$10$EMfAFExQxF5UfeIBnCDlNuaC.k3ZcNADEGYvIhCwrztuuaU3Cb/ky', '010-1234-5678', '김민지', '서울 강남구 역삼동', 37.504062, 127.036209, NULL, 160, 50, 'trainer'),
 ('trainer2@example.com', '$2a$10$o3XEszF8ytlINbbNaOeaVuEBbf144KpGcPCV0p7eorGPVMs9lbK86', '010-2345-6789', '이민준', '서울 강남구 논현동', 37.516066, 127.035760, NULL, 170, 60, 'trainer'),
 ('user1@example.com', '$2a$10$B54QP0PVWMfZZ/tSHvA7qOYKTTrsWCwPN5MspUuT4hHlEJ5kQumqS', '010-3456-7890', '박서연', '서울 강남구 대치동', 37.501704, 127.058740, NULL, 175, 65, 'user'),
@@ -776,8 +830,84 @@ VALUES
 
 
 -- classes
-INSERT INTO `CLASSES` (`gymId`, `trainerId`, `name`, `startDate`, `endDate`, `minimum`, `current`, `maximum`, `classPrice`)
+INSERT INTO `CLASSES` (`gymId`, `trainerId`, `name`, `startDate`, `endDate`, `minimum`, `current`, `maximum`, `classPrice`, `classImgUrl`)
 VALUES 
-(1, 1, '기초 수영 강좌', '2024-05-25', '2024-05-31', 5, 0, 10, 20000),
-(1, 2, '수영의 정석', '2024-05-03', '2024-05-06', 5, 7, 10, 20000),
-(1, 2, '수영의 정석(심화)', '2024-05-25', '2024-05-31', 5, 10, 10, 30000);
+(1, 1, '기초 수영 강좌', '2024-05-25', '2024-05-31', 5, 0, 10, 20000, NULL),
+(1, 2, '수영의 정석', '2024-05-03', '2024-05-06', 5, 7, 10, 20000, NULL),
+(1, 2, '수영의 정석(심화)', '2024-05-25', '2024-05-31', 5, 10, 10, 30000, NULL);
+
+-- review_gym
+INSERT INTO `REVIEW_GYM` (`userId`, `gymId`, `content`, `rating`)
+VALUES 
+(4, 1, '좋아요!', 5),
+(5, 2, '매우 만족합니다.', 4),
+(6, 3, '운동하기 좋아요.', 3),
+(7, 4, '좋은 시설입니다.', 5),
+(8, 5, '가격 대비 만족합니다.', 4),
+(9, 6, '친절한 직원들이 많아요.', 3),
+(10, 7, '시설이 깨끗해요.', 5),
+(11, 8, '좋은 경험이었습니다.', 4),
+(12, 9, '추천합니다.', 3),
+(13, 10, '친절한 강사들이 많습니다.', 5),
+(14, 11, '시설이 잘 되어 있습니다.', 4),
+(15, 12, '좋은 트레이너들이 있어요.', 3),
+(16, 13, '매우 만족합니다.', 5),
+(17, 14, '가격이 적당합니다.', 4),
+(18, 15, '친절한 직원들이 많습니다.', 3),
+(19, 16, '시설이 깨끗합니다.', 5),
+(20, 17, '좋은 경험이었습니다.', 4),
+(21, 18, '추천합니다.', 3),
+(4, 19, '친절한 강사들이 많습니다.', 5),
+(5, 20, '시설이 잘 되어 있습니다.', 4),
+(6, 21, '좋은 트레이너들이 있어요.', 3),
+(7, 22, '매우 만족합니다.', 5),
+(8, 23, '가격이 적당합니다.', 4),
+(9, 24, '친절한 직원들이 많습니다.', 3),
+(10, 25, '시설이 깨끗합니다.', 5),
+(11, 26, '좋은 경험이었습니다.', 4),
+(12, 27, '추천합니다.', 3),
+(13, 28, '친절한 강사들이 많습니다.', 5),
+(14, 29, '시설이 잘 되어 있습니다.', 4),
+(15, 30, '좋은 트레이너들이 있어요.', 3),
+(16, 31, '매우 만족합니다.', 5),
+(17, 32, '가격이 적당합니다.', 4),
+(18, 33, '친절한 직원들이 많습니다.', 3),
+(19, 34, '시설이 깨끗합니다.', 5),
+(20, 35, '좋은 경험이었습니다.', 4),
+(21, 36, '추천합니다.', 3),
+(4, 37, '친절한 강사들이 많습니다.', 5),
+(5, 38, '시설이 잘 되어 있습니다.', 4),
+(6, 39, '좋은 트레이너들이 있어요.', 3),
+(7, 40, '매우 만족합니다.', 5),
+(8, 41, '가격 대비 만족합니다.', 4),
+(9, 42, '친절한 직원들이 많아요.', 3),
+(10, 43, '시설이 깨끗해요.', 5),
+(11, 44, '좋은 경험이었습니다.', 4),
+(12, 45, '추천합니다.', 3),
+(13, 46, '친절한 강사들이 많습니다.', 5),
+(14, 47, '시설이 잘 되어 있습니다.', 4),
+(15, 1, '좋은 트레이너들이 있어요.', 3),
+(16, 2, '매우 만족합니다.', 5),
+(17, 3, '가격이 적당합니다.', 4),
+(18, 4, '친절한 직원들이 많습니다.', 3),
+(19, 5, '시설이 깨끗합니다.', 5),
+(20, 6, '좋은 경험이었습니다.', 4),
+(21, 7, '추천합니다.', 3),
+(4, 8, '친절한 강사들이 많습니다.', 5),
+(5, 9, '시설이 잘 되어 있습니다.', 4),
+(6, 10, '좋은 트레이너들이 있어요.', 3),
+(7, 11, '매우 만족합니다.', 5),
+(8, 12, '가격이 적당합니다.', 4),
+(9, 13, '친절한 직원들이 많습니다.', 3),
+(10, 14, '시설이 깨끗합니다.', 5),
+(11, 15, '좋은 경험이었습니다.', 4),
+(12, 16, '추천합니다.', 3),
+(13, 17, '친절한 강사들이 많습니다.', 5),
+(14, 18, '시설이 잘 되어 있습니다.', 4),
+(15, 19, '좋은 트레이너들이 있어요.', 3),
+(16, 20, '매우 만족합니다.', 5),
+(17, 21, '가격이 적당합니다.', 4),
+(18, 22, '친절한 직원들이 많습니다.', 3),
+(19, 23, '시설이 깨끗합니다.', 5),
+(20, 24, '좋은 경험이었습니다.', 4),
+(21, 25, '추천합니다.', 3);

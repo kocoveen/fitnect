@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.ssafy.fitnect.model.dto.Gym;
 import com.ssafy.fitnect.model.dto.GymAndTrainerReviewDto;
+import com.ssafy.fitnect.model.dto.GymExpiredDto;
 import com.ssafy.fitnect.model.dto.SearchCondition;
 
 public interface GymDao {
@@ -34,5 +35,7 @@ public interface GymDao {
 	public int deleteFavGym(long gymId, long loginUserId);
 
 	public List<Gym> selectAllFavGym(long userId);
-	public List<Gym> selectAllMyGym(long userId);
+	public List<GymExpiredDto> selectAllMyGym(long userId);
+
+	public Gym selectOneGymByGymId(long gymId);
 }

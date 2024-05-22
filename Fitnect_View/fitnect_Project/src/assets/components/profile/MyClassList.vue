@@ -10,7 +10,11 @@
           <template v-if="myClass.length > 0">
             <li v-for="cls in myClass" class="list-group-item has-icon">
               <div>
-                <h6 class="mb-0 font-fit">{{ cls.name }}</h6>
+                <h6 class="mb-4 font-fit">{{ cls.name }}</h6>
+                <div class="mb-2">시작 날짜: {{ cls.startDate }}</div>
+                <div class="mb-2">종료 날짜: {{ cls.endDate }}</div>
+                <div class="mb-2">최소 시작 인원: {{ cls.minimum }}</div>
+                <div class="mb-2">현재 인원: {{ cls.current }}</div>
                 <small class="text-muted"
                   >Your current session seen in United States</small
                 >
@@ -20,6 +24,7 @@
               </button>
             </li>
           </template>
+          <template v-else>등록한 강의가 없습니다.</template>
         </ul>
       </div>
     </div>
@@ -42,6 +47,7 @@ axios
     },
   })
   .then((response) => {
+    console.log(response.data.data);
     myClass.value = response.data.data;
   })
   .catch((e) => {});

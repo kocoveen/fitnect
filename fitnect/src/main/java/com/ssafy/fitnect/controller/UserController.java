@@ -26,6 +26,7 @@ import com.ssafy.fitnect.auth.TokenDto;
 import com.ssafy.fitnect.auth.TokenProvider;
 import com.ssafy.fitnect.model.dto.Classes;
 import com.ssafy.fitnect.model.dto.Gym;
+import com.ssafy.fitnect.model.dto.GymExpiredDto;
 import com.ssafy.fitnect.model.dto.ReviewGym;
 import com.ssafy.fitnect.model.dto.ReviewTrainer;
 import com.ssafy.fitnect.model.dto.UserEmailNameDto;
@@ -173,7 +174,7 @@ public class UserController {
 		
 		long loginUserId = getLoginUserId(loginUser);
 		
-		List<Gym> result = gymService.findMyGymByUserId(loginUserId);
+		List<GymExpiredDto> result = gymService.findMyGymByUserId(loginUserId);
 		return ResponseEntity.ok().body(ApiResponse.success(HttpStatus.OK, result));
 	}
 	

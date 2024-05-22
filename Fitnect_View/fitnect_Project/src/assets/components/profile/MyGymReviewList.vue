@@ -7,6 +7,7 @@
         <div id="sign-text">내 체육관 리뷰</div>
 
         <ul class="list-group list-group-sm">
+          <div>{{ gymReview }}</div>
           <template v-if="myGymReview.length > 0">
             <li
               v-for="gymReview in myGymReview"
@@ -23,6 +24,7 @@
               </button>
             </li>
           </template>
+          <template v-else>체육관에 쓴 리뷰가 없습니다.</template>
         </ul>
       </div>
     </div>
