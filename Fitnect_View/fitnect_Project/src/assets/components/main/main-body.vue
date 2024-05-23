@@ -20,7 +20,7 @@
       </div>
       <transition-group name="slide" tag="div" class="items" :key="renderKey">
         <div v-for="gym in filteredGymList" :key="gym.gymId" class="list-item">
-          <img :src="gym.gymImgUrl || defaultImg" alt="Gym Image" class="gym-image" />
+          <img :src="gym.gymImgUrl || defaultImg" alt="Gym Image" class="gym-image" @click="showInfo(gym)" style="cursor: pointer" />
           <div class="item" @click="showInfo(gym)">
             <div class="gym-name-info">
               <div>
@@ -61,7 +61,7 @@
               <img @click="hideInfo" src="@/assets/imgs/chevron-left.svg" class="close-icon" />
             </div>
           </div>
-          <SimpleInfo :gym="selectedGym" />
+          <SimpleInfo :gym="selectedGym" :toggleStar="toggleStar" :truncateContent="truncateContent" />
         </div>
       </nav>
     </transition>
@@ -109,7 +109,7 @@ const renderKey = ref(0);
 const route = useRoute();
 
 const truncateContent = (content) => {
-  const maxLength = 30;
+  const maxLength = 20;
   if (content.length > maxLength) {
     return content.substring(0, maxLength) + "...";
   }
@@ -456,7 +456,6 @@ const showInfo = async (gym) => {
       console.log(gym.latitude, gym.longitude);
       console.log("nearestStation : ", nearestStation.name);
       console.log("show info near : ", nearestStation.lat, nearestStation.lng);
-      console.log(`Distance from ${nearestStation.name} to ${gym.name}: ${nearestStation.distance} meters`);
 
       // 새로운 경로 표시
       const { path, distance } = await calculateDistance(nearestStation, { lng: gym.longitude, lat: gym.latitude });
@@ -465,8 +464,16 @@ const showInfo = async (gym) => {
       } else {
         console.error("No path found");
       }
+
+      console.log(`Distance from ${nearestStation.name} to ${gym.name}: ${distance} meters`);
+
+      // nearestStation과 distance 정보를 selectedGym에 추가
+      selectedGym.value.nearestStation = nearestStation.name;
+      selectedGym.value.stationDistance = distance;
     } else {
       console.error("No nearest station found.");
+      selectedGym.value.nearestStation = "정보 없음";
+      selectedGym.value.stationDistance = 0;
     }
   }
   selectOption.value = false;
@@ -524,25 +531,31 @@ const drawPath = (path, nearestStation) => {
   });
   polyline.setMap(map);
 
-  // 기존 오버레이 제거
   if (customOverlay) {
     customOverlay.setMap(null);
   }
 
-  // 지하철역 호선 정보 추출
   const stationName = nearestStation.name;
   const lineMatch = stationName.match(/(\d+호선|수인분당선)/);
   const line = lineMatch ? lineMatch[1] : "Unknown";
-
-  // 호선 번호를 표시하는 커스텀 오버레이
-  const lineColor = getLineColor(line); // 호선 번호에 따라 색상 선택
+  const lineColor = getLineColor(line);
   const displayLine = line === "수인분당선" ? "수인분당" : line.replace("호선", "");
+
   customOverlay = new kakao.maps.CustomOverlay({
     map: map,
     position: new kakao.maps.LatLng(nearestStation.lat, nearestStation.lng),
     content: `<div class="station-label" style="border: 3px solid ${lineColor}; color: ${lineColor}; background-color: white; padding: 5px; border-radius: 15px; width: 60px; height: 30px; display: flex; justify-content: center; align-items: center; font-weight: bold; position: relative; font-size: 11px;">${displayLine}</div>`,
     yAnchor: 1,
   });
+
+  // 필터링하여 유효한 descriptions만 추출합니다.
+  const descriptions = path
+    .map((p) => p.description)
+    .filter((desc) => desc && (desc.includes("이동") || desc.includes("도착")))
+    .join(", ");
+
+  console.log("Filtered Descriptions:", descriptions);
+  selectedGym.value.pathDescriptions = descriptions;
 };
 
 // 호선 번호에 따른 색상을 반환하는 함수
@@ -568,7 +581,7 @@ const calculateDistance = async (nearestStation, destination) => {
   const url = `https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json`;
   const headers = {
     "Content-Type": "application/json",
-    // appKey: "wgc6OHSHci6FKr6bBMenY3y6vkQnVx633QkglQgN",
+    appKey: "En2GXwXo2VadpQnX1x94WSIz6DDC3Nj4TofXTKFe",
   };
   const data = {
     startX: nearestStation.lng,
@@ -584,26 +597,25 @@ const calculateDistance = async (nearestStation, destination) => {
   try {
     const response = await axios.post(url, data, { headers });
     const features = response.data.features;
-    const distance = features[0].properties.totalDistance;
+
+    console.log("경로 정보:", response);
 
     let path = [];
-
-    // 모든 피처의 지오메트리를 반복하여 경로 생성
     features.forEach((feature) => {
       const geometry = feature.geometry;
 
       if (geometry.type === "Point") {
-        // 'Point' 타입의 경우, 'coordinates'는 [경도, 위도] 형식의 배열
         path.push({
           lng: geometry.coordinates[0],
           lat: geometry.coordinates[1],
+          description: feature.properties.description, // description 필드를 추가
         });
       } else if (geometry.type === "LineString") {
-        // 'LineString' 타입의 경우, 'coordinates'는 [[경도, 위도], [경도, 위도], ...] 형식의 2차원 배열
         geometry.coordinates.forEach((coord) => {
           path.push({
             lng: coord[0],
             lat: coord[1],
+            description: feature.properties.description, // description 필드를 추가
           });
         });
       } else {
@@ -611,7 +623,9 @@ const calculateDistance = async (nearestStation, destination) => {
       }
     });
 
-    return { path, distance }; // 경로와 거리를 반환
+    const totalDistance = response.data.features[0].properties.totalDistance; // 총 거리 추출
+
+    return { path, distance: totalDistance }; // 경로와 총 거리를 반환
   } catch (error) {
     console.error("거리 계산 오류:", error);
     return { path: [], distance: 0 }; // 오류 발생 시 빈 배열과 거리 0 반환
@@ -913,6 +927,7 @@ const hideInfo = () => {
 /* shadow-box 클래스 추가 */
 .shadow-box {
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  overflow: auto;
 }
 
 /* map */
@@ -985,7 +1000,8 @@ div.search.fixed > div.detail-search > div {
 
 .list-item > img {
   width: 280px;
-  height: 180px;
+  height: 165px;
+  margin-block: 10px;
   border-radius: 15px;
 }
 
@@ -1063,7 +1079,7 @@ div.gym-content > div > div:nth-child(1) > div {
 .rating-area > div:nth-child(2),
 .rating-area > div:nth-child(4),
 .rating-area > div:nth-child(6) {
-  margin: 0px 9px;
+  margin: 0px 7px;
 }
 
 .rating-area > div:nth-child(5),
@@ -1072,8 +1088,8 @@ div.gym-content > div > div:nth-child(1) > div {
   font-size: 12px;
   display: flex;
   align-items: center;
-  top: 1px;
   position: relative;
+  top: 1px;
 }
 
 .no-results {

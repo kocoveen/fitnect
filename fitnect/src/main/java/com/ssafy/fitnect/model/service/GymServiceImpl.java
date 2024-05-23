@@ -47,6 +47,7 @@ public class GymServiceImpl implements GymService {
 	
 	@Override
 	public List<Gym> getAllGymWithAsso() {
+		log.info("list={}", gymDao.selectAllGymWithAsso());
 		return gymDao.selectAllGymWithAsso();
 	}
 

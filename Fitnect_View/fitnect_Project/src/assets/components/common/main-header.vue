@@ -31,7 +31,8 @@ window.addEventListener("scroll", () => {
   align-items: center;
   justify-content: space-between;
   transition: all 0.5s ease 0s;
-  z-index: 999; /* 필요한 경우 z-index 값 조정 */
+  position: relative; /* Add this line to make z-index work */
+  z-index: 1000;
 }
 
 #logo {
