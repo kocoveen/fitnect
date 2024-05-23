@@ -568,7 +568,7 @@ const calculateDistance = async (nearestStation, destination) => {
   const url = `https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json`;
   const headers = {
     "Content-Type": "application/json",
-    appKey: "wgc6OHSHci6FKr6bBMenY3y6vkQnVx633QkglQgN",
+    // appKey: "wgc6OHSHci6FKr6bBMenY3y6vkQnVx633QkglQgN",
   };
   const data = {
     startX: nearestStation.lng,
@@ -1063,7 +1063,7 @@ div.gym-content > div > div:nth-child(1) > div {
 .rating-area > div:nth-child(2),
 .rating-area > div:nth-child(4),
 .rating-area > div:nth-child(6) {
-  margin: 0px 10px;
+  margin: 0px 9px;
 }
 
 .rating-area > div:nth-child(5),
@@ -1072,6 +1072,8 @@ div.gym-content > div > div:nth-child(1) > div {
   font-size: 12px;
   display: flex;
   align-items: center;
+  top: 1px;
+  position: relative;
 }
 
 .no-results {
