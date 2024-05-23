@@ -13,7 +13,10 @@ import com.ssafy.fitnect.model.dto.GymExpiredDto;
 import com.ssafy.fitnect.model.dto.PriceDayDto;
 import com.ssafy.fitnect.model.dto.SearchCondition;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class GymServiceImpl implements GymService {
 	
 	private final GymDao gymDao;
@@ -89,6 +92,7 @@ public class GymServiceImpl implements GymService {
 	@Override
 	public List<GymExpiredDto> findMyGymByUserId(long userId) {
 		// TODO Auto-generated method stub
+		log.info("list={}", gymDao.selectAllMyGym(userId));
 		return gymDao.selectAllMyGym(userId);
 	}
 

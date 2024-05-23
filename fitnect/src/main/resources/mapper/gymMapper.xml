@@ -362,7 +362,7 @@
 			ru.expiredDate
 		FROM GYM g
 		INNER JOIN REGIST_USERS ru ON g.gymId = ru.gymId
-		WHERE g.gymId = #{gymId}
+		WHERE ru.userId = #{userId}
 	</select>
 
 </mapper>
