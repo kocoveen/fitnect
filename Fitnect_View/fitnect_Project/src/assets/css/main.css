@@ -1,0 +1,286 @@
+.main-body {
+  display: flex;
+  height: 100vh;
+}
+
+/* search area */
+.sidebar {
+  width: 450px;
+  min-width: 450px;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #ffffff;
+  left: 0;
+  top: 0;
+  z-index: 100; /* 사이드바가 더 앞에 오도록 z-index 설정 */
+  border: 0;
+}
+
+.search {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 450px;
+  min-width: 450px;
+  height: 115px;
+  right: 0;
+  background-color: #ffffff;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: top 0.5s ease, opacity 0.5s ease;
+}
+
+.search.fixed {
+  top: 70px;
+  opacity: 1;
+}
+
+.search:not(.fixed) {
+  top: 130px;
+  opacity: 0;
+}
+
+.search-area {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70%;
+  align-items: center;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputbox {
+  padding: 0.4375rem 2.5rem 0.4375rem 2.7rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.53;
+  appearance: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #d9dee3;
+  border-radius: 5px;
+  color: #566a7f;
+  transition: border-color 0.5s ease;
+  width: 100%;
+  height: 55px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 375px;
+  transform: translateY(-50%);
+  width: 24px; /* 아이콘 크기 조정 */
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* search area */
+
+/* detail-search */
+.detail-search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30%;
+  font-size: 13px;
+  justify-content: space-between;
+}
+
+.detail-button {
+  color: #44b7ce;
+  cursor: pointer;
+}
+/* detail-search */
+
+/* items */
+.items {
+  width: 100%;
+  overflow-y: auto;
+  background-color: #f0f0f0;
+  margin-top: 115px;
+}
+
+.item {
+  width: 100%;
+  cursor: pointer;
+}
+
+.items > div > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 15px;
+  margin: 10px 0;
+}
+/* items */
+
+/* gym-info */
+.gym-info {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  width: 350px;
+  min-width: 350px;
+  height: 100%;
+  position: absolute;
+  left: 450px;
+  z-index: 50; /* 사이드바보다 뒤에 오도록 z-index 설정 */
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+/* gym-info */
+
+.find-me {
+  color: #787878;
+  cursor: pointer;
+}
+/* detail-search-options */
+.detail-search-options {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  width: 350px;
+  min-width: 350px;
+  height: 100%;
+  position: absolute;
+  left: 450px;
+  z-index: 50; /* 사이드바보다 뒤에 오도록 z-index 설정 */
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.option-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.option-item:hover {
+  background-color: #f0f0f0;
+}
+/* detail-search-options */
+
+/* slide-fade transition */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* shadow-box 클래스 추가 */
+.shadow-box {
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* map */
+#map-container {
+  flex-grow: 1;
+  position: relative;
+  width: calc(100% - 400px); /* Adjusted to make space for the detail search options */
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.detail-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  font-size: 17px;
+  font-weight: bold;
+  color: black;
+  font-family: "Playfair Display", serif;
+  padding: 10px;
+  border-bottom: 1px solid #8d8d8d4a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 64px;
+  z-index: 4;
+  position: relative;
+}
+
+/* 애니메이션 키 프레임 정의 */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.list-item {
+  animation: slideIn-7cfbf8c4 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 14px;
+  border-bottom: 1px solid #eaeaea;
+  background-color: #ffffff;
+  height: 360px;
+  flex-direction: column;
+}
+
+.list-item > img {
+  width: 340px;
+  height: 195px;
+  border-radius: 15px;
+}
+
+.inputbox:focus {
+  outline: none;
+  border-color: #1ed9ec;
+}
+
+.inputbox:focus + .inputbox {
+  border-color: #25c3d3;
+}
+
+.gym-name {
+  font-weight: bold;
+}
+
+.gym-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 15px;
+}
+
+.rating-area {
+  display: flex;
+}
+
+.no-results {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 150px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #353535;
+  animation: slideIn-7cfbf8c4 1s ease-in-out;
+}

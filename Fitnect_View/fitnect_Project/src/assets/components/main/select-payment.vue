@@ -1,87 +1,35 @@
 <template>
-  <div>
-    <!-- START -->
-    <br />
-    <hr />
-    <div id="payment-select">
-      <fieldset id="prices">
-        <legend>가격</legend>
-        <div
-          v-for="(price, index) in gym.prices"
-          :key="'price_' + price.priceId"
-          class="card"
-        >
-          <div class="card-body">
-            <input
-              name="prices"
-              type="radio"
-              :id="'price_' + price.priceId"
-              v-model="totalInfo.priceId"
-              :value="price.priceId"
-              class="radio-btn"
-            />
-            <label
-              :for="'price_' + price.priceId"
-              class="form-check-label label-full"
-              >{{ price.priceName }}</label
-            >
-            <label
-              :for="'class_' + price.priceId"
-              class="form-check-label label-half-full"
-              >{{ price["price"] }}원</label
-            >
-          </div>
-        </div>
-      </fieldset>
-
-      <fieldset id="classes">
-        <legend>강의</legend>
-        <div
-          v-for="(item, index) in gym.classes"
-          :key="'class_' + item.classId"
-          class="card"
-        >
-          <div class="card-body">
-            <input
-              name="classes"
-              type="radio"
-              :id="'class_' + item.classId"
-              v-model="totalInfo.classId"
-              :value="item.classId"
-              class="radio-btn"
-            />
-            <label
-              :for="'class_' + item.classId"
-              class="form-check-label label-full"
-              >{{ item.className }}</label
-            >
-            <label
-              :for="'class_' + item.classId"
-              class="form-check-label label-half-full"
-              >{{ item.classPrice }}원</label
-            >
-          </div>
-        </div>
-      </fieldset>
-
-      <div class="btn-group">
-        <button @click="payment" class="btn btn-primary">결제</button>
-        <button @click="cancelSelected" class="btn btn-danger">선택취소</button>
-      </div>
+  <div id="payment-select" ref="paymentSelect">
+    <div class="header" style="margin-bottom: 10px">
+      <div class="title">수강신청</div>
+      <div class="close-icon" @click="closeComponent">X</div>
     </div>
-    <!-- END -->
 
+    <fieldset id="prices" style="margin: 10px 0">
+      <legend style="color: black; font-weight: bold; margin-bottom: 10px; font-size: 13px">회원권을 선택해주세요</legend>
+      <select v-model="totalInfo.priceId" class="form-select" required>
+        <option v-for="(price, index) in gym.prices" :key="'price_' + price.priceId" :value="price.priceId">
+          {{ price.priceName }} - {{ price.price }}원
+        </option>
+      </select>
+    </fieldset>
+
+    <fieldset id="classes" style="margin: 10px 0">
+      <legend style="color: black; font-weight: bold; margin-bottom: 10px; font-size: 13px">강의 목록</legend>
+      <select v-model="totalInfo.classId" class="form-select" required>
+        <option v-for="(item, index) in gym.classes" :key="'class_' + item.classId" :value="item.classId">
+          {{ item.className }} - {{ item.classPrice }}원
+        </option>
+      </select>
+    </fieldset>
+
+    <div class="btn-group" style="width: 100%; margin-top: 15px; height: 50px">
+      <button @click="payment" class="btn btn-primary">결제</button>
+    </div>
     <div class="modal-wrap" v-show="modalCheck">
       <div class="modal-container">
         <!--  모달창 content  -->
-        <iframe
-          :src="next_redirect_pc_url"
-          frameborder="0"
-          width="100%"
-          height="92%"
-          style="z-index: 3"
-        >
-        </iframe>
+        <iframe :src="next_redirect_pc_url" frameborder="0" width="100%" height="92%" style="z-index: 3"> </iframe>
         <div class="modal-btn">
           <button class="btn-common" @click="modalOpen">결제 취소</button>
         </div>
@@ -112,6 +60,12 @@ const totalInfo = ref({
   classId: null,
 });
 
+const paymentSelect = ref(null);
+
+const closeComponent = () => {
+  // paymentSelect 변수에 저장된 DOM 요소의 style 속성을 변경하여 다시 보이지 않게 설정합니다.
+  paymentSelect.value.style.display = "none";
+};
 const cancelSelected = () => {
   totalInfo.priceId = null;
   totalInfo.classId = null;
@@ -130,6 +84,7 @@ const modalOpen = () => {
 const payment = () => {
   console.log(totalInfo.value);
   modalOpen();
+  console.log(modalCheck.value);
 
   axios
     .post(`http://localhost:8080/payment/ready`, totalInfo.value)
@@ -174,6 +129,16 @@ function decodeJWT(token) {
 </script>
 
 <style scoped>
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-icon {
+  cursor: pointer;
+}
+
 .items {
   display: flex;
   margin: 1px;
@@ -198,8 +163,49 @@ function decodeJWT(token) {
 .label-half-full {
   width: 25%;
 }
+.modal-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+/* modal or popup */
+.modal-container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 720px;
+  width: 550px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-/* dimmed */
+.modal-btn {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn-common {
+  border-radius: 10px;
+  height: 50px;
+  background-color: #df1451d5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+
+  border: 0;
+  width: 130px;
+}
+
 .modal-wrap {
   position: fixed;
   left: 0;
